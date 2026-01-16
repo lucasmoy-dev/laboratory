@@ -17,8 +17,8 @@
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-  <script type="module" crossorigin src="/laboratory/assets/index-Rb38Yhbz.js"></script>
-  <link rel="stylesheet" crossorigin href="/laboratory/assets/index-CST7x0B2.css">
+  <script type="module" crossorigin src="/laboratory/assets/index-BLtu_DvF.js"></script>
+  <link rel="stylesheet" crossorigin href="/laboratory/assets/index-BoFdl5wr.css">
 </head>
 
 <body class="bg-background text-foreground font-sans">
@@ -222,6 +222,28 @@
     <div id="emoji-popover" class="fixed z-[60] hidden popover-content w-80">
         <div class="grid grid-cols-8 gap-2 h-64 overflow-y-auto" id="emoji-grid">
             <!-- Emojis -->
+        </div>
+    </div>
+
+    <!-- Category Manager Modal -->
+    <div id="categories-modal" class="fixed inset-0 z-[70] hidden">
+        <div class="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+        <div class="dialog-content max-w-lg h-[600px] flex flex-col">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <h2 class="text-lg font-semibold">Administrar Categorías</h2>
+                <button class="close-categories text-muted-foreground hover:text-foreground"><i data-lucide="x"
+                        class="w-5 h-5"></i></button>
+            </div>
+
+            <div class="flex items-center gap-2 mb-4">
+                <input type="text" id="new-cat-name" placeholder="Nueva categoría..."
+                    class="flex h-10 flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-ring">
+                <button id="btn-add-cat" class="btn-shad btn-shad-primary h-10 px-4">Agregar</button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto px-1 space-y-2" id="cat-manager-list">
+                <!-- Category items will be injected here -->
+            </div>
         </div>
     </div>
 
