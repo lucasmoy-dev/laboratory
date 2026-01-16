@@ -17,8 +17,8 @@
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-  <script type="module" crossorigin src="/laboratory/assets/index-BLtu_DvF.js"></script>
-  <link rel="stylesheet" crossorigin href="/laboratory/assets/index-BoFdl5wr.css">
+  <script type="module" crossorigin src="/laboratory/assets/index-Dk0R9Ho8.js"></script>
+  <link rel="stylesheet" crossorigin href="/laboratory/assets/index-ZYRA6AF6.css">
 </head>
 
 <body class="bg-background text-foreground font-sans">
@@ -95,33 +95,85 @@
                     class="flex items-center gap-3 w-full px-3 py-2 text-sm font-medium rounded-md hover:bg-accent text-muted-foreground">
                     <i data-lucide="settings" class="w-4 h-4"></i> Configuración
                 </button>
+                <button id="sidebar-pwa-install-btn"
+                    class="hidden flex items-center gap-3 w-full px-3 py-2 text-sm font-medium rounded-md hover:bg-accent text-muted-foreground">
+                    <i data-lucide="download" class="w-4 h-4"></i> Instalar App
+                </button>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 flex flex-col bg-background relative overflow-hidden">
-            <!-- Header -->
+        <main class="flex-1 flex flex-col bg-background relative overflow-hidden h-full">
+            <!-- Desktop Header / Search -->
             <header
-                class="h-14 border-b flex items-center justify-between px-6 bg-background/50 backdrop-blur-md sticky top-0 z-10">
-                <div class="flex items-center gap-4">
-                    <button class="md:hidden p-2 -ml-2 text-muted-foreground"><i data-lucide="menu"
-                            class="w-5 h-5"></i></button>
-                    <h2 id="view-title" class="text-sm font-semibold text-foreground">Todas las notas</h2>
+                class="hidden md:flex h-16 border-b items-center justify-between px-8 bg-background/50 backdrop-blur-md sticky top-0 z-10">
+                <div class="relative w-96">
+                    <i data-lucide="search"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                    <input type="text" id="search-input" placeholder="Buscar notas..."
+                        class="pl-9 pr-4 h-9 w-full rounded-md border border-input bg-background/50 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
                 </div>
                 <div class="flex items-center gap-2">
+                    <button id="pwa-install-btn"
+                        class="hidden inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 px-4">
+                        <i data-lucide="download" class="w-4 h-4 mr-2"></i> Instalar App
+                    </button>
                     <button id="new-note-btn"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2">
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 shadow-sm">
                         <i data-lucide="plus" class="w-4 h-4 mr-2"></i> Crear Nota
                     </button>
                 </div>
             </header>
 
+            <!-- Mobile Top Bar -->
+            <div
+                class="md:hidden h-14 border-b flex items-center justify-between px-4 bg-background/80 backdrop-blur-xl sticky top-0 z-10">
+                <span class="font-bold tracking-tight text-lg">CloudNotes</span>
+                <button id="mobile-pwa-btn"
+                    class="hidden text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">Instalar</button>
+            </div>
+
+            <!-- Mobile Search (appearing below top bar) -->
+            <div class="md:hidden px-4 py-3 bg-background border-b">
+                <div class="relative">
+                    <i data-lucide="search"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                    <input type="text" id="mobile-search-input" placeholder="Buscar..."
+                        class="pl-9 pr-4 h-10 w-full rounded-xl border border-input bg-muted/30 text-sm outline-none focus:ring-1 focus:ring-primary">
+                </div>
+            </div>
+
             <!-- Grid -->
-            <div id="notes-viewport" class="flex-1 overflow-y-auto p-6 md:p-8">
+            <div id="notes-viewport" class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
                 <div id="notes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     <!-- Notes loaded here -->
                 </div>
             </div>
+
+            <!-- Mobile Bottom Nav -->
+            <nav
+                class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/90 backdrop-blur-2xl border-t flex items-center justify-around z-40 pb-safe">
+                <button
+                    class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors nav-link-mobile"
+                    data-view="all">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    <span class="text-[10px] font-medium">Inicio</span>
+                </button>
+                <button
+                    class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors"
+                    id="mobile-add-btn">
+                    <div
+                        class="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                        <i data-lucide="plus" class="w-6 h-6"></i>
+                    </div>
+                </button>
+                <button
+                    class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors"
+                    id="mobile-menu-trigger">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                    <span class="text-[10px] font-medium">Menú</span>
+                </button>
+            </nav>
         </main>
     </div>
 
