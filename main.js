@@ -104,11 +104,15 @@ function renderNotes() {
     notesGrid.innerHTML = '';
     notes.sort((a, b) => b.updatedAt - a.updatedAt).forEach(note => {
         const card = document.createElement('div');
-        card.className = 'note-card';
+        card.className = 'note-card group';
         card.innerHTML = `
-            <button class="delete-btn" onclick="deleteNote('${note.id}')">✕</button>
-            <h3>${note.title || ''}</h3>
-            <p>${note.content}</p>
+            <button class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-red-500/10 text-red-500 opacity-0 group-hover:opacity-100 transition-all hover:bg-red-500 hover:text-white" onclick="deleteNote('${note.id}')">✕</button>
+            <h3 class="text-lg font-bold mb-2 pr-8">${note.title || 'Sin título'}</h3>
+            <p class="text-text-muted leading-relaxed whitespace-pre-wrap">${note.content}</p>
+            <div class="mt-6 flex items-center justify-between opacity-40 text-[10px] font-mono tracking-tighter uppercase">
+                <span>Guardado</span>
+                <span>${new Date(note.updatedAt).toLocaleDateString()}</span>
+            </div>
         `;
         notesGrid.appendChild(card);
     });
@@ -249,8 +253,11 @@ async function saveToDrive(fileId) {
 function showToast(msg) {
     const toast = document.getElementById('toast');
     toast.innerText = msg;
-    toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 3000);
+    toast.classList.remove('translate-y-20', 'opacity-0');
+
+    setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+    }, 3000);
 }
 
 function showStatus(msg) {

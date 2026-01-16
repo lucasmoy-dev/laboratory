@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudNotes - PWA Keep Clone</title>
-    <meta name="description" content="Una aplicación de notas simple con sincronización en Google Drive.">
+    <title>CloudNotes | Premium PWA</title>
+    <meta name="description" content="Elegante aplicación de notas con sincronización en la nube.">
 
     <!-- PWA Settings -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#6366f1">
+    <meta name="theme-color" content="#0f172a">
     <link rel="apple-touch-icon" href="/icons/icon-192.png">
 
     <!-- Fonts -->
@@ -21,53 +21,77 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/api.js" async defer></script>
 
-    <link rel="stylesheet" href="style.css?v=1737057700">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
-    <div id="app">
-        <header>
-            <div class="header-content">
-                <div class="logo">
-                    <span class="logo-icon">📝</span>
-                    <h1>CloudNotes</h1>
+<body class="selection:bg-brand/30 selection:text-white">
+    <div id="app" class="min-h-screen flex flex-col">
+        <header class="sticky top-0 z-50 bg-bg-dark/80 backdrop-blur-md border-b border-white/5">
+            <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+                <div class="flex items-center gap-3 group cursor-default">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-brand flex items-center justify-center text-xl shadow-lg shadow-brand/20 group-hover:scale-110 transition-transform">
+                        📝
+                    </div>
+                    <h1
+                        class="text-xl font-bold bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent tracking-tight">
+                        CloudNotes
+                    </h1>
                 </div>
-                <div class="actions">
-                    <button id="sync-btn" class="btn btn-primary">
-                        <span class="icon">🔄</span>
-                        <span class="text">Sincronizar</span>
+
+                <div class="flex items-center gap-3">
+                    <button id="sync-btn" class="btn-premium btn-primary">
+                        <span class="text-lg">🔄</span>
+                        <span class="hidden sm:inline">Sincronizar</span>
                     </button>
-                    <button id="auth-btn" class="btn btn-secondary">
-                        <span class="icon">👤</span>
-                        <span class="text">Conectar Google</span>
+                    <button id="auth-btn" class="btn-premium btn-secondary">
+                        <span class="text-lg">👤</span>
+                        <span class="text hidden sm:inline">Conectar Google</span>
                     </button>
                 </div>
             </div>
-            <div id="status-bar" class="status-bar hidden">
-                <p id="status-text"></p>
+
+            <div id="status-bar" class="hidden h-8 bg-brand/10 flex items-center justify-center">
+                <p id="status-text" class="text-xs font-medium text-brand uppercase tracking-widest"></p>
             </div>
         </header>
 
-        <main>
-            <div class="note-input-container">
-                <div class="note-input-card" id="note-input-base">
-                    <input type="text" id="note-title" placeholder="Título" class="hidden">
-                    <textarea id="note-content" placeholder="Escribe una nota..."></textarea>
-                    <div class="note-input-actions hidden" id="note-actions">
-                        <button id="save-note" class="btn btn-small">Guardar</button>
+        <main class="flex-1 max-w-4xl mx-auto w-full px-6 py-12">
+            <!-- Input Card -->
+            <div class="mb-16">
+                <div class="glass-card p-4 focus-within:ring-2 focus-within:ring-brand/50 transition-all duration-500 overflow-hidden"
+                    id="note-input-base">
+                    <input type="text" id="note-title" placeholder="Título magnífico..."
+                        class="input-premium text-lg font-bold mb-3 hidden">
+                    <textarea id="note-content" placeholder="Escribe algo brillante..."
+                        class="input-premium min-h-[60px] text-lg resize-none"></textarea>
+
+                    <div class="flex justify-end pt-4 border-t border-white/5 hidden" id="note-actions">
+                        <button id="save-note" class="btn-premium btn-primary py-2 text-sm shadow-none">
+                            Guardar Nota
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div id="notes-grid" class="notes-grid">
+            <!-- Header Section -->
+            <div class="flex items-baseline justify-between mb-8">
+                <h2 class="text-2xl font-semibold opacity-90">Tus Notas</h2>
+                <span class="text-xs text-text-muted font-mono uppercase tracking-widest">Local & Cloud</span>
+            </div>
+
+            <!-- Notes Grid -->
+            <div id="notes-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Notes will be injected here -->
             </div>
         </main>
 
-        <div id="toast" class="toast hidden"></div>
+        <div id="toast"
+            class="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full bg-white text-slate-900 font-medium shadow-2xl transition-all duration-300 translate-y-20 opacity-0 z-[1000]">
+        </div>
     </div>
 
-    <script type="module" src="main.js"></script>
+    <script type="module" src="./main.js"></script>
 </body>
 
 </html>
