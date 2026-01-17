@@ -1,7 +1,7 @@
 import './style.css';
 import { state, saveLocal, loadSettings } from './src/state.js';
 import { APP_VERSION } from './src/constants.js';
-import { showToast, safeCreateIcons } from './src/ui-utils.js';
+import { showToast, safeCreateIcons, openPrompt } from './src/ui-utils.js';
 import { SecurityService as Security } from './src/security.js';
 import { DriveSync } from './src/drive.js';
 
@@ -357,9 +357,18 @@ function initMobileNav() {
         }
     });
 
-    bindClick('mobile-search-trigger', () => {
-        searchBar?.classList.remove('hidden');
-        searchInput?.focus();
+    bindClick('mobile-search-trigger', async () => {
+        const term = await openPrompt('Buscar Notas', 'Ingresa término de búsqueda:', false);
+        if (term !== null) {
+            const desktopSearch = document.getElementById('search-input');
+            if (desktopSearch) {
+                desktopSearch.value = term;
+                desktopSearch.dispatchEvent(new Event('input'));
+                // Scroll to top to see results
+                const viewport = document.getElementById('notes-viewport');
+                if (viewport) viewport.scrollTop = 0;
+            }
+        }
     });
 }
 
