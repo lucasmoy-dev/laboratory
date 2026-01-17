@@ -5,17 +5,17 @@ export function getLayoutTemplate() {
         <aside class="w-64 hidden md:flex flex-col border-r bg-sidebar">
             <style>
                 @keyframes logo-rainbow {
-                    0% { color: #6366f1; filter: drop-shadow(0 0 2px #6366f1); }
-                    33% { color: #ec4899; filter: drop-shadow(0 0 2px #ec4899); }
-                    66% { color: #10b981; filter: drop-shadow(0 0 2px #10b981); }
-                    100% { color: #6366f1; filter: drop-shadow(0 0 2px #6366f1); }
+                    0% { filter: drop-shadow(0 0 2px #6366f1) hue-rotate(0deg); }
+                    33% { filter: drop-shadow(0 0 5px #ec4899) hue-rotate(120deg); }
+                    66% { filter: drop-shadow(0 0 2px #10b981) hue-rotate(240deg); }
+                    100% { filter: drop-shadow(0 0 2px #6366f1) hue-rotate(360deg); }
                 }
                 .logo-animate { animation: logo-rainbow 8s infinite linear; }
             </style>
             <div class="p-6 flex items-center justify-between gap-3">
                 <div class="flex items-center gap-3 overflow-hidden" id="sidebar-logo-container">
                     <div class="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center shrink-0">
-                        <img src="/favicon.png" alt="Logo" class="w-full h-full object-contain logo-animate">
+                        <img src="./favicon.png" alt="Logo" class="w-full h-full object-contain logo-animate">
                     </div>
                     <div class="sidebar-title-text transition-opacity duration-300">
                         <h1 class="text-sm font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent truncate">Private Notes</h1>
@@ -25,7 +25,7 @@ export function getLayoutTemplate() {
                     <i data-lucide="chevrons-left" class="w-4 h-4" id="sidebar-collapse-icon"></i>
                 </button>
             </div>
-
+            
             <div class="flex-1 overflow-y-auto px-4 space-y-8">
                 <div class="space-y-1">
                     <button class="nav-link w-full" data-view="all">
@@ -122,7 +122,7 @@ export function getLayoutTemplate() {
                 <div class="p-6 flex items-center justify-between border-b">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center shrink-0">
-                            <img src="/favicon.png" alt="Logo" class="w-full h-full object-contain logo-animate">
+                            <img src="./favicon.png" alt="Logo" class="w-full h-full object-contain logo-animate">
                         </div>
                         <h1 class="text-sm font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent truncate">Private Notes</h1>
                     </div>
