@@ -116,8 +116,18 @@ export function renderNotes(onEdit) {
     grid.querySelectorAll('.delete-note-btn').forEach(btn => {
         btn.onclick = async (e) => {
             e.stopPropagation();
+            const noteId = btn.dataset.id;
+            const note = state.notes.find(n => n.id === noteId);
+
+            if (note?.passwordHash && !state.unlockedNotes.has(note.id)) {
+                const pass = await openPrompt('Eliminar Nota Protegida', 'Ingresa la contraseña para autorizar la eliminación:');
+                if (!pass) return;
+                const hash = await Security.hashPassword(pass);
+                if (hash !== note.passwordHash) return showToast('❌ Contraseña incorrecta');
+            }
+
             if (confirm('¿Eliminar esta nota?')) {
-                state.notes = state.notes.filter(n => n.id !== btn.dataset.id);
+                state.notes = state.notes.filter(n => n.id !== noteId);
                 await saveLocal();
                 renderNotes(onEdit);
                 if (window.triggerAutoSync) window.triggerAutoSync();

@@ -4,14 +4,13 @@ export function getLayoutTemplate() {
         <!-- Sidebar Desktop -->
         <aside class="w-64 hidden md:flex flex-col border-r bg-sidebar">
             <div class="p-6 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-primary/10 p-2 flex items-center justify-center border border-primary/20">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 p-2 flex items-center justify-center border border-primary/20 shadow-inner">
                     <svg viewBox="0 0 24 24" fill="none" class="w-full h-full text-primary" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-sm font-semibold leading-none">Private Notes</h1>
+                    <h1 class="text-sm font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Private Notes</h1>
                 </div>
             </div>
 
@@ -44,7 +43,7 @@ export function getLayoutTemplate() {
                     <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Cerrar Bóveda
                 </button>
                 <div class="mt-auto pt-4 border-t border-border/20 px-4">
-                    <div id="app-version" class="text-[9px] text-muted-foreground font-mono opacity-30">v3.3.2</div>
+                    <div id="app-version" class="text-[9px] text-muted-foreground font-mono opacity-30">v3.3.3</div>
                 </div>
             </div>
         </aside>
@@ -79,10 +78,9 @@ export function getLayoutTemplate() {
                         <i data-lucide="menu" class="w-5 h-5"></i>
                     </button>
                     <div class="flex items-center gap-2">
-                        <div class="w-7 h-7 rounded-lg bg-primary/10 p-1 flex items-center justify-center border border-primary/20">
+                        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 p-1 flex items-center justify-center border border-primary/20 shadow-inner">
                             <svg viewBox="0 0 24 24" fill="none" class="w-full h-full text-primary" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                             </svg>
                         </div>
                         <span class="font-bold tracking-tight text-lg">Private Notes</span>
@@ -142,10 +140,9 @@ export function getLayoutTemplate() {
             <div id="mobile-sidebar-drawer" class="w-[80vw] h-full bg-card border-r flex flex-col animate-in slide-in-from-left duration-300">
                 <div class="p-6 flex items-center justify-between border-b">
                     <div class="flex items-center gap-2">
-                        <div class="w-6 h-6 rounded-md bg-primary/10 p-1 flex items-center justify-center border border-primary/20">
+                        <div class="w-6 h-6 rounded-md bg-gradient-to-br from-primary/20 to-primary/5 p-1 flex items-center justify-center border border-primary/20 shadow-inner">
                             <svg viewBox="0 0 24 24" fill="none" class="w-full h-full text-primary" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                             </svg>
                         </div>
                         <span class="font-bold tracking-tight">Private Notes</span>

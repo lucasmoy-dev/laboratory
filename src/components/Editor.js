@@ -136,8 +136,8 @@ export function openEditor(note = null) {
     const dialogContent = modal.querySelector('.dialog-content');
 
     state.editingNoteId = note ? note.id : null;
-    titleEl.value = note ? note.title : '';
-    contentEl.innerHTML = note ? note.content : '';
+    titleEl.value = note?.title || '';
+    contentEl.innerHTML = note?.content || '';
 
     let defaultCat = '';
     if (!note && state.currentView !== 'all') defaultCat = state.currentView;
@@ -182,8 +182,18 @@ async function saveActiveNote() {
     const hasLock = document.getElementById('toggle-lock').dataset.active === 'true';
     const themeId = document.querySelector('#editor-modal .dialog-content').dataset.themeId;
 
-    if (!title) title = new Date().toLocaleString();
-    if (!content.trim()) return showToast('La nota está vacía');
+    if (!title) {
+        const now = new Date();
+        title = now.getFullYear() + '-' +
+            String(now.getMonth() + 1).padStart(2, '0') + '-' +
+            String(now.getDate()).padStart(2, '0') + ', ' +
+            String(now.getHours()).padStart(2, '0') + ':' +
+            String(now.getMinutes()).padStart(2, '0') + ':' +
+            String(now.getSeconds()).padStart(2, '0');
+    }
+    if (!content || content === 'undefined' || content.trim() === '') {
+        return showToast('La nota está vacía');
+    }
 
     const noteIndex = state.notes.findIndex(n => n.id === state.editingNoteId);
     const noteData = {

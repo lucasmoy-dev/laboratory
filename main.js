@@ -306,14 +306,20 @@ function initGapi() {
                     scope: "https://www.googleapis.com/auth/drive.file",
                     callback: (resp) => {
                         if (resp.error) return showToast('❌ Error de vinculación');
+                        sessionStorage.setItem('gdrive_token', JSON.stringify(resp));
                         updateDriveStatus(true);
                         showToast('✅ Vinculado con Google Drive');
                     },
                 });
 
                 // Check if we already have a token
-                const hasToken = gapi.auth.getToken() !== null;
-                updateDriveStatus(hasToken);
+                const hasToken = sessionStorage.getItem('gdrive_token');
+                if (hasToken) {
+                    gapi.client.setToken(JSON.parse(hasToken));
+                    updateDriveStatus(true);
+                } else {
+                    updateDriveStatus(false);
+                }
             });
         }
     }, 500);
@@ -325,20 +331,31 @@ function handleGoogleAuth() {
 }
 
 function updateDriveStatus(connected) {
-    const el = document.getElementById('drive-status');
-    if (!el) return;
-    el.innerText = connected ? 'Conectado' : 'Desconectado';
-    el.className = connected
-        ? 'text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-bold uppercase'
-        : 'text-[10px] px-2 py-0.5 rounded-full bg-destructive/10 text-destructive font-bold uppercase';
+    const btn = document.getElementById('google-drive-sync-btn');
+    const status = document.getElementById('drive-status-label');
+    const syncBtn = document.getElementById('sync-btn');
+
+    if (status) {
+        status.innerHTML = connected
+            ? '<span class="flex items-center gap-2 text-green-500"><i data-lucide="check-circle" class="w-4 h-4"></i> Conectado</span>'
+            : '<span class="flex items-center gap-2 text-muted-foreground"><i data-lucide="x-circle" class="w-4 h-4"></i> No conectado</span>';
+    }
+
+    if (syncBtn) {
+        syncBtn.classList.toggle('opacity-100', connected);
+    }
+    safeCreateIcons();
 }
 
 async function handleSync() {
     const pass = sessionStorage.getItem('cn_pass_plain_v3');
-    if (!pass) return; // Silent if no active session
+    if (!pass) return;
 
     const icon = document.getElementById('sync-icon');
-    if (icon) icon.classList.add('animate-spin', 'text-primary');
+    const btn = document.getElementById('sync-btn');
+
+    if (icon) icon.classList.add('animate-spin');
+    if (btn) btn.classList.add('text-primary');
 
     try {
         const drive = new DriveSync('notev3_', state.settings.drivePath);
@@ -350,11 +367,8 @@ async function handleSync() {
         console.error('Sync error:', err);
         showToast('❌ Error en la sincronización');
     } finally {
-        if (icon) {
-            setTimeout(() => {
-                icon.classList.remove('animate-spin', 'text-primary');
-            }, 500);
-        }
+        if (icon) icon.classList.remove('animate-spin');
+        if (btn) btn.classList.remove('text-primary');
     }
 }
 
