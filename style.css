@@ -145,7 +145,7 @@
     }
 
     .note-card-content {
-        @apply p-5 flex flex-col h-full;
+        @apply p-4 flex flex-col h-full;
     }
 
     .note-card.pinned {
@@ -189,7 +189,7 @@ input.pl-12 {
 
 /* Password eye toggle */
 .toggle-pass {
-    @apply transition-colors h-8 w-8 flex items-center justify-center rounded-md;
+    @apply transition-colors h-11 w-11 flex items-center justify-center rounded-md absolute right-0 top-0;
 }
 
 /* Scrollbar styling */
@@ -298,7 +298,7 @@ textarea {
     }
 
     #notes-viewport {
-        padding: 1rem 0.5rem 6rem 0.5rem;
+        padding: 0.75rem 0.5rem 5rem 0.5rem;
     }
 
     .dialog-content {

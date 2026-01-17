@@ -580,8 +580,10 @@ function handleLogout() {
 }
 
 function injectVersion() {
-    const el = document.getElementById('app-version');
-    if (el) el.innerText = APP_VERSION;
+    ['app-version', 'settings-version-display'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = APP_VERSION;
+    });
 }
 
 function openSettings() {

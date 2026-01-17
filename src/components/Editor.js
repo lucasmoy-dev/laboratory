@@ -51,15 +51,11 @@ export function getEditorTemplate() {
                             <button data-command="bold" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Negrita"><i data-lucide="bold" class="w-4 h-4"></i> Negrita</button>
                             <button data-command="italic" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Cursiva"><i data-lucide="italic" class="w-4 h-4"></i> Cursiva</button>
                             <button data-command="underline" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Subrayado"><i data-lucide="underline" class="w-4 h-4"></i> Subrayado</button>
-                            <button data-command="insertUnorderedList" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Lista"><i data-lucide="list" class="w-4 h-4"></i> Lista</button>
-                            <button data-command="insertOrderedList" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Enumeración"><i data-lucide="list-ordered" class="w-4 h-4"></i> Enumeración</button>
-                            <button id="mobile-link-btn" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Hipervínculo"><i data-lucide="link" class="w-4 h-4"></i> Hipervínculo</button>
+                            <button data-command="insertUnorderedList" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Lista"><i data-lucide="list" class="w-4 h-4"></i> Lista de viñetas</button>
+                            <button data-command="insertOrderedList" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Enumeración"><i data-lucide="list-ordered" class="w-4 h-4"></i> Lista numerada</button>
+                            <button id="mobile-link-btn" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Hipervínculo"><i data-lucide="link" class="w-4 h-4"></i> Enlace</button>
                             <button id="mobile-text-color-btn" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Color de texto">
-                                <div class="flex flex-col items-center">
-                                    <i data-lucide="type" class="w-4 h-4"></i>
-                                    <div class="w-3 h-[2px] bg-red-500 rounded-full -mt-0.5"></div>
-                                </div>
-                                Color de texto
+                                <i data-lucide="palette" class="w-4 h-4"></i> Color de Texto
                             </button>
                         </div>
                     </div>
@@ -99,24 +95,19 @@ export function getEditorTemplate() {
                 </div>
 
                 <div id="edit-content" contenteditable="true"
-                    class="min-h-[200px] outline-none text-sm leading-relaxed prose prose-slate dark:prose-invert max-w-none"
+                    class="min-h-[300px] outline-none text-base leading-relaxed prose prose-slate dark:prose-invert max-w-none px-1"
                     placeholder="Empieza a escribir..."></div>
             </div>
 
-            <div class="border-t pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 editor-bottom-bar overflow-y-auto max-h-[30vh]">
-                <div class="flex flex-wrap items-center gap-2 justify-center sm:justify-start">
-                    <div class="flex items-center bg-muted/30 p-1 rounded-md border shrink-0">
-                        <button id="open-colors" class="editor-tool relative" title="Color de fondo">
-                            <div class="flex flex-col items-center">
-                                <i data-lucide="palette" class="w-4 h-4"></i>
-                                <div class="w-3 h-[2px] bg-blue-500 rounded-full -mt-0.5"></div>
-                            </div>
-                        </button>
-                    </div>
+            <div class="border-t pt-4 flex items-center justify-between gap-2 editor-bottom-bar shrink-0">
+                <div class="flex items-center gap-1.5 flex-1 min-w-0">
+                    <button id="open-colors" class="editor-tool border border-input bg-background/50 transition-all shrink-0" title="Fondo">
+                        <i data-lucide="palette" class="w-4 h-4"></i>
+                    </button>
 
-                    <div class="relative group" id="cat-select-wrapper">
+                    <div class="relative flex-1 min-w-0" id="cat-select-wrapper">
                         <button id="cat-dropdown-trigger"
-                            class="h-9 px-3 rounded-md border border-input bg-background/50 text-[10px] md:text-xs flex items-center gap-2 hover:bg-accent transition-all truncate max-w-[120px]">
+                            class="h-9 w-full px-2 rounded-md border border-input bg-background/50 text-xs flex items-center justify-between gap-1 hover:bg-accent transition-all">
                             <span id="selected-cat-label" class="truncate">Sin categoría</span>
                             <i data-lucide="chevron-down" class="w-3 h-3 text-muted-foreground shrink-0"></i>
                         </button>
@@ -127,6 +118,7 @@ export function getEditorTemplate() {
                             <option value="">Sin categoría</option>
                         </select>
                     </div>
+                    
                     <button id="toggle-pin" class="editor-tool border border-input bg-background/50 transition-all shrink-0">
                         <i data-lucide="pin" class="w-4 h-4"></i>
                     </button>
@@ -134,11 +126,11 @@ export function getEditorTemplate() {
                         <i data-lucide="lock" class="w-4 h-4"></i>
                     </button>
                 </div>
-                <div class="flex gap-2 w-full sm:w-auto">
-                    <button id="delete-note" class="flex-1 sm:flex-none btn-shad bg-destructive/10 text-destructive hover:bg-destructive hover:text-white h-9 px-3" title="Eliminar nota">
+                <div class="flex gap-1.5 shrink-0">
+                    <button id="delete-note" class="btn-shad bg-destructive/10 text-destructive hover:bg-destructive hover:text-white h-9 w-9 p-0" title="Eliminar nota">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
-                    <button id="save-note" class="flex-[2] sm:flex-none btn-shad btn-shad-primary h-9">Guardar</button>
+                    <button id="save-note" class="btn-shad btn-shad-primary h-9 px-4 font-bold">Hecho</button>
                 </div>
             </div>
         </div>

@@ -1,14 +1,15 @@
 {
     "name": "cloud-notes-pwa",
     "private": true,
-    "version": "3.6.0",
+    "version": "3.6.3",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d dist"
+        "deploy": "gh-pages -d dist",
+        "release": "powershell -ExecutionPolicy Bypass -File ./deploy.ps1"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.23",

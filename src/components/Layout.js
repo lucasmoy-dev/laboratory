@@ -26,7 +26,7 @@ export function getLayoutTemplate() {
             <div class="flex-1 overflow-y-auto px-4 space-y-8">
                 <div class="space-y-1">
                     <button class="nav-link active w-full" data-view="all">
-                        <i data-lucide="layout-grid" class="w-4 h-4"></i> Todas las notas
+                        <i data-lucide="layout-grid" class="w-4 h-4"></i> <span class="text-foreground/90 font-bold">Todas las notas</span>
                     </button>
                 </div>
 
@@ -57,7 +57,7 @@ export function getLayoutTemplate() {
         <!-- Main Content -->
         <main class="flex-1 flex flex-col bg-background relative overflow-hidden h-full">
             <!-- Desktop Header -->
-            <header class="hidden md:flex h-16 items-center justify-between px-8 border-b">
+            <header class="hidden md:flex h-16 items-center justify-between px-8 border-b shrink-0">
                 <div class="flex items-center gap-4 flex-1">
                     <div class="relative w-full max-w-sm">
                         <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
@@ -119,26 +119,21 @@ export function getLayoutTemplate() {
             <!-- Mobile Bottom Nav -->
             <nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/95 backdrop-blur-2xl border-t flex items-center justify-around z-40 pb-safe">
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-sidebar-trigger-bottom">
-                    <i data-lucide="menu" class="w-5 h-5"></i>
-                    <span class="text-[10px] font-medium">Menú</span>
+                    <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors nav-link-mobile" data-view="all">
-                    <i data-lucide="home" class="w-5 h-5"></i>
-                    <span class="text-[10px] font-medium">Inicio</span>
+                    <i data-lucide="home" class="w-6 h-6"></i>
                 </button>
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-content text-muted-foreground active:text-primary transition-colors relative" id="mobile-add-btn">
-                    <div class="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform -translate-y-4 border-4 border-background">
+                    <div class="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform -translate-y-2 border-4 border-background">
                         <i data-lucide="plus" class="w-6 h-6"></i>
                     </div>
-                    <span class="text-[10px] font-medium absolute -bottom-1">Crear</span>
                 </button>
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-sync-btn-bottom">
-                    <i data-lucide="refresh-cw" class="w-5 h-5"></i>
-                    <span class="text-[10px] font-medium">Sincronizar</span>
+                    <i data-lucide="refresh-cw" class="w-6 h-6"></i>
                 </button>
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-search-trigger">
-                    <i data-lucide="search" class="w-5 h-5"></i>
-                    <span class="text-[10px] font-medium">Buscar</span>
+                    <i data-lucide="search" class="w-6 h-6"></i>
                 </button>
             </nav>
         </main>
