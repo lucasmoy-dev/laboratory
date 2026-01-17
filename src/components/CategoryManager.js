@@ -1,7 +1,7 @@
 import { state, saveLocal } from '../state.js';
 import { CAT_ICONS } from '../constants.js';
 import { safeCreateIcons, showToast, openPrompt } from '../ui-utils.js';
-import { Security } from '../auth.js';
+import { SecurityService as Security } from '../security.js';
 
 export function getCategoryManagerTemplate() {
     return `
@@ -165,7 +165,7 @@ async function deleteCat(id, onRefresh) {
     if (cat.passwordHash) {
         const pass = await openPrompt('Seguridad', 'Etiqueta protegida. Ingresa contraseña para eliminar:');
         if (!pass) return;
-        const hash = await Security.hashPassword(pass);
+        const hash = await Security.hash(pass);
         if (hash !== cat.passwordHash) return showToast('❌ Error: Contraseña incorrecta');
     }
 
@@ -187,14 +187,14 @@ async function toggleLock(id, onRefresh) {
     if (cat.passwordHash) {
         const pass = await openPrompt('Seguridad', 'Ingresa la contraseña para quitar la protección:');
         if (!pass) return;
-        const hash = await Security.hashPassword(pass);
+        const hash = await Security.hash(pass);
         if (hash !== cat.passwordHash) return showToast('❌ Error: Contraseña incorrecta');
         cat.passwordHash = null;
         showToast('🔓 Protección quitada');
     } else {
         const pass = await openPrompt('Seguridad', 'Define una contraseña para proteger esta etiqueta:');
         if (pass) {
-            cat.passwordHash = await Security.hashPassword(pass);
+            cat.passwordHash = await Security.hash(pass);
             showToast('🔒 Etiqueta protegida');
         }
     }

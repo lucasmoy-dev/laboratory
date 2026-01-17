@@ -1,7 +1,7 @@
 import { state, saveLocal } from '../state.js';
 import { NOTE_THEMES } from '../constants.js';
 import { safeCreateIcons, isColorDark, openPrompt, showToast } from '../ui-utils.js';
-import { Security } from '../auth.js';
+import { SecurityService as Security } from '../security.js';
 import Sortable from 'sortablejs';
 
 export function renderNotes(onEdit) {
@@ -65,7 +65,7 @@ export function renderNotes(onEdit) {
                 try {
                     const pass = await openPrompt('Nota Protegida', 'Ingresa la contraseña para ver esta nota:');
                     if (!pass) return;
-                    const hash = await Security.hashPassword(pass);
+                    const hash = await Security.hash(pass);
                     if (hash !== note.passwordHash) {
                         showToast('❌ Contraseña incorrecta');
                         return;

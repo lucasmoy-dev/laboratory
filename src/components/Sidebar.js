@@ -1,6 +1,6 @@
 import { state } from '../state.js';
 import { safeCreateIcons } from '../ui-utils.js';
-import { Security } from '../auth.js';
+import { SecurityService as Security } from '../security.js';
 import { openPrompt, showToast } from '../ui-utils.js';
 
 export function renderCategories(onViewChange, categories = null) {
@@ -69,7 +69,7 @@ export function renderCategories(onViewChange, categories = null) {
                 if (cat.passwordHash) {
                     const pass = await openPrompt('Acceso Restringido', `Ingresa la contraseña para "${cat.name}":`);
                     if (!pass) return;
-                    const hash = await Security.hashPassword(pass);
+                    const hash = await Security.hash(pass);
                     if (hash !== cat.passwordHash) {
                         showToast('Contraseña incorrecta');
                         return;

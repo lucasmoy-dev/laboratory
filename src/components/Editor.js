@@ -1,7 +1,7 @@
 import { state, saveLocal } from '../state.js';
 import { NOTE_THEMES, PALETTE, EMOJIS } from '../constants.js';
 import { isColorDark, safeCreateIcons, showToast, openPrompt } from '../ui-utils.js';
-import { Security } from '../auth.js';
+import { SecurityService as Security } from '../security.js';
 
 let lastSelectedRange = null;
 
@@ -181,7 +181,7 @@ export function initEditor(onSave) {
             const pass = await openPrompt('Proteger Nota', 'Crea una contraseña para esta nota:');
             if (pass) {
                 const lockEl = document.getElementById('opt-toggle-lock');
-                lockEl.dataset.tempHash = await Security.hashPassword(pass);
+                lockEl.dataset.tempHash = await Security.hash(pass);
                 updateLockUI(true);
                 saveActiveNote(false); // Quick save
             }
@@ -491,7 +491,7 @@ export async function saveActiveNote(shouldClose = true) {
     if (hasLock && !noteData.passwordHash) {
         // Fallback safety (should be handled by toggleLock)
         const pass = await openPrompt('Seguridad', 'Establece una contraseña para esta nota:');
-        if (pass) noteData.passwordHash = await Security.hashPassword(pass);
+        if (pass) noteData.passwordHash = await Security.hash(pass);
         else return;
     }
 

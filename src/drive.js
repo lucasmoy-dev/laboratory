@@ -5,9 +5,10 @@
  */
 
 export class DriveSync {
-    constructor(dbFileName = 'chunk_', folderPath = '/backup/notes/', chunkSizeLimitKB = 100) {
+    constructor(dbFileName = 'chunk_v3_', folderPath = '/backup/notes/', chunkSizeLimitKB = 500) {
         this.basePath = folderPath;
-        this.dbPrefix = dbFileName;
+        this.dbPrefix = dbFileName; // Prefix for the data set
+        this.chunkPrefix = 'data_part_'; // Internal prefix for chunks
         this.chunkSizeLimit = chunkSizeLimitKB * 1024;
     }
 
@@ -39,26 +40,34 @@ export class DriveSync {
     }
 
     async saveChunks(data, folderId) {
-        // 1. Convert to encrypted string if not already
         const serialized = JSON.stringify(data);
         const chunks = [];
+
+        console.log(`[Drive] Serialized size: ${(serialized.length / 1024).toFixed(2)} KB. Limit: ${this.chunkSizeLimit / 1024} KB`);
 
         for (let i = 0; i < serialized.length; i += this.chunkSizeLimit) {
             chunks.push(serialized.substring(i, i + this.chunkSizeLimit));
         }
 
-        // 2. Clear all existing chunks first to avoid leftovers from previous smaller/different chunking
+        // 2. Clear ONLY exact chunk matches from this prefix to avoid collisions
+        // also look for legacy .json files from previous version and remove them
         const q = `name contains '${this.dbPrefix}' and '${folderId}' in parents and trashed = false`;
-        const existingFiles = await gapi.client.drive.files.list({ q, fields: 'files(id)' });
+        const existingFiles = await gapi.client.drive.files.list({ q, fields: 'files(id, name)' });
+
         if (existingFiles.result.files) {
             for (const file of existingFiles.result.files) {
-                await gapi.client.drive.files.delete({ fileId: file.id });
+                const isNewChunk = file.name.startsWith(this.dbPrefix + this.chunkPrefix);
+                const isOldChunk = file.name.startsWith(this.dbPrefix) && file.name.endsWith('.json');
+
+                if (isNewChunk || isOldChunk) {
+                    await gapi.client.drive.files.delete({ fileId: file.id });
+                }
             }
         }
 
-        // 3. Upload new chunks
+        // 3. Upload new chunks with .bin to avoid GAPI auto-parsing
         for (let i = 0; i < chunks.length; i++) {
-            const fileName = `${this.dbPrefix}${i.toString().padStart(5, '0')}.json`;
+            const fileName = `${this.dbPrefix}${this.chunkPrefix}${i.toString().padStart(5, '0')}.bin`;
             await this.uploadFile(fileName, chunks[i], folderId);
         }
 
@@ -100,23 +109,41 @@ export class DriveSync {
     }
 
     async loadChunks(folderId) {
-        const q = `name contains '${this.dbPrefix}' and '${folderId}' in parents and trashed = false`;
+        // Find only files that match our specific chunk pattern
+        const q = `name contains '${this.chunkPrefix}' and name contains '${this.dbPrefix}' and '${folderId}' in parents and trashed = false`;
         const resp = await gapi.client.drive.files.list({
             q,
             fields: 'files(id, name)',
             orderBy: 'name'
         });
-        const files = resp.result.files;
 
+        const allFiles = resp.result.files || [];
+        // Filter strictly to ensure we only get chunks of the current prefix
+        const files = allFiles.filter(f => f.name.startsWith(this.dbPrefix + this.chunkPrefix));
+
+        if (files.length === 0) return null;
+
+        console.log(`[Drive] Loading ${files.length} chunks...`);
+
+        const accessToken = gapi.auth.getToken().access_token;
         let fullData = "";
+
         for (const file of files) {
-            const fileResp = await gapi.client.drive.files.get({
-                fileId: file.id,
-                alt: 'media'
+            // Use fetch for alt=media to get RAW text reliably without GAPI auto-parsing
+            const url = `https://www.googleapis.com/drive/v3/files/${file.id}?alt=media`;
+            const fileResp = await fetch(url, {
+                headers: { 'Authorization': `Bearer ${accessToken}` }
             });
-            fullData += typeof fileResp.result === 'string' ? fileResp.result : JSON.stringify(fileResp.result);
+            const text = await fileResp.text();
+            fullData += text;
         }
 
-        return fullData ? JSON.parse(fullData) : null;
+        try {
+            return fullData ? JSON.parse(fullData) : null;
+        } catch (e) {
+            console.error('[Drive] Critical: Failed to reconstruct JSON from chunks. Length:', fullData.length);
+            console.log('Partial data snippet:', fullData.substring(0, 100));
+            throw e;
+        }
     }
 }

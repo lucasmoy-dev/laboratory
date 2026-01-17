@@ -1,4 +1,4 @@
-import { Security } from '../auth.js';
+import { SecurityService as Security } from '../security.js';
 import { state, loadLocalEncrypted } from '../state.js';
 import { showToast, safeCreateIcons } from '../ui-utils.js';
 
@@ -53,7 +53,7 @@ export async function checkAuthStatus(onSuccess) {
     if (isSetup) {
         showSetupPage();
     } else if (savedPass) {
-        const hash = await Security.hashPassword(savedPass);
+        const hash = await Security.hash(savedPass);
         if (hash === localStorage.getItem('cn_master_hash_v3')) {
             shield.classList.add('opacity-0', 'pointer-events-none');
             setTimeout(() => shield.style.display = 'none', 300);
@@ -130,7 +130,7 @@ export async function handleMasterAuth(onSuccess) {
         if (pass.length < 4) return showToast('La contraseña debe tener al menos 4 caracteres');
     }
 
-    const hash = await Security.hashPassword(pass);
+    const hash = await Security.hash(pass);
     const existingHash = localStorage.getItem('cn_master_hash_v3');
 
     const remember = document.getElementById('auth-remember').checked;

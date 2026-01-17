@@ -1,4 +1,4 @@
-import { Security } from './auth.js';
+import { SecurityService as Security } from './security.js';
 
 export const state = {
     notes: [],

@@ -2,7 +2,7 @@ import './style.css';
 import { state, saveLocal, loadSettings } from './src/state.js';
 import { APP_VERSION } from './src/constants.js';
 import { showToast, safeCreateIcons } from './src/ui-utils.js';
-import { Security } from './src/auth.js';
+import { SecurityService as Security } from './src/security.js';
 import { DriveSync } from './src/drive.js';
 
 const CLIENT_ID = '974464877836-721dprai6taijtuufmrkh438q68e97sp.apps.googleusercontent.com';
@@ -170,7 +170,7 @@ function setupGlobalEvents() {
     const saveSettings = async () => {
         state.settings.drivePath = document.getElementById('config-drive-path').value;
         state.settings.algo = document.getElementById('config-algo').value;
-        state.settings.syncChunkSize = parseInt(document.getElementById('config-sync-chunk-size').value) || 100;
+        state.settings.syncChunkSize = parseInt(document.getElementById('config-sync-chunk-size').value) || 500;
         await saveLocal();
         showToast('✅ Configuración guardada');
         triggerAutoSync();
@@ -631,7 +631,7 @@ function openSettings() {
         document.getElementById('config-drive-path').value = state.settings.drivePath;
         document.getElementById('config-algo').value = state.settings.algo;
         if (document.getElementById('config-sync-chunk-size')) {
-            document.getElementById('config-sync-chunk-size').value = state.settings.syncChunkSize || 100;
+            document.getElementById('config-sync-chunk-size').value = state.settings.syncChunkSize || 500;
         }
 
         // Reset to first tab
