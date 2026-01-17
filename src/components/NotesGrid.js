@@ -45,7 +45,7 @@ export function renderNotes(onEdit) {
                     </div>
                 </div>
                 <div class="text-[13px] opacity-70 line-clamp-6 leading-relaxed mb-4 flex-1">
-                    ${(note.passwordHash && !isUnlocked) ? '<div class="flex items-center gap-3 py-8 italic opacity-50"><i data-lucide="shield-alert" class="w-6 h-6"></i> Contenido protegido</div>' : note.content}
+                    ${(note.passwordHash && !isUnlocked) ? '<div class="flex items-center gap-3 py-8 italic opacity-50"><i data-lucide="shield-alert" class="w-6 h-6"></i> Contenido restringido</div>' : note.content}
                 </div>
                 ${cat ? `
                 <div class="mt-auto">
@@ -134,6 +134,8 @@ function initSortable(onEdit) {
     grid.sortable = Sortable.create(grid, {
         animation: 250,
         ghostClass: 'opacity-50',
+        delay: 500,
+        delayOnTouchOnly: true,
         onEnd: async () => {
             const newOrder = [];
             grid.querySelectorAll('.note-card').forEach(el => {

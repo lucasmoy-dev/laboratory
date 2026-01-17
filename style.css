@@ -135,6 +135,10 @@
         @apply animate-out fade-out-0 zoom-out-95 duration-200 !important;
     }
 
+    .dialog-content.fullscreen {
+        @apply w-full h-full max-w-none max-h-none rounded-none left-0 top-0 translate-x-0 translate-y-0 !important;
+    }
+
 
 
     .popover-content {
@@ -232,6 +236,10 @@ input.pl-12 {
 
 ::-webkit-scrollbar-track {
     @apply bg-transparent;
+}
+
+#notes-viewport {
+    scrollbar-gutter: stable;
 }
 
 ::-webkit-scrollbar-thumb {

@@ -285,14 +285,22 @@ function setupGlobalEvents() {
     // Auth Submission
     bindClick('auth-submit', () => handleMasterAuth(refreshUI));
 
-    bindClick('factory-reset', () => {
-        const confirmInput = document.getElementById('factory-reset-confirm');
-        if (confirmInput?.value.toLowerCase() === 'confirmar') {
-            localStorage.clear();
-            sessionStorage.clear();
-            location.reload();
-        }
-    });
+    const resetConfirmInput = document.getElementById('factory-reset-confirm');
+    const resetBtn = document.getElementById('factory-reset');
+
+    if (resetConfirmInput && resetBtn) {
+        resetConfirmInput.oninput = () => {
+            resetBtn.disabled = resetConfirmInput.value.toLowerCase() !== 'confirmar';
+        };
+
+        resetBtn.onclick = () => {
+            if (resetConfirmInput.value.toLowerCase() === 'confirmar') {
+                localStorage.clear();
+                sessionStorage.clear();
+                location.reload();
+            }
+        };
+    }
 
     window.triggerAutoSync = triggerAutoSync;
 
@@ -491,12 +499,12 @@ async function handleSync() {
     const pass = sessionStorage.getItem('cn_pass_plain_v3');
     if (!pass) return;
 
-    const icon = document.getElementById('sync-icon');
-    const btn = document.getElementById('sync-btn');
+    const syncIcons = document.querySelectorAll('#sync-icon, [data-lucide="refresh-cw"]');
+    const syncButtons = document.querySelectorAll('#sync-btn, #mobile-sync-btn, #mobile-sync-btn-bottom');
 
     isSyncing = true;
-    if (icon) icon.classList.add('animate-spin');
-    if (btn) btn.classList.add('text-primary');
+    syncIcons.forEach(i => i.classList.add('animate-spin'));
+    syncButtons.forEach(b => b.classList.add('text-primary'));
 
     try {
         const drive = new DriveSync('notev3_', state.settings.drivePath, state.settings.syncChunkSize);
@@ -555,8 +563,10 @@ async function handleSync() {
         }
     } finally {
         isSyncing = false;
-        if (icon) icon.classList.remove('animate-spin');
-        if (btn) btn.classList.remove('text-primary');
+        const syncIcons = document.querySelectorAll('#sync-icon, [data-lucide="refresh-cw"]');
+        const syncButtons = document.querySelectorAll('#sync-btn, #mobile-sync-btn, #mobile-sync-btn-bottom');
+        syncIcons.forEach(i => i.classList.remove('animate-spin'));
+        syncButtons.forEach(b => b.classList.remove('text-primary'));
     }
 }
 

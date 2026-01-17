@@ -1,7 +1,7 @@
 {
     "name": "cloud-notes-pwa",
     "private": true,
-    "version": "3.6.25",
+    "version": "3.6.26",
     "type": "module",
     "scripts": {
         "dev": "vite",

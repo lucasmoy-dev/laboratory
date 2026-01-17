@@ -139,7 +139,7 @@ export function getSettingsTemplate() {
                                 <label class="text-[10px] uppercase font-bold text-destructive/70">Para confirmar, escribe "confirmar" a continuación:</label>
                                 <input type="text" id="factory-reset-confirm" class="h-10 px-4 mt-1 w-full border rounded-md" placeholder="Escribe la palabra..." autocomplete="off">
                             </div>
-                            <button id="factory-reset" class="btn-shad bg-destructive text-destructive-foreground hover:bg-destructive/90 w-full h-10 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            <button id="factory-reset" class="btn-shad bg-destructive text-destructive-foreground hover:bg-destructive/90 w-full h-10 disabled:opacity-50 disabled:cursor-not-allowed">
                                 <i data-lucide="trash-2" class="w-4 h-4 mr-2"></i> Eliminar todos los datos locales
                             </button>
                         </section>

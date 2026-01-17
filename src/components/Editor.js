@@ -18,6 +18,9 @@ export function getEditorTemplate() {
                     class="bg-transparent text-xl font-bold outline-none border-none placeholder:text-muted-foreground w-full">
                 
                 <div class="flex items-center gap-1">
+                    <button id="note-expand-btn" class="editor-tool" title="Expandir">
+                        <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                    </button>
                     <div class="relative">
                         <button id="note-options-btn" class="editor-tool" title="Más opciones">
                             <i data-lucide="more-vertical" class="w-5 h-5"></i>
@@ -33,7 +36,7 @@ export function getEditorTemplate() {
                                 <i data-lucide="pin" class="w-4 h-4 text-muted-foreground" id="opt-pin-icon"></i> <span id="opt-pin-label">Fijar nota</span>
                             </button>
                             <button id="opt-toggle-lock" class="flex items-center gap-3 w-full px-3 py-2.5 text-sm hover:bg-accent rounded-md transition-colors border-b pb-2.5 mb-1.5">
-                                <i data-lucide="lock" class="w-4 h-4 text-muted-foreground" id="opt-lock-icon"></i> <span id="opt-lock-label">Proteger</span>
+                                <i data-lucide="lock" class="w-4 h-4 text-muted-foreground" id="opt-lock-icon"></i> <span id="opt-lock-label">Restringir</span>
                             </button>
                              <button id="opt-delete-note" class="flex items-center gap-3 w-full px-3 py-2.5 text-sm hover:bg-destructive/5 text-destructive rounded-md transition-colors font-medium">
                                 <i data-lucide="trash-2" class="w-4 h-4"></i> Eliminar nota
@@ -161,7 +164,15 @@ export function initEditor(onSave) {
     titleInput.onfocus = () => titleInput.select();
     titleInput.onclick = () => titleInput.select();
 
-    // Removed Fullscreen toggler logic
+    // Fullscreen toggler
+    const expandBtn = document.getElementById('note-expand-btn');
+    expandBtn.onclick = () => {
+        const dialog = modal.querySelector('.dialog-content');
+        dialog.classList.toggle('fullscreen');
+        const isFull = dialog.classList.contains('fullscreen');
+        expandBtn.innerHTML = `<i data-lucide="${isFull ? 'minimize-2' : 'maximize-2'}" class="w-5 h-5"></i>`;
+        safeCreateIcons();
+    };
 
 
     // Note Toggles (Pin/Lock) - Now in Options Menu
@@ -178,7 +189,7 @@ export function initEditor(onSave) {
     const toggleLock = async () => {
         const isActive = document.getElementById('opt-toggle-lock').dataset.active === 'true';
         if (!isActive) {
-            const pass = await openPrompt('Proteger Nota', 'Crea una contraseña para esta nota:');
+            const pass = await openPrompt('Restringir Nota', 'Crea una contraseña para esta nota:');
             if (pass) {
                 const lockEl = document.getElementById('opt-toggle-lock');
                 lockEl.dataset.tempHash = await Security.hash(pass);
@@ -554,7 +565,7 @@ function updateLockUI(active) {
     const label = document.getElementById('opt-lock-label');
     const icon = document.getElementById('opt-lock-icon');
 
-    if (label) label.innerText = active ? 'Quitar protección' : 'Proteger con contraseña';
+    if (label) label.innerText = active ? 'Quitar restricción' : 'Restringir';
     if (icon) {
         icon.setAttribute('data-lucide', active ? 'lock' : 'lock-open');
         icon.setAttribute('class', active ? 'w-4 h-4 text-violet-600' : 'w-4 h-4 text-muted-foreground');
