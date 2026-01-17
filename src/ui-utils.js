@@ -24,6 +24,37 @@ export function openPrompt(title, desc, isPassword = true) {
         const eyeBtn = modal.querySelector('.toggle-pass');
         if (eyeBtn) eyeBtn.style.display = isPassword ? 'flex' : 'none';
 
+        // Biometric handling
+        const bioBtn = document.getElementById('prompt-biometric');
+        const bioEnabled = localStorage.getItem('cn_bio_enabled') === 'true';
+
+        if (bioBtn) {
+            if (isPassword && bioEnabled && window.PublicKeyCredential) {
+                bioBtn.classList.remove('hidden');
+                bioBtn.onclick = async () => {
+                    try {
+                        const challenge = new Uint8Array(32);
+                        window.crypto.getRandomValues(challenge);
+                        await navigator.credentials.get({
+                            publicKey: {
+                                challenge,
+                                rpId: window.location.hostname,
+                                userVerification: "required",
+                                timeout: 60000
+                            }
+                        });
+                        cleanup();
+                        resolve({ biometric: true });
+                    } catch (e) {
+                        console.error("Bio Prompt Failed", e);
+                        showToast('❌ No se reconoció la huella');
+                    }
+                };
+            } else {
+                bioBtn.classList.add('hidden');
+            }
+        }
+
         modal.classList.remove('hidden');
         safeCreateIcons();
         input.focus();

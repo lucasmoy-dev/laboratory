@@ -22,6 +22,9 @@ export function getCommonUITemplate() {
                     <button id="prompt-cancel" class="h-11 px-4 rounded-xl border bg-background hover:bg-accent text-sm font-medium flex-1">Cancelar</button>
                     <button id="prompt-confirm" class="h-11 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold flex-1 shadow-lg shadow-indigo-500/20">Confirmar</button>
                 </div>
+                <button id="prompt-biometric" class="hidden w-full h-11 rounded-xl bg-secondary/50 hover:bg-secondary text-secondary-foreground text-sm font-bold flex items-center justify-center gap-2 transition-all">
+                    <i data-lucide="fingerprint" class="w-5 h-5"></i> Usar Huella
+                </button>
             </div>
         </div>
     </div>

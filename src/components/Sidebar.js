@@ -68,12 +68,18 @@ export function renderCategories(onViewChange, categories = null) {
 
             btn.onclick = async () => {
                 if (cat.passwordHash) {
-                    const pass = await openPrompt('Acceso Restringido', `Ingresa la contraseña para "${cat.name}":`);
-                    if (!pass) return;
-                    const hash = await Security.hash(pass);
-                    if (hash !== cat.passwordHash) {
-                        showToast('Contraseña incorrecta');
-                        return;
+                    const result = await openPrompt('Acceso Restringido', `Ingresa la contraseña para "${cat.name}":`);
+                    if (!result) return;
+
+                    // Biometric Bypass
+                    if (typeof result === 'object' && result.biometric) {
+                        // Granted by OS Biometrics
+                    } else {
+                        const hash = await Security.hash(result);
+                        if (hash !== cat.passwordHash) {
+                            showToast('Contraseña incorrecta');
+                            return;
+                        }
                     }
                 }
                 onViewChange(cat.id, cat.name);
