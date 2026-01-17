@@ -1,5 +1,5 @@
 import { state, saveLocal } from '../state.js';
-import { PALETTE } from '../constants.js';
+import { CAT_ICONS } from '../constants.js';
 import { safeCreateIcons, showToast, openPrompt } from '../ui-utils.js';
 import { Security } from '../auth.js';
 
@@ -31,9 +31,8 @@ export function getCategoryManagerTemplate() {
                 <!-- Items injected here -->
             </div>
         </div>
-        <!-- Color Picker Popover -->
-        <div id="cat-color-picker" class="fixed z-[80] hidden popover-content p-2">
-            <div class="grid grid-cols-5 gap-2" id="cat-palette-grid"></div>
+        <div id="cat-icon-picker" class="fixed z-[80] hidden popover-content p-2 w-64 bg-popover border shadow-2xl rounded-xl">
+            <div class="grid grid-cols-6 gap-1 max-h-48 overflow-y-auto p-1" id="cat-icons-grid"></div>
         </div>
     </div>`;
 }
@@ -52,9 +51,9 @@ export function renderCategoryManager(onRefreshSidebar, categories = null) {
         item.className = 'flex items-center gap-3 p-2 rounded-lg border bg-card/50 hover:bg-accent/30 transition-all group';
 
         item.innerHTML = `
-            <div class="w-8 h-8 rounded-md cursor-pointer hover:scale-110 transition-transform shadow-sm flex-shrink-0 flex items-center justify-center border" 
-                 style="background-color: ${cat.color};"
-                 id="cp-${cat.id}" title="Cambiar color">
+            <div class="w-10 h-10 rounded-lg cursor-pointer hover:bg-accent border flex items-center justify-center shrink-0 transition-all hover:scale-105" 
+                 id="icon-trigger-${cat.id}" title="Cambiar icono">
+                 <i data-lucide="${cat.icon || 'tag'}" class="w-5 h-5 text-primary"></i>
             </div>
             
             <input type="text" value="${cat.name}" 
@@ -76,9 +75,9 @@ export function renderCategoryManager(onRefreshSidebar, categories = null) {
         list.appendChild(item);
 
         // Bind events
-        document.getElementById(`cp-${cat.id}`).onclick = (e) => {
+        document.getElementById(`icon-trigger-${cat.id}`).onclick = (e) => {
             e.stopPropagation();
-            changeColor(cat.id, onRefreshSidebar, e.currentTarget);
+            changeIcon(cat.id, onRefreshSidebar, e.currentTarget);
         };
 
         const nameInput = document.getElementById(`cn-${cat.id}`);
@@ -102,28 +101,30 @@ export function renderCategoryManager(onRefreshSidebar, categories = null) {
     safeCreateIcons();
 }
 
-async function changeColor(id, onRefresh, triggerEl) {
+async function changeIcon(id, onRefresh, triggerEl) {
     const cat = state.categories.find(c => c.id === id);
     if (!cat) return;
 
-    const picker = document.getElementById('cat-color-picker');
-    const grid = document.getElementById('cat-palette-grid');
+    const picker = document.getElementById('cat-icon-picker');
+    const grid = document.getElementById('cat-icons-grid');
     grid.innerHTML = '';
 
-    PALETTE.forEach(color => {
-        const div = document.createElement('div');
-        div.className = 'w-6 h-6 rounded-md cursor-pointer border hover:scale-110 transition-transform';
-        div.style.backgroundColor = color;
-        div.onclick = async () => {
-            cat.color = color;
+    CAT_ICONS.forEach(iconName => {
+        const btn = document.createElement('button');
+        btn.className = 'w-9 h-9 flex items-center justify-center rounded-md hover:bg-primary/10 hover:text-primary transition-all text-muted-foreground';
+        btn.innerHTML = `<i data-lucide="${iconName}" class="w-5 h-5"></i>`;
+        btn.onclick = async () => {
+            cat.icon = iconName;
             await saveLocal();
             renderCategoryManager(onRefresh);
             onRefresh();
             picker.classList.add('hidden');
             if (window.triggerAutoSync) window.triggerAutoSync();
         };
-        grid.appendChild(div);
+        grid.appendChild(btn);
     });
+
+    safeCreateIcons();
 
     const rect = triggerEl.getBoundingClientRect();
     picker.style.top = `${rect.bottom + 8}px`;
@@ -131,7 +132,7 @@ async function changeColor(id, onRefresh, triggerEl) {
     picker.classList.remove('hidden');
 
     const clickOutside = (e) => {
-        if (!picker.contains(e.target) && e.target !== triggerEl) {
+        if (!picker.contains(e.target) && !triggerEl.contains(e.target)) {
             picker.classList.add('hidden');
             document.removeEventListener('click', clickOutside);
         }

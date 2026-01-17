@@ -53,7 +53,7 @@ export function renderNotes(onEdit) {
                 ${cat ? `
                 <div class="mt-auto">
                     <span class="flex items-center gap-2 text-[10px] px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10 font-bold text-primary/70 uppercase tracking-widest">
-                        <i data-lucide="tag" class="w-3.5 h-3.5" style="color: ${cat.color}"></i>
+                        <i data-lucide="${cat.icon || 'tag'}" class="w-3.5 h-3.5 text-primary"></i>
                         ${cat.name}
                     </span>
                 </div>` : ''}

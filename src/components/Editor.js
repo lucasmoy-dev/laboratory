@@ -210,6 +210,26 @@ export function initEditor(onSave) {
         safeCreateIcons();
     };
 
+    // Note Toggles (Pin/Lock)
+    document.getElementById('toggle-pin').onclick = () => {
+        const isActive = document.getElementById('toggle-pin').dataset.active === 'true';
+        updatePinUI(!isActive);
+    };
+
+    document.getElementById('toggle-lock').onclick = async () => {
+        const isActive = document.getElementById('toggle-lock').dataset.active === 'true';
+        if (!isActive) {
+            const pass = await openPrompt('Proteger Nota', 'Crea una contraseña para esta nota:');
+            if (pass) {
+                state.tempEditorPassword = pass;
+                updateLockUI(true);
+            }
+        } else {
+            updateLockUI(false);
+            state.tempEditorPassword = null;
+        }
+    };
+
     // Mobile format menu
     const formatTrigger = document.getElementById('mobile-format-trigger');
     const formatMenu = document.getElementById('mobile-tools-menu');
@@ -512,6 +532,11 @@ function updateCategoryUI() {
     if (document.getElementById('selected-cat-label')) {
         document.getElementById('selected-cat-label').innerText = cat ? cat.name : 'Sin categoría';
     }
+    if (document.getElementById('selected-cat-icon')) {
+        const iconEl = document.getElementById('selected-cat-icon');
+        iconEl.setAttribute('data-lucide', cat ? (cat.icon || 'tag') : 'tag');
+        safeCreateIcons();
+    }
 }
 
 function updatePinUI(active) {
@@ -579,39 +604,6 @@ function initPopovers() {
         };
         emojiGrid.appendChild(span);
     });
-
-    document.getElementById('toggle-pin').onclick = function () {
-        const newState = this.dataset.active !== 'true';
-        updatePinUI(newState);
-        // Optimization: Save immediately for pin
-        // saveActiveNote();
-    };
-    document.getElementById('toggle-lock').onclick = async function () {
-        const isCurrentlyLocked = this.dataset.active === 'true';
-        if (!isCurrentlyLocked) {
-            const pass = await openPrompt('Proteger Nota', 'Establece una contraseña para esta nota (déjala vacía para cancelar):');
-            if (pass) {
-                const note = state.notes.find(n => n.id === state.editingNoteId);
-                const hash = await Security.hashPassword(pass);
-                if (note) {
-                    note.passwordHash = hash;
-                }
-                // If it's a new note, we'll store the hash in the dataset or a temporary place
-                // But for now let's assume we want to apply it to state if possible
-                this.dataset.tempHash = hash;
-                updateLockUI(true);
-                showToast('🔑 Contraseña establecida');
-            }
-        } else {
-            if (confirm('¿Quitar la protección de contraseña de esta nota?')) {
-                const note = state.notes.find(n => n.id === state.editingNoteId);
-                if (note) note.passwordHash = null;
-                delete this.dataset.tempHash;
-                updateLockUI(false);
-                showToast('🔓 Protección quitada');
-            }
-        }
-    };
 
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.editor-tool') && !e.target.closest('.popover-content') && !e.target.closest('#cat-dropdown-trigger')) {

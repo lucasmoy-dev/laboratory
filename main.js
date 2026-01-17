@@ -578,7 +578,7 @@ async function addCategory() {
     const input = document.getElementById('new-cat-name');
     const name = input?.value.trim();
     if (!name) return;
-    state.categories.push({ id: 'cat_' + Date.now(), name, color: '#aecbfa', passwordHash: null });
+    state.categories.push({ id: 'cat_' + Date.now(), name, icon: 'tag', passwordHash: null });
     await saveLocal();
     if (input) input.value = '';
     renderCategoryManager(refreshUI, state.categories);

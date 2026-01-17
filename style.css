@@ -115,7 +115,8 @@
     }
 
     .dialog-content.fullscreen-mode {
-        @apply fixed inset-4 w-auto h-auto translate-x-0 translate-y-0 left-0 top-0 z-[60] rounded-2xl border shadow-2xl bg-background p-6 !important;
+        @apply fixed inset-0 w-screen h-screen translate-x-0 translate-y-0 left-0 top-0 z-[60] rounded-none border-none shadow-none bg-background p-6 !important;
+        max-width: none !important;
     }
 
     .popover-content {
@@ -127,7 +128,7 @@
     }
 
     .editor-tool.active {
-        @apply bg-primary/20 text-primary border-primary/30 shadow-sm;
+        @apply bg-primary/20 text-primary border-primary/40 shadow-sm ring-1 ring-primary/10;
         opacity: 1 !important;
     }
 
