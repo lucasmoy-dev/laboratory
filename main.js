@@ -392,7 +392,7 @@ function initPWA() {
 
 function initGapi() {
     const checkGapi = setInterval(() => {
-        if (typeof gapi !== 'undefined' && typeof google !== 'undefined') {
+        if (typeof gapi !== 'undefined' && typeof google !== 'undefined' && google.accounts) {
             clearInterval(checkGapi);
             gapi.load('client', async () => {
                 await gapi.client.init({
@@ -456,7 +456,12 @@ function initGapi() {
 }
 
 function handleGoogleAuth() {
-    if (!state.tokenClient) return showToast('Google API no lista');
+    if (!state.tokenClient) {
+        if (typeof gapi === 'undefined' || typeof google === 'undefined') {
+            return showToast('⏳ Cargando librerías de Google...');
+        }
+        return showToast('⏳ Inicializando API de Google...');
+    }
     state.tokenClient.requestAccessToken({ prompt: '' });
 }
 
@@ -618,7 +623,7 @@ function handleLogout() {
 }
 
 function injectVersion() {
-    ['app-version', 'settings-version-display'].forEach(id => {
+    ['app-version', 'settings-version-display', 'mobile-app-version'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.innerText = APP_VERSION;
     });

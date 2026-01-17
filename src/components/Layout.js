@@ -160,7 +160,7 @@ export function getLayoutTemplate() {
                     <div class="pt-4 border-t space-y-3">
                         <div class="flex items-center justify-between px-3">
                             <span class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/50">Sistema</span>
-                            <span class="text-[10px] font-bold font-mono px-2 py-0.5 rounded bg-primary/10 text-primary">v3.6.0</span>
+                            <span id="mobile-app-version" class="text-[10px] font-bold font-mono px-2 py-0.5 rounded bg-primary/10 text-primary">v3.6.0</span>
                         </div>
                         <button id="mobile-force-reload-btn" class="flex items-center gap-3 w-full p-3 rounded-md bg-destructive/5 text-destructive text-sm font-medium border border-destructive/10">
                             <i data-lucide="refresh-cw" class="w-4 h-4"></i> Forzar Limpieza y Recarga
