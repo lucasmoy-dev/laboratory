@@ -4,26 +4,26 @@ export function getSettingsTemplate() {
     return `
     <div id="settings-modal" class="fixed inset-0 z-[80] hidden">
         <div class="dialog-overlay"></div>
-        <div class="dialog-content max-w-2xl p-0 overflow-hidden flex flex-col md:flex-row h-[90vh] md:h-[500px]">
+        <div class="dialog-content w-full h-full md:w-auto md:max-w-2xl md:h-[500px] p-0 overflow-hidden flex flex-col md:flex-row rounded-none md:rounded-xl">
             <!-- Sidebar Settings -->
-            <div id="settings-sidebar" class="w-full md:w-48 bg-muted/50 border-b md:border-b-0 md:border-r p-4 flex flex-col gap-1 overflow-y-auto">
-                <div class="flex items-center justify-between mb-2 md:hidden">
-                    <h3 class="font-bold text-lg">Configuración</h3>
-                    <button class="close-settings p-2 hover:bg-accent rounded-md">
-                        <i data-lucide="x" class="w-5 h-5"></i>
+            <div id="settings-sidebar" class="w-full md:w-48 bg-muted/50 border-b md:border-b-0 md:border-r p-4 flex flex-col gap-2 overflow-y-auto">
+                <div class="flex items-center justify-between mb-4 md:hidden">
+                    <h3 class="font-bold text-2xl">Configuración</h3>
+                    <button class="close-settings p-2 hover:bg-accent rounded-full">
+                        <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
                 </div>
-                <button class="settings-tab" data-tab="appearance">
-                    <i data-lucide="palette" class="w-4 h-4"></i> General
+                <button class="settings-tab py-3 px-4 text-base" data-tab="appearance">
+                    <i data-lucide="palette" class="w-5 h-5"></i> General
                 </button>
-                <button class="settings-tab" data-tab="sync">
-                    <i data-lucide="refresh-cw" class="w-4 h-4"></i> Sincronización
+                <button class="settings-tab py-3 px-4 text-base" data-tab="sync">
+                    <i data-lucide="refresh-cw" class="w-5 h-5"></i> Sincronización
                 </button>
-                <button class="settings-tab" data-tab="security">
-                    <i data-lucide="shield" class="w-4 h-4"></i> Seguridad
+                <button class="settings-tab py-3 px-4 text-base" data-tab="security">
+                    <i data-lucide="shield" class="w-5 h-5"></i> Seguridad
                 </button>
-                <button class="settings-tab text-destructive mt-auto" data-tab="danger">
-                    <i data-lucide="alert-triangle" class="w-4 h-4"></i> Zona Peligrosa
+                <button class="settings-tab text-destructive mt-auto py-3 px-4 text-base" data-tab="danger">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i> Zona Peligrosa
                 </button>
             </div>
 
@@ -194,6 +194,8 @@ export function initSettings() {
     if (window.innerWidth < 768) {
         content.classList.add('hidden');
         backBtn.classList.add('hidden');
+        // Ensure no tab is active on mobile init
+        tabs.forEach(t => t.classList.remove('active'));
     } else {
         updateView('appearance');
     }

@@ -5,6 +5,7 @@ import { SecurityService as Security } from '../security.js';
 
 let lastSelectedRange = null;
 let initialNoteState = null; // To track changes
+let initialNoteState = null; // To track changes
 
 export function getEditorTemplate() {
     return `

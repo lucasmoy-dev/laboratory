@@ -7,7 +7,7 @@ export function getCategoryManagerTemplate() {
     return `
     <div id="categories-modal" class="fixed inset-0 z-[70] hidden">
         <div class="dialog-overlay close-categories"></div>
-        <div class="dialog-content max-w-lg p-0 overflow-hidden flex flex-col shadow-2xl">
+        <div class="dialog-content w-full h-full md:w-auto md:max-w-lg md:h-auto md:rounded-xl rounded-none flex flex-col shadow-2xl p-0 overflow-hidden">
             <div class="p-6 flex justify-between items-center border-b bg-background/50 backdrop-blur-md sticky top-0 z-10">
                 <div>
                     <h2 class="text-xl font-bold text-foreground">Etiquetas</h2>
