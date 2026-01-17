@@ -79,7 +79,45 @@ export function getEditorTemplate() {
             </div>
 
             <div class="border-t py-3 px-4 flex items-center justify-between gap-2 editor-bottom-bar shrink-0">
-                <div class="flex items-center gap-1.5 flex-1 min-w-0">
+                <div class="flex md:hidden items-center gap-1.5 flex-1 min-w-0 overflow-x-auto pb-1 no-scrollbar">
+                         <!-- Mobile Toolbar -->
+                        <button id="mobile-format-trigger" class="editor-tool border border-input bg-background/50 transition-all shrink-0" title="Formato">
+                            <i data-lucide="type" class="w-4 h-4"></i>
+                        </button>
+                        <div id="mobile-tools-menu" class="hidden absolute left-0 bottom-full mb-3 bg-popover border shadow-2xl rounded-2xl p-1.5 z-[150] flex flex-col gap-1 min-w-[200px] animate-in slide-in-from-bottom-2 duration-200 overflow-hidden">
+                            <button data-command="bold" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="bold" class="w-4 h-4"></i> Negrita</button>
+                            <button data-command="italic" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="italic" class="w-4 h-4"></i> Cursiva</button>
+                            <button data-command="underline" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="underline" class="w-4 h-4"></i> Subrayado</button>
+                            <div class="h-px bg-border my-1.5 mx-2"></div>
+                            <button data-command="insertUnorderedList" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="list" class="w-4 h-4"></i> Lista</button>
+                            <button data-command="insertOrderedList" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="list-ordered" class="w-4 h-4"></i> Numeración</button>
+                            <div class="h-px bg-border my-1.5 mx-2"></div>
+                            <button id="mobile-link-btn" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="link" class="w-4 h-4"></i> Enlace</button>
+                        </div>
+
+                        <div class="w-px h-6 bg-border mx-0.5"></div>
+
+                        <button id="checklist-btn-mobile" class="editor-tool border border-input bg-background/50 transition-all shrink-0">
+                            <i data-lucide="check-square" class="w-4 h-4"></i>
+                        </button>
+                        <button id="mobile-text-color-btn" class="editor-tool border border-input bg-background/50 transition-all shrink-0">
+                            <i data-lucide="palette" class="w-4 h-4 text-red-500"></i>
+                        </button>
+                        
+                         <div class="w-px h-6 bg-border mx-0.5"></div>
+
+                        <button id="toggle-pin" class="editor-tool border border-input bg-background/50 transition-all shrink-0">
+                            <i data-lucide="pin" class="w-4 h-4"></i>
+                        </button>
+                        <button id="toggle-lock" class="editor-tool border border-input bg-background/50 transition-all shrink-0">
+                            <i data-lucide="lock" class="w-4 h-4"></i>
+                        </button>
+                        <button id="delete-note" class="editor-tool border border-destructive/20 bg-destructive/5 text-destructive hover:bg-destructive hover:text-white shrink-0 ml-auto" title="Eliminar nota">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                </div>
+
+                <div class="hidden md:flex items-center gap-1.5 flex-1 min-w-0">
                     <button id="open-colors" class="editor-tool border border-input bg-background/50 transition-all shrink-0" title="Fondo">
                         <i data-lucide="palette" class="w-4 h-4"></i>
                     </button>
@@ -98,45 +136,16 @@ export function getEditorTemplate() {
                             <option value="">Sin categoría</option>
                         </select>
                     </div>
-                    
-                    <div class="relative md:hidden shrink-0">
-                        <button id="mobile-format-trigger" class="editor-tool border border-input bg-background/50 transition-all shrink-0" title="Formato">
-                            <i data-lucide="type" class="w-4 h-4"></i>
-                        </button>
-                        <div id="mobile-tools-menu" class="hidden absolute left-0 bottom-full mb-3 bg-popover border shadow-2xl rounded-2xl p-1.5 z-[150] flex flex-col gap-1 min-w-[200px] animate-in slide-in-from-bottom-2 duration-200 overflow-hidden">
-                            <button data-command="bold" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="bold" class="w-4 h-4"></i> Negrita</button>
-                            <button data-command="italic" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="italic" class="w-4 h-4"></i> Cursiva</button>
-                            <button data-command="underline" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="underline" class="w-4 h-4"></i> Subrayado</button>
-                            <div class="h-px bg-border my-1.5 mx-2"></div>
-                            <button data-command="insertUnorderedList" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="list" class="w-4 h-4"></i> Lista</button>
-                            <button data-command="insertOrderedList" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="list-ordered" class="w-4 h-4"></i> Numeración</button>
-                            <div class="h-px bg-border my-1.5 mx-2"></div>
-                            <button id="mobile-link-btn" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="link" class="w-4 h-4"></i> Enlace</button>
-                        </div>
-                        </div>
-                    </div>
-
-                    <button id="checklist-btn-mobile" class="md:hidden editor-tool border border-input bg-background/50 transition-all shrink-0">
-                        <i data-lucide="check-square" class="w-4 h-4"></i>
-                    </button>
-
-                    <button id="mobile-text-color-btn" class="md:hidden editor-tool border border-input bg-background/50 transition-all shrink-0">
-                        <i data-lucide="palette" class="w-4 h-4 text-red-500"></i>
-                    </button>
-                    
-                    <button id="toggle-pin" class="editor-tool border border-input bg-background/50 transition-all shrink-0">
-                        <i data-lucide="pin" class="w-4 h-4"></i>
-                    </button>
-                    <button id="toggle-lock" class="editor-tool border border-input bg-background/50 transition-all shrink-0">
-                        <i data-lucide="lock" class="w-4 h-4"></i>
-                    </button>
                 </div>
-                <div class="flex gap-1.5 shrink-0">
-                    <button id="delete-note" class="btn-shad bg-destructive/10 text-destructive hover:bg-destructive hover:text-white h-9 w-9 p-0" title="Eliminar nota">
+
+                <div class="hidden md:flex gap-1.5 shrink-0">
+                     <button id="delete-note-desktop" class="btn-shad bg-destructive/10 text-destructive hover:bg-destructive hover:text-white h-9 w-9 p-0" title="Eliminar nota">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
                     <button id="save-note" class="btn-shad btn-shad-primary h-9 px-4 font-bold">Hecho</button>
                 </div>
+                
+                <button id="save-note-mobile" class="md:hidden btn-shad btn-shad-primary h-9 px-3 font-bold ml-2">OK</button>
             </div>
         </div>
     </div>
@@ -162,11 +171,16 @@ export function initEditor(onSave) {
     const deleteBtn = document.getElementById('delete-note');
 
     closeBtn.onclick = () => saveActiveNote();
-    saveBtn.onclick = async () => {
+
+    const handleSave = async () => {
         await saveActiveNote();
         onSave();
     };
-    deleteBtn.onclick = async () => {
+    saveBtn.onclick = handleSave;
+    const saveBtnMobile = document.getElementById('save-note-mobile');
+    if (saveBtnMobile) saveBtnMobile.onclick = handleSave;
+
+    const handleDelete = async () => {
         if (state.editingNoteId && confirm('¿Eliminar esta nota?')) {
             state.notes = state.notes.filter(n => n.id !== state.editingNoteId);
             await saveLocal();
@@ -174,6 +188,9 @@ export function initEditor(onSave) {
             onSave();
         }
     };
+    if (deleteBtn) deleteBtn.onclick = handleDelete;
+    const deleteBtnDesktop = document.getElementById('delete-note-desktop');
+    if (deleteBtnDesktop) deleteBtnDesktop.onclick = handleDelete;
 
     document.querySelectorAll('.editor-tool[data-cmd]').forEach(btn => {
         if (btn.dataset.cmd) {
@@ -261,6 +278,7 @@ export function initEditor(onSave) {
     const formatMenu = document.getElementById('mobile-tools-menu');
     if (formatTrigger) {
         formatTrigger.onclick = (e) => {
+            e.preventDefault();
             e.stopPropagation();
             formatMenu.classList.toggle('hidden');
         };

@@ -29,7 +29,7 @@ export function renderCategories(onViewChange, categories = null) {
         l.classList.toggle('active', state.currentView === 'all');
     });
 
-    const addOption = (id, name, color) => {
+    const addOption = (id, name, icon) => {
         if (!dropdown) return;
         const item = document.createElement('div');
         item.className = 'px-3 py-1.5 text-xs hover:bg-accent cursor-pointer flex items-center gap-2';
@@ -107,7 +107,7 @@ export function renderCategories(onViewChange, categories = null) {
             select.appendChild(opt);
         }
 
-        addOption(cat.id, cat.name, cat.color);
+        addOption(cat.id, cat.name, cat.icon);
     });
     safeCreateIcons();
 }
