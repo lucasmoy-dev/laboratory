@@ -453,11 +453,18 @@ export function openEditor(note = null) {
     titleEl.style.color = isDark ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.9)';
     contentEl.style.color = isDark ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.9)';
 
-    const tools = modal.querySelectorAll('.editor-tool, #cat-dropdown-trigger, #toggle-pin, #toggle-lock');
+    const tools = modal.querySelectorAll('.editor-tool:not(.active), #cat-dropdown-trigger');
     tools.forEach(tool => {
         tool.style.color = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)';
         tool.style.borderColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
         tool.style.backgroundColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+    });
+
+    // Reset active tools inline styles to let CSS take over reliably
+    modal.querySelectorAll('.editor-tool.active').forEach(tool => {
+        tool.style.backgroundColor = '';
+        tool.style.color = '';
+        tool.style.borderColor = '';
     });
 
     updatePinUI(note ? note.pinned : false);
@@ -574,12 +581,26 @@ function updatePinUI(active) {
     const btn = document.getElementById('toggle-pin');
     btn.dataset.active = active;
     btn.classList.toggle('active', active);
+
+    // Clear inline styles when active so CSS .active class can apply its colors
+    if (active) {
+        btn.style.backgroundColor = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+    }
 }
 
 function updateLockUI(active) {
     const btn = document.getElementById('toggle-lock');
     btn.dataset.active = active;
     btn.classList.toggle('active', active);
+
+    // Clear inline styles when active so CSS .active class can apply its colors
+    if (active) {
+        btn.style.backgroundColor = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+    }
 
     const icon = btn.querySelector('[data-lucide]');
     if (icon) {
