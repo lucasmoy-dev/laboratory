@@ -13,7 +13,7 @@ import { getAuthShieldTemplate, checkAuthStatus, handleMasterAuth } from './src/
 import { getLayoutTemplate } from './src/components/Layout.js';
 import { getEditorTemplate, initEditor, openEditor } from './src/components/Editor.js';
 import { getCategoryManagerTemplate, renderCategoryManager } from './src/components/CategoryManager.js';
-import { getSettingsTemplate, initSettings } from './src/components/Settings.js';
+import { getSettingsTemplate, initSettings, handleForceReload } from './src/components/Settings.js';
 import { getCommonUITemplate } from './src/components/CommonUI.js';
 import { renderCategories } from './src/components/Sidebar.js';
 import { renderNotes } from './src/components/NotesGrid.js';
@@ -131,6 +131,7 @@ function setupGlobalEvents() {
         closeMobileSidebar();
         openSettings();
     });
+    bindClick('mobile-force-reload-btn', handleForceReload);
 
     document.body.addEventListener('click', (e) => {
         const logoutBtn = e.target.closest('#logout-btn, #mobile-logout-btn');

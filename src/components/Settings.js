@@ -50,6 +50,21 @@ export function getSettingsTemplate() {
                                 </button>
                             </div>
                         </section>
+
+                        <section class="space-y-4 pt-4 border-t">
+                            <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Mantenimiento</h3>
+                            <div class="p-4 rounded-lg border bg-primary/5 space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-medium">Versión Instalada</span>
+                                    <span class="text-xs font-bold font-mono text-primary" id="settings-version-display">v3.5.2</span>
+                                </div>
+                                <p class="text-[10px] text-muted-foreground">Si la aplicación no se actualiza o ves errores visuales, usa el botón de abajo para forzar una limpieza del sistema.</p>
+                                <button id="force-reload-btn" class="btn-shad btn-shad-outline w-full h-10 flex items-center justify-center gap-2 group">
+                                    <i data-lucide="refresh-cw" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500"></i>
+                                    Forzar Actualización Completa
+                                </button>
+                            </div>
+                        </section>
                     </div>
 
                     <!-- Panel: Sincronización -->
@@ -138,12 +153,42 @@ export function initSettings() {
         };
     });
 
-    // Factory Reset Confirmation Logic
-    const confirmInput = document.getElementById('factory-reset-confirm');
-    const resetBtn = document.getElementById('factory-reset');
-    if (confirmInput && resetBtn) {
-        confirmInput.oninput = () => {
-            resetBtn.disabled = confirmInput.value.toLowerCase() !== 'confirmar';
-        };
+    // Force Reload Logic
+    const reloadBtn = document.getElementById('force-reload-btn');
+    if (reloadBtn) {
+        reloadBtn.onclick = handleForceReload;
+    }
+}
+
+export async function handleForceReload() {
+    if (!confirm('Esto reiniciará la aplicación, limpiará la caché y eliminará el Service Worker para forzar la última versión. ¿Continuar?')) return;
+
+    try {
+        // 1. Unregister Service Workers
+        if ('serviceWorker' in navigator) {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            for (const registration of registrations) {
+                await registration.unregister();
+            }
+        }
+
+        // 2. Clear Caches
+        if ('caches' in window) {
+            const keys = await caches.keys();
+            for (const key of keys) {
+                await caches.delete(key);
+            }
+        }
+
+        // 3. Clear session storage
+        sessionStorage.clear();
+
+        // 4. Hard reload with cache buster
+        const url = new URL(window.location.href);
+        url.searchParams.set('t', Date.now());
+        window.location.href = url.toString();
+    } catch (e) {
+        console.error("Error clearing cache:", e);
+        window.location.reload();
     }
 }
