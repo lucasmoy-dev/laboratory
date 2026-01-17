@@ -368,6 +368,21 @@ textarea {
         margin: 0 !important;
     }
 
+    /* Make mobile settings buttons larger */
+    #mobile-manage-cats,
+    #mobile-settings-btn,
+    #mobile-pwa-install-btn {
+        padding: 1rem !important;
+        font-size: 0.9375rem !important;
+        font-weight: 600 !important;
+    }
+
+    #mobile-force-reload-btn {
+        padding: 1rem !important;
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+    }
+
     /* Hide Desktop Header on Mobile */
     header.md\:flex {
         display: none !important;

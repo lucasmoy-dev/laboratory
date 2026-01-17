@@ -45,13 +45,22 @@ export function getSettingsTemplate() {
                     <div id="panel-appearance" class="settings-panel space-y-6">
                         <section class="space-y-4">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.lang')}</h3>
-                            <div class="grid grid-cols-2 gap-3">
-                                <button class="lang-btn flex items-center justify-center gap-2 p-3 rounded-lg border bg-card hover:bg-accent ${currentLang === 'en' ? 'ring-2 ring-primary' : ''}" data-lang="en">
-                                    <span class="text-xl">🇺🇸</span> <span class="text-sm font-medium">English</span>
-                                </button>
-                                <button class="lang-btn flex items-center justify-center gap-2 p-3 rounded-lg border bg-card hover:bg-accent ${currentLang === 'es' ? 'ring-2 ring-primary' : ''}" data-lang="es">
-                                    <span class="text-xl">🇪🇸</span> <span class="text-sm font-medium">Español</span>
-                                </button>
+                            <div class="space-y-2">
+                                <select id="language-select" class="h-10 w-full px-3 rounded-md border bg-background">
+                                    <option value="en">🇺🇸 English</option>
+                                    <option value="es">🇪🇸 Español</option>
+                                    <option value="fr">🇫🇷 Français</option>
+                                    <option value="de">🇩🇪 Deutsch</option>
+                                    <option value="it">🇮🇹 Italiano</option>
+                                    <option value="pt">🇵🇹 Português</option>
+                                    <option value="ru">🇷🇺 Русский</option>
+                                    <option value="zh">🇨🇳 中文</option>
+                                    <option value="ja">🇯🇵 日本語</option>
+                                    <option value="ko">🇰🇷 한국어</option>
+                                    <option value="ar">🇸🇦 العربية</option>
+                                    <option value="hi">🇮🇳 हिन्दी</option>
+                                </select>
+                                <p class="text-xs text-muted-foreground">Select your preferred language</p>
                             </div>
                         </section>
 
@@ -123,19 +132,21 @@ export function getSettingsTemplate() {
                     <div id="panel-security" class="settings-panel hidden space-y-6">
                         <section class="space-y-4">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Biometric Authentication</h3>
-                            <div class="p-4 rounded-lg border bg-primary/5 space-y-3">
-                                <div class="flex items-center justify-between">
+                            <div class="p-4 rounded-lg border space-y-3" id="bio-settings-container">
+                                <div class="flex items-start justify-between gap-3">
                                     <div class="flex-1">
                                         <p class="text-sm font-medium">Fingerprint / Face ID</p>
-                                        <p class="text-xs text-muted-foreground">Use biometrics to unlock your vault</p>
+                                        <p class="text-xs text-muted-foreground mt-1">Use biometrics to unlock your vault quickly</p>
+                                        <div class="mt-2 flex items-center gap-2">
+                                            <div id="bio-status-badge" class="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground font-medium">
+                                                Disabled
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="flex items-center gap-2">
-                                        <span id="bio-status-text" class="text-xs font-medium text-muted-foreground">Disabled</span>
-                                        <button id="toggle-biometric-btn" class="btn-shad btn-shad-outline h-9 px-4 flex items-center gap-2">
-                                            <i data-lucide="fingerprint" class="w-4 h-4"></i>
-                                            <span id="bio-toggle-text">Enable</span>
-                                        </button>
-                                    </div>
+                                    <button id="toggle-biometric-btn" class="btn-shad btn-shad-primary h-9 px-4 flex items-center gap-2 shrink-0">
+                                        <i data-lucide="fingerprint" class="w-4 h-4"></i>
+                                        <span id="bio-toggle-text">Enable</span>
+                                    </button>
                                 </div>
                             </div>
                         </section>
@@ -240,31 +251,42 @@ export function initSettings() {
     }
 
     // Language Switcher Logic
-    const langBtns = document.querySelectorAll('.lang-btn');
-    langBtns.forEach(btn => {
-        btn.onclick = () => {
-            const lang = btn.dataset.lang;
-            setLanguage(lang);
+    const langSelect = document.getElementById('language-select');
+    if (langSelect) {
+        // Set current language
+        langSelect.value = currentLang;
+
+        langSelect.onchange = (e) => {
+            setLanguage(e.target.value);
         };
-    });
+    }
 
     // Biometric Toggle Logic
     const toggleBioBtn = document.getElementById('toggle-biometric-btn');
-    const bioStatusText = document.getElementById('bio-status-text');
+    const bioStatusBadge = document.getElementById('bio-status-badge');
     const bioToggleText = document.getElementById('bio-toggle-text');
+    const bioContainer = document.getElementById('bio-settings-container');
 
     if (toggleBioBtn) {
         // Update UI based on current state
         const updateBioUI = () => {
             const isEnabled = localStorage.getItem('cn_bio_enabled') === 'true';
             if (isEnabled) {
-                bioStatusText.textContent = 'Enabled';
-                bioStatusText.classList.add('text-primary');
+                bioStatusBadge.textContent = 'Enabled';
+                bioStatusBadge.classList.remove('bg-muted', 'text-muted-foreground');
+                bioStatusBadge.classList.add('bg-primary/20', 'text-primary');
                 bioToggleText.textContent = 'Disable';
+                toggleBioBtn.classList.remove('btn-shad-primary');
+                toggleBioBtn.classList.add('btn-shad-outline');
+                bioContainer.classList.add('bg-primary/5');
             } else {
-                bioStatusText.textContent = 'Disabled';
-                bioStatusText.classList.remove('text-primary');
+                bioStatusBadge.textContent = 'Disabled';
+                bioStatusBadge.classList.remove('bg-primary/20', 'text-primary');
+                bioStatusBadge.classList.add('bg-muted', 'text-muted-foreground');
                 bioToggleText.textContent = 'Enable';
+                toggleBioBtn.classList.remove('btn-shad-outline');
+                toggleBioBtn.classList.add('btn-shad-primary');
+                bioContainer.classList.remove('bg-primary/5');
             }
             safeCreateIcons();
         };

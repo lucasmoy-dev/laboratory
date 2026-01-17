@@ -6,77 +6,108 @@ export function showToast(msg, duration = 3000) {
     setTimeout(() => toast.classList.remove('show'), duration);
 }
 
-export function openPrompt(title, desc, isPassword = true) {
+export function openPrompt(message, isPassword = false) {
     return new Promise((resolve) => {
         const modal = document.getElementById('prompt-modal');
         const input = document.getElementById('prompt-input');
-        if (!modal || !input) return resolve(null);
-
-        document.getElementById('prompt-title').innerText = title;
-        document.getElementById('prompt-desc').innerText = desc;
-        input.type = isPassword ? 'password' : 'text';
-        input.value = '';
-        input.placeholder = isPassword ? 'Tu contraseña' : 'Escribe aquí...';
-
-        input.classList.toggle('tracking-widest', isPassword);
-        input.classList.toggle('text-center', isPassword);
-
-        const eyeBtn = modal.querySelector('.toggle-pass');
-        if (eyeBtn) eyeBtn.style.display = isPassword ? 'flex' : 'none';
-
-        // Biometric handling
+        const label = document.getElementById('prompt-label');
+        const confirmBtn = document.getElementById('prompt-confirm');
+        const cancelBtn = document.getElementById('prompt-cancel');
         const bioBtn = document.getElementById('prompt-biometric');
-        const bioEnabled = localStorage.getItem('cn_bio_enabled') === 'true';
+        const toggleBtn = document.getElementById('prompt-toggle-visibility');
 
-        if (bioBtn) {
-            if (isPassword && window.PublicKeyCredential) {
-                bioBtn.classList.remove('hidden');
-                bioBtn.onclick = async () => {
-                    try {
-                        const challenge = new Uint8Array(32);
-                        window.crypto.getRandomValues(challenge);
-
-                        // Try Authentication first
-                        try {
-                            await navigator.credentials.get({
-                                publicKey: {
-                                    challenge,
-                                    rpId: window.location.hostname,
-                                    userVerification: "required",
-                                    timeout: 60000
-                                }
-                            });
-                        } catch (authErr) {
-                            console.warn("Bio Auth failed, trying creation fallback...", authErr);
-                            // Fallback to Registration (Proof of Presence via Creation)
-                            await navigator.credentials.create({
-                                publicKey: {
-                                    challenge,
-                                    rp: { name: "Private Notes", id: window.location.hostname },
-                                    user: {
-                                        id: new Uint8Array(16),
-                                        name: "user",
-                                        displayName: "User"
-                                    },
-                                    pubKeyCredParams: [{ alg: -7, type: "public-key" }],
-                                    timeout: 60000,
-                                    authenticatorSelection: { authenticatorAttachment: "platform" },
-                                    attestation: "none"
-                                }
-                            });
-                        }
-
-                        cleanup();
-                        resolve({ biometric: true });
-                    } catch (e) {
-                        console.error("Bio Prompt Failed", e);
-                        showToast('⚠️ No se pudo verificar la huella');
-                    }
-                };
-            } else {
-                bioBtn.classList.add('hidden');
-            }
+        if (!modal || !input || !label || !confirmBtn || !cancelBtn || !bioBtn || !toggleBtn) {
+            console.error("One or more prompt elements not found.");
+            return resolve(null);
         }
+
+        label.textContent = message;
+        input.value = '';
+        input.type = isPassword ? 'password' : 'text';
+
+        // Show/hide visibility toggle based on password mode
+        if (isPassword) {
+            toggleBtn.classList.remove('hidden');
+            input.placeholder = 'Enter password';
+            input.classList.add('text-center', 'tracking-widest');
+        } else {
+            toggleBtn.classList.add('hidden');
+            input.placeholder = 'Type here...';
+            input.classList.remove('text-center', 'tracking-widest');
+        }
+
+        // Show biometric button if supported and enabled
+        const isBioEnabled = localStorage.getItem('cn_bio_enabled') === 'true';
+        if (window.PublicKeyCredential && isBioEnabled && isPassword) {
+            bioBtn.classList.remove('hidden');
+
+            // Auto-trigger biometric after a short delay
+            setTimeout(() => {
+                bioBtn.click();
+            }, 300);
+        } else {
+            bioBtn.classList.add('hidden');
+        }
+
+        bioBtn.onclick = async () => {
+            try {
+                const challenge = new Uint8Array(32);
+                window.crypto.getRandomValues(challenge);
+
+                await navigator.credentials.get({
+                    publicKey: {
+                        challenge,
+                        rpId: window.location.hostname,
+                        userVerification: "required",
+                        timeout: 60000
+                    }
+                });
+
+                cleanup(); // Call cleanup on success
+                resolve({ biometric: true });
+            } catch (e) {
+                console.error('Biometric auth failed:', e);
+                // Fallback: try to create credential (Proof of Presence via Creation)
+                try {
+                    const challenge2 = new Uint8Array(32);
+                    window.crypto.getRandomValues(challenge2);
+
+                    await navigator.credentials.create({
+                        publicKey: {
+                            challenge: challenge2,
+                            rp: { name: "Private Notes", id: window.location.hostname },
+                            user: {
+                                id: new Uint8Array(16),
+                                name: "user",
+                                displayName: "User"
+                            },
+                            pubKeyCredParams: [{ alg: -7, type: "public-key" }],
+                            timeout: 60000,
+                            authenticatorSelection: { authenticatorAttachment: "platform" },
+                            attestation: "none"
+                        }
+                    });
+
+                    cleanup(); // Call cleanup on success
+                    resolve({ biometric: true });
+                } catch (e2) {
+                    console.error('Biometric create failed:', e2);
+                    showToast('❌ Biometric authentication failed');
+                }
+            }
+        };
+
+        // Toggle password visibility
+        toggleBtn.onclick = () => {
+            if (input.type === 'password') {
+                input.type = 'text';
+                toggleBtn.innerHTML = '<i data-lucide="eye"></i>';
+            } else {
+                input.type = 'password';
+                toggleBtn.innerHTML = '<i data-lucide="eye-off"></i>';
+            }
+            safeCreateIcons();
+        };
 
         modal.classList.remove('hidden');
         safeCreateIcons();
