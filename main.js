@@ -23,9 +23,10 @@ async function initApp() {
     console.log("Iniciando aplicación modular...");
 
     // 0. Security Cleanup - Only removed if not remembered
-    const rememberedPass = localStorage.getItem('cn_pass_plain_v3');
-    if (rememberedPass) {
-        sessionStorage.setItem('cn_pass_plain_v3', rememberedPass);
+    // 0. Security Cleanup - Only removed if not remembered
+    const rememberedKey = localStorage.getItem('cn_vault_key_v3');
+    if (rememberedKey) {
+        sessionStorage.setItem('cn_vault_key_v3', rememberedKey);
     }
 
     // 1. Inject UI Structure IMMEDIATELY
@@ -411,23 +412,21 @@ function initGapi() {
                         if (resp.error) return showToast('❌ Error de vinculación');
 
                         // Verify existing data on connect
-                        const pass = sessionStorage.getItem('cn_pass_plain_v3');
-                        if (!pass) return showToast('❌ Error: Sesión no válida');
+                        const vaultKey = sessionStorage.getItem('cn_vault_key_v3') || localStorage.getItem('cn_vault_key_v3');
+                        if (!vaultKey) return showToast('❌ Error: Sesión no válida');
 
                         try {
-                            const drive = new DriveSync('notev3_', state.settings.drivePath, state.settings.syncChunkSize);
+                            const drive = new DriveSync('notev3_', state.settings.drivePath, state.settings.notesPerChunk);
                             const folderId = await drive.getOrCreateFolder(state.settings.drivePath);
-                            const cloudData = await drive.loadChunks(folderId);
+
+                            // Set token for this request
+                            gapi.client.setToken(resp);
+
+                            const cloudData = await drive.loadChunks(folderId, vaultKey);
 
                             if (cloudData) {
-                                try {
-                                    await Security.decrypt(cloudData, pass);
-                                    // If we are here, password is correct
-                                    showToast('✅ Drive verificado: Contraseña correcta');
-                                } catch (e) {
-                                    showToast('❌ Contraseña de Bóveda no coincide con Drive');
-                                    return; // Don't persist token
-                                }
+                                // If loadChunks succeeded with vaultKey, it means the key is correct for existing data
+                                showToast('✅ Drive verificado: Contraseña correcta');
                             }
 
                             localStorage.setItem('gdrive_token_v3', JSON.stringify(resp));
@@ -622,6 +621,9 @@ async function addCategory() {
 
 
 function handleLogout() {
+    localStorage.removeItem('cn_vault_key_v3');
+    sessionStorage.removeItem('cn_vault_key_v3');
+    // Legacy cleanup
     localStorage.removeItem('cn_pass_plain_v3');
     sessionStorage.removeItem('cn_pass_plain_v3');
     location.reload();
