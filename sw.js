@@ -29,7 +29,9 @@ self.addEventListener('fetch', (event) => {
             .then((res) => {
                 const resClone = res.clone();
                 caches.open(CACHE_NAME).then((cache) => {
-                    if (event.request.method === 'GET' && !event.request.url.includes('google')) {
+                    const url = event.request.url;
+                    const isHttp = url.startsWith('http://') || url.startsWith('https://');
+                    if (event.request.method === 'GET' && isHttp && !url.includes('google')) {
                         cache.put(event.request, resClone);
                     }
                 });
