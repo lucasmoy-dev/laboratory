@@ -204,10 +204,9 @@ function setupGlobalEvents() {
     // Auth Submission
     bindClick('auth-submit', () => handleMasterAuth(refreshUI));
 
-    // Factory Reset with phrase
     bindClick('factory-reset', () => {
         const confirmInput = document.getElementById('factory-reset-confirm');
-        if (confirmInput?.value === 'borrar mis datos') {
+        if (confirmInput?.value.toLowerCase() === 'confirmar') {
             localStorage.clear();
             sessionStorage.clear();
             location.reload();

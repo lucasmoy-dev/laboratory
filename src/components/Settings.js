@@ -102,8 +102,8 @@ export function getSettingsTemplate() {
                             <h3 class="text-sm font-semibold text-destructive uppercase tracking-wider">Restablecer Aplicación</h3>
                             <p class="text-xs text-muted-foreground underline">Esta acción borrará permanentemente todas las notas y categorías almacenadas localmente en este navegador.</p>
                             <div class="space-y-2">
-                                <label class="text-[10px] uppercase font-bold text-destructive/70">Para confirmar, escribe "borrar mis datos" a continuación:</label>
-                                <input type="text" id="factory-reset-confirm" class="h-10 px-4 mt-1 w-full border rounded-md" placeholder="Escribe la frase de confirmación..." autocomplete="off">
+                                <label class="text-[10px] uppercase font-bold text-destructive/70">Para confirmar, escribe "confirmar" a continuación:</label>
+                                <input type="text" id="factory-reset-confirm" class="h-10 px-4 mt-1 w-full border rounded-md" placeholder="Escribe la palabra..." autocomplete="off">
                             </div>
                             <button id="factory-reset" class="btn-shad bg-destructive text-destructive-foreground hover:bg-destructive/90 w-full h-10 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                                 <i data-lucide="trash-2" class="w-4 h-4 mr-2"></i> Eliminar todos los datos locales
@@ -143,7 +143,7 @@ export function initSettings() {
     const resetBtn = document.getElementById('factory-reset');
     if (confirmInput && resetBtn) {
         confirmInput.oninput = () => {
-            resetBtn.disabled = confirmInput.value !== 'borrar mis datos';
+            resetBtn.disabled = confirmInput.value.toLowerCase() !== 'confirmar';
         };
     }
 }

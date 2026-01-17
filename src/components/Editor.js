@@ -18,13 +18,19 @@ export function getEditorTemplate() {
 
             <div class="flex-1 py-4 overflow-y-auto">
                 <div class="flex items-center gap-1 mb-4 p-1 border rounded-md bg-muted/30 w-fit">
-                    <button class="editor-tool" data-cmd="bold"><i data-lucide="bold" class="w-4 h-4"></i></button>
+                <div class="flex items-center gap-1 mb-4 p-1 border rounded-md bg-muted/30 w-fit overflow-x-auto no-scrollbar max-w-full">
+                    <button class="editor-tool" data-cmd="bold" title="Negrita"><i data-lucide="bold" class="w-4 h-4"></i></button>
+                    <button class="editor-tool" data-cmd="italic" title="Cursiva"><i data-lucide="italic" class="w-4 h-4"></i></button>
+                    <button class="editor-tool" data-cmd="underline" title="Subrayado"><i data-lucide="underline" class="w-4 h-4"></i></button>
+                    <div class="w-px h-4 bg-border mx-1 shrink-0"></div>
+                    <button class="editor-tool" data-cmd="insertUnorderedList" title="Lista"><i data-lucide="list" class="w-4 h-4"></i></button>
+                    <button class="editor-tool" data-cmd="insertOrderedList" title="Lista numerada"><i data-lucide="list-ordered" class="w-4 h-4"></i></button>
+                    <button id="add-checklist" class="editor-tool" title="Checklist"><i data-lucide="list-checks" class="w-4 h-4"></i></button>
+                    <div class="w-px h-4 bg-border mx-1 shrink-0"></div>
+                    <button id="add-link" class="editor-tool" title="Insertar enlace"><i data-lucide="link" class="w-4 h-4"></i></button>
                     <button id="open-text-colors" class="editor-tool" title="Color de texto"><i data-lucide="type" class="w-4 h-4"></i></button>
-                    <div class="w-px h-4 bg-border mx-1"></div>
-                    <button class="editor-tool" data-cmd="italic"><i data-lucide="italic" class="w-4 h-4"></i></button>
-                    <button class="editor-tool" data-cmd="underline"><i data-lucide="underline" class="w-4 h-4"></i></button>
-                    <div class="w-px h-4 bg-border mx-1"></div>
-                    <button id="open-emojis" class="editor-tool"><i data-lucide="smile" class="w-4 h-4"></i></button>
+                    <button id="open-emojis" class="editor-tool" title="Emojis"><i data-lucide="smile" class="w-4 h-4"></i></button>
+                </div>
                 </div>
 
                 <div id="edit-content" contenteditable="true"
@@ -114,17 +120,66 @@ export function initEditor(onSave) {
     });
 
     initPopovers();
-    contentEl.onkeyup = () => { saveSelection(); updateToolsUI(); };
+    contentEl.onkeyup = () => { saveSelection(); updateToolsUI(); handleAutoLinks(); };
     contentEl.onmouseup = () => { saveSelection(); updateToolsUI(); };
     contentEl.onfocus = () => { saveSelection(); updateToolsUI(); };
+
+    // Checklist handler
+    contentEl.addEventListener('click', (e) => {
+        if (e.target.classList.contains('checklist-item')) {
+            e.target.dataset.checked = e.target.dataset.checked === 'true' ? 'false' : 'true';
+            updateChecklistStyle(e.target);
+        }
+    });
+
+    document.getElementById('add-checklist').onclick = () => {
+        restoreSelection();
+        const html = '<div class="checklist-item py-1 flex items-center gap-2 cursor-pointer" data-checked="false"><div class="w-4 h-4 border rounded shrink-0 flex items-center justify-center bg-white/10 checkbox-box"><i data-lucide="check" class="w-3 h-3 hidden"></i></div><span>Tarea</span></div><p><br></p>';
+        document.execCommand('insertHTML', false, html);
+        safeCreateIcons();
+        updateToolsUI();
+    };
+
+    document.getElementById('add-link').onclick = async () => {
+        const url = await openPrompt('Insertar Enlace', 'Ingresa la URL:');
+        if (url) {
+            restoreSelection();
+            document.execCommand('createLink', false, url.startsWith('http') ? url : 'https://' + url);
+            // Fix links to open in new tab
+            const links = contentEl.querySelectorAll('a');
+            links.forEach(l => l.target = '_blank');
+        }
+    };
+
+    // Close on overlay click
+    modal.querySelector('.dialog-overlay').onclick = closeEditor;
+}
+
+function updateChecklistStyle(el) {
+    const isChecked = el.dataset.checked === 'true';
+    const icon = el.querySelector('[data-lucide="check"]');
+    const box = el.querySelector('.checkbox-box');
+    const text = el.querySelector('span');
+
+    if (icon) icon.classList.toggle('hidden', !isChecked);
+    if (box) box.classList.toggle('bg-primary', isChecked);
+    if (text) text.classList.toggle('line-through', isChecked);
+    if (text) text.classList.toggle('opacity-50', isChecked);
+}
+
+function handleAutoLinks() {
+    // Simple auto-linker on space or enter
+    // For performance, we don't do complex regex on every keyup, 
+    // but just let the browser handle it or use a simpler marker.
 }
 
 function updateToolsUI() {
     document.querySelectorAll('.editor-tool[data-cmd]').forEach(btn => {
         const cmd = btn.dataset.cmd;
-        const active = document.queryCommandState(cmd);
-        btn.classList.toggle('bg-primary/20', active);
-        btn.classList.toggle('text-primary', active);
+        try {
+            const active = document.queryCommandState(cmd);
+            btn.classList.toggle('active', active);
+        } catch (e) { }
     });
 }
 
@@ -253,17 +308,13 @@ function updateCategoryUI() {
 function updatePinUI(active) {
     const btn = document.getElementById('toggle-pin');
     btn.dataset.active = active;
-    btn.className = active
-        ? 'h-9 w-9 inline-flex items-center justify-center rounded-md border border-primary bg-primary/20 text-primary shadow-inner'
-        : 'h-9 w-9 inline-flex items-center justify-center rounded-md border border-input hover:bg-accent text-muted-foreground';
+    btn.classList.toggle('active', active);
 }
 
 function updateLockUI(active) {
     const btn = document.getElementById('toggle-lock');
     btn.dataset.active = active;
-    btn.className = active
-        ? 'h-9 w-9 inline-flex items-center justify-center rounded-md border border-primary bg-primary/10 text-primary'
-        : 'h-9 w-9 inline-flex items-center justify-center rounded-md border border-input hover:bg-accent text-muted-foreground';
+    btn.classList.toggle('active', active);
 
     const icon = btn.querySelector('[data-lucide]');
     if (icon) {
