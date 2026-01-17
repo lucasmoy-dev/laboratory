@@ -50,9 +50,8 @@ export function renderNotes(onEdit) {
                 <div class="flex items-center justify-between mt-auto pt-3 border-t">
                     <div class="flex items-center gap-2">
                          ${cat ? `<span class="text-[10px] px-2 py-0.5 rounded bg-muted font-medium text-muted-foreground">${cat.name}</span>` : ''}
-                         <span class="text-[10px] text-muted-foreground font-mono">${new Date(note.updatedAt).toLocaleDateString()}</span>
                     </div>
-                    <button class="delete-note-btn p-1.5 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors opacity-0 group-hover:opacity-100" data-id="${note.id}" title="Eliminar">
+                    <button class="delete-note-btn p-1.5 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors md:opacity-0 md:group-hover:opacity-100 text-muted-foreground" data-id="${note.id}" title="Eliminar">
                         <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                     </button>
                 </div>

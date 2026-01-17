@@ -6,8 +6,8 @@ export function getSettingsTemplate() {
         <div class="dialog-overlay"></div>
         <div class="dialog-content max-w-2xl p-0 overflow-hidden flex flex-col md:flex-row h-[500px]">
             <!-- Sidebar Settings -->
-            <div class="w-full md:w-48 bg-muted/50 border-b md:border-b-0 md:border-r p-4 flex flex-row md:flex-col gap-1 overflow-x-auto md:overflow-x-visible">
-                <button class="settings-tab active" data-tab="appearance">
+            <div id="settings-sidebar" class="w-full md:w-48 bg-muted/50 border-b md:border-b-0 md:border-r p-4 flex flex-col gap-1 overflow-y-auto">
+                <button class="settings-tab" data-tab="appearance">
                     <i data-lucide="palette" class="w-4 h-4"></i> General
                 </button>
                 <button class="settings-tab" data-tab="sync">
@@ -22,9 +22,12 @@ export function getSettingsTemplate() {
             </div>
 
             <!-- Content Area -->
-            <div class="flex-1 flex flex-col min-w-0">
-                <div class="p-4 border-b flex justify-between items-center">
-                    <h2 id="settings-tab-title" class="font-bold">Configuración</h2>
+            <div class="flex-1 flex flex-col min-w-0" id="settings-content-area">
+                <div class="p-4 border-b flex items-center gap-3">
+                    <button class="md:hidden p-2 hover:bg-accent rounded-md group" id="settings-back-btn">
+                        <i data-lucide="arrow-left" class="w-5 h-5 text-muted-foreground group-hover:text-foreground"></i>
+                    </button>
+                    <h2 id="settings-tab-title" class="font-bold flex-1">Configuración</h2>
                     <button class="close-settings p-2 hover:bg-accent rounded-md group">
                         <i data-lucide="x" class="w-5 h-5 text-muted-foreground group-hover:text-foreground"></i>
                     </button>
@@ -56,7 +59,7 @@ export function getSettingsTemplate() {
                             <div class="p-4 rounded-lg border bg-primary/5 space-y-3">
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs font-medium">Versión Instalada</span>
-                                    <span class="text-xs font-bold font-mono text-primary" id="settings-version-display">v3.5.2</span>
+                                    <span class="text-xs font-bold font-mono text-primary" id="settings-version-display">v3.6.0</span>
                                 </div>
                                 <p class="text-[10px] text-muted-foreground">Si la aplicación no se actualiza o ves errores visuales, usa el botón de abajo para forzar una limpieza del sistema.</p>
                                 <button id="force-reload-btn" class="btn-shad btn-shad-outline w-full h-10 flex items-center justify-center gap-2 group">
@@ -136,22 +139,48 @@ export function initSettings() {
     const tabs = document.querySelectorAll('.settings-tab');
     const title = document.getElementById('settings-tab-title');
 
-    tabs.forEach(tab => {
-        tab.onclick = () => {
-            const target = tab.dataset.tab;
-            tabs.forEach(t => t.classList.toggle('active', t === tab));
-            panels.forEach(p => p.classList.toggle('hidden', p.id !== `panel-${target}`));
+    const sidebar = document.getElementById('settings-sidebar');
+    const content = sidebar.nextElementSibling;
+    const backBtn = document.getElementById('settings-back-btn');
 
-            const titles = {
-                appearance: 'General',
-                sync: 'Sincronización Cloud',
-                security: 'Seguridad y Sesión',
-                danger: 'Zona Peligrosa'
-            };
-            title.innerText = titles[target] || 'Configuración';
-            safeCreateIcons();
+    const updateView = (target) => {
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === target));
+        panels.forEach(p => p.classList.toggle('hidden', p.id !== `panel-${target}`));
+
+        const titles = {
+            appearance: 'General',
+            sync: 'Sincronización Cloud',
+            security: 'Seguridad y Sesión',
+            danger: 'Zona Peligrosa'
         };
+        title.innerText = titles[target] || 'Configuración';
+
+        if (window.innerWidth < 768) {
+            sidebar.classList.add('hidden');
+            content.classList.remove('hidden');
+            backBtn.classList.remove('hidden');
+        }
+        safeCreateIcons();
+    };
+
+    tabs.forEach(tab => {
+        tab.onclick = () => updateView(tab.dataset.tab);
     });
+
+    backBtn.onclick = () => {
+        sidebar.classList.remove('hidden');
+        content.classList.add('hidden');
+        backBtn.classList.add('hidden');
+        title.innerText = 'Configuración';
+    };
+
+    // Initialize state
+    if (window.innerWidth < 768) {
+        content.classList.add('hidden');
+        backBtn.classList.add('hidden');
+    } else {
+        updateView('appearance');
+    }
 
     // Force Reload Logic
     const reloadBtn = document.getElementById('force-reload-btn');

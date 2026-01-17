@@ -66,8 +66,15 @@
         @apply inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2;
     }
 
-    .btn-shad-primary {
-        @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    #mobile-add-btn {
+        @apply bg-primary text-primary-foreground shadow-lg shadow-primary/30 flex items-center justify-center;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 1rem;
+    }
+
+    .light #mobile-add-btn {
+        @apply bg-primary text-white;
     }
 
     .btn-shad-secondary {
@@ -116,7 +123,16 @@
     }
 
     .editor-tool.active {
-        @apply bg-primary/10 text-primary border border-primary/20 shadow-inner;
+        @apply bg-primary text-primary-foreground border-primary shadow-sm;
+        opacity: 1 !important;
+    }
+
+    .editor-tool i {
+        @apply transition-transform duration-200;
+    }
+
+    .editor-tool:active i {
+        @apply scale-90;
     }
 
     /* Note Card */
@@ -139,7 +155,16 @@
 
 /* Sidebar Custom Styling */
 aside {
-    @apply bg-zinc-50 dark:bg-[hsl(var(--sidebar))] border-r transition-colors duration-300;
+    @apply hidden md:flex flex-col border-r bg-card transition-all duration-300 ease-in-out;
+    width: 280px;
+}
+
+aside.collapsed {
+    width: 80px !important;
+}
+
+main {
+    @apply flex-1 flex flex-col min-w-0 transition-all duration-300 ease-in-out;
 }
 
 .ov-hidden {
@@ -208,6 +233,15 @@ textarea {
     @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    max-width: 100%;
+}
+
+@media (max-width: 640px) {
+
+    input[type="password"],
+    input[type="text"] {
+        @apply h-11 !important;
+    }
 }
 
 .dark input[type="text"],
@@ -264,7 +298,7 @@ textarea {
     }
 
     #notes-viewport {
-        padding: 1rem 0.5rem;
+        padding: 1rem 0.5rem 6rem 0.5rem;
     }
 
     .dialog-content {
@@ -318,6 +352,42 @@ textarea {
     .settings-tab {
         @apply py-2 px-3 text-xs !important;
     }
+
+    #categories-modal .dialog-content {
+        @apply max-h-[80vh] h-auto rounded-t-2xl bottom-0 top-auto translate-y-0 !important;
+    }
+}
+
+/* Collapsible Sidebar Support */
+aside.collapsed {
+    @apply w-16 !important;
+}
+
+aside.collapsed .nav-link span,
+aside.collapsed .sidebar-section-title,
+aside.collapsed h1,
+aside.collapsed #sidebar-manage-cats span,
+aside.collapsed #settings-trigger span,
+aside.collapsed #sidebar-pwa-install-btn span,
+aside.collapsed #app-version {
+    display: none !important;
+}
+
+aside.collapsed .p-6 {
+    @apply px-3 !important;
+}
+
+aside.collapsed .nav-link {
+    @apply justify-center px-0 !important;
+}
+
+/* Mobile Tools Menu */
+#mobile-tools-menu {
+    @apply absolute bottom-full left-0 mb-2 bg-popover border shadow-2xl rounded-xl p-1 z-[110] flex flex-col gap-0.5 min-w-[140px] animate-in slide-in-from-bottom-2 duration-200;
+}
+
+#mobile-tools-menu button {
+    @apply flex items-center gap-3 px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors;
 }
 
 /* Status dots */
@@ -340,7 +410,16 @@ html.auth-pre-verified #app {
 }
 
 .nav-link-mobile-drawer.active {
-    @apply bg-primary/10 text-primary;
+    @apply bg-primary/10 text-primary font-bold border-l-4 border-primary;
+}
+
+.nav-link-mobile-drawer.active i {
+    @apply text-primary;
+}
+
+/* Fix mobile add btn translate */
+#mobile-add-btn div {
+    @apply -translate-y-6 !important;
 }
 
 #mobile-sidebar-drawer {
@@ -411,7 +490,7 @@ textarea:focus {
 /* Toast System - Standard CSS for maximum reliability */
 #toast {
     position: fixed;
-    bottom: 2rem;
+    bottom: 5rem;
     left: 50%;
     transform: translateX(-50%) translateY(1rem);
     z-index: 500;

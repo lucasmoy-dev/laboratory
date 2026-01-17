@@ -10,25 +10,90 @@ export function getEditorTemplate() {
     <div id="editor-modal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-background/80 backdrop-blur-sm dialog-overlay"></div>
         <div class="dialog-content max-w-2xl h-[80vh] flex flex-col">
-            <div class="flex items-center justify-between border-b pb-2">
+            <div class="flex items-center gap-2 border-b pb-2">
+                <button id="close-editor" class="text-muted-foreground hover:text-foreground p-2 -ml-2" title="Volver">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
                 <input type="text" id="edit-title" placeholder="Título de la nota"
                     class="bg-transparent text-xl font-bold outline-none border-none placeholder:text-muted-foreground w-full">
-                <button id="close-editor" class="text-muted-foreground hover:text-foreground p-2"><i data-lucide="x" class="w-5 h-5"></i></button>
+                
+                <div class="flex items-center gap-1">
+                    <button id="toggle-fullscreen" class="hidden md:flex editor-tool" title="Modo Pantalla Completa">
+                        <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                    </button>
+                    <div class="relative">
+                        <button id="note-options-btn" class="editor-tool" title="Más opciones">
+                            <i data-lucide="more-vertical" class="w-5 h-5"></i>
+                        </button>
+                        <div id="note-options-menu" class="hidden absolute right-0 top-full mt-1 bg-popover border shadow-2xl rounded-xl p-1 z-[120] min-w-[160px]">
+                            <button id="opt-copy-all" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors">
+                                <i data-lucide="copy" class="w-4 h-4"></i> Copiar todo
+                            </button>
+                            <button id="opt-download" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors">
+                                <i data-lucide="download" class="w-4 h-4"></i> Descargar .txt
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="flex-1 py-4 overflow-y-auto">
-                <div class="editor-toolbar-container mb-4 overflow-x-auto no-scrollbar">
-                    <div class="flex items-center gap-1 p-1 border rounded-md bg-muted/30 w-fit shrink-0">
-                        <button class="editor-tool" data-cmd="bold" title="Negrita"><i data-lucide="bold" class="w-4 h-4"></i></button>
-                        <button class="editor-tool" data-cmd="italic" title="Cursiva"><i data-lucide="italic" class="w-4 h-4"></i></button>
-                        <button class="editor-tool" data-cmd="underline" title="Subrayado"><i data-lucide="underline" class="w-4 h-4"></i></button>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <!-- Mobile Menu Trigger -->
+                    <div class="relative md:hidden">
+                        <button id="mobile-format-trigger" class="editor-tool bg-primary/10 text-primary border border-primary/20" title="Formato">
+                            <div class="flex flex-col items-center">
+                                <i data-lucide="type" class="w-5 h-5"></i>
+                                <div class="w-4 h-[2px] bg-primary rounded-full -mt-1"></div>
+                            </div>
+                        </button>
+                        <div id="mobile-tools-menu" class="hidden absolute left-0 top-full mt-1 bg-popover border shadow-2xl rounded-xl p-1 z-[120] min-w-[160px] flex flex-col gap-1">
+                            <button data-command="bold" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Negrita"><i data-lucide="bold" class="w-4 h-4"></i> Negrita</button>
+                            <button data-command="italic" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Cursiva"><i data-lucide="italic" class="w-4 h-4"></i> Cursiva</button>
+                            <button data-command="underline" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Subrayado"><i data-lucide="underline" class="w-4 h-4"></i> Subrayado</button>
+                            <button data-command="insertUnorderedList" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Lista"><i data-lucide="list" class="w-4 h-4"></i> Lista</button>
+                            <button data-command="insertOrderedList" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Enumeración"><i data-lucide="list-ordered" class="w-4 h-4"></i> Enumeración</button>
+                            <button id="mobile-link-btn" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Hipervínculo"><i data-lucide="link" class="w-4 h-4"></i> Hipervínculo</button>
+                            <button id="mobile-text-color-btn" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors" title="Color de texto">
+                                <div class="flex flex-col items-center">
+                                    <i data-lucide="type" class="w-4 h-4"></i>
+                                    <div class="w-3 h-[2px] bg-red-500 rounded-full -mt-0.5"></div>
+                                </div>
+                                Color de texto
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="editor-toolbar-container flex-1 justify-start md:flex-initial hidden md:flex items-center gap-1 p-1 border rounded-md bg-muted/30 w-fit shrink-0">
+                        <button class="editor-tool" data-cmd="bold" title="Negrita (Ctrl+B)">
+                            <i data-lucide="bold" class="w-4 h-4"></i>
+                        </button>
+                        <button class="editor-tool" data-cmd="italic" title="Cursiva (Ctrl+I)">
+                            <i data-lucide="italic" class="w-4 h-4"></i>
+                        </button>
+                        <button class="editor-tool" data-cmd="underline" title="Subrayado (Ctrl+U)">
+                            <i data-lucide="underline" class="w-4 h-4"></i>
+                        </button>
                         <div class="w-px h-4 bg-border mx-1"></div>
-                        <button class="editor-tool" data-cmd="insertUnorderedList" title="Lista"><i data-lucide="list" class="w-4 h-4"></i></button>
-                        <button class="editor-tool" data-cmd="insertOrderedList" title="Lista numerada"><i data-lucide="list-ordered" class="w-4 h-4"></i></button>
-                        <button id="add-checklist" class="editor-tool" title="Checklist"><i data-lucide="list-checks" class="w-4 h-4"></i></button>
+                        <button class="editor-tool" data-cmd="insertUnorderedList" title="Lista de viñetas">
+                            <i data-lucide="list" class="w-4 h-4"></i>
+                        </button>
+                        <button class="editor-tool" data-cmd="insertOrderedList" title="Lista numerada">
+                            <i data-lucide="list-ordered" class="w-4 h-4"></i>
+                        </button>
+                        <button id="checklist-btn" class="editor-tool" title="Checklist">
+                            <i data-lucide="check-square" class="w-4 h-4"></i>
+                        </button>
                         <div class="w-px h-4 bg-border mx-1"></div>
-                        <button id="add-link" class="editor-tool" title="Insertar enlace"><i data-lucide="link" class="w-4 h-4"></i></button>
-                        <button id="open-text-colors" class="editor-tool" title="Color de texto"><i data-lucide="type" class="w-4 h-4"></i></button>
+                        <button id="add-link" class="editor-tool" title="Hipervínculo">
+                            <i data-lucide="link" class="w-4 h-4"></i>
+                        </button>
+                        <button id="open-text-colors" class="editor-tool relative" title="Color de texto">
+                            <div class="flex flex-col items-center">
+                                <i data-lucide="type" class="w-4 h-4"></i>
+                                <div class="w-3 h-[2px] bg-red-500 rounded-full -mt-0.5"></div>
+                            </div>
+                        </button>
                         <button id="open-emojis" class="editor-tool" title="Emojis"><i data-lucide="smile" class="w-4 h-4"></i></button>
                     </div>
                 </div>
@@ -41,7 +106,12 @@ export function getEditorTemplate() {
             <div class="border-t pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 editor-bottom-bar overflow-y-auto max-h-[30vh]">
                 <div class="flex flex-wrap items-center gap-2 justify-center sm:justify-start">
                     <div class="flex items-center bg-muted/30 p-1 rounded-md border shrink-0">
-                        <button id="open-colors" class="editor-tool" title="Color de fondo"><i data-lucide="palette" class="w-4 h-4"></i></button>
+                        <button id="open-colors" class="editor-tool relative" title="Color de fondo">
+                            <div class="flex flex-col items-center">
+                                <i data-lucide="palette" class="w-4 h-4"></i>
+                                <div class="w-3 h-[2px] bg-blue-500 rounded-full -mt-0.5"></div>
+                            </div>
+                        </button>
                     </div>
 
                     <div class="relative group" id="cat-select-wrapper">
@@ -108,7 +178,7 @@ export function initEditor(onSave) {
         }
     };
 
-    document.querySelectorAll('.editor-tool').forEach(btn => {
+    document.querySelectorAll('.editor-tool[data-cmd]').forEach(btn => {
         if (btn.dataset.cmd) {
             btn.onmousedown = (e) => {
                 e.preventDefault();
@@ -126,7 +196,89 @@ export function initEditor(onSave) {
 
 
 
-    document.getElementById('add-link').onclick = async () => {
+    const titleInput = document.getElementById('edit-title');
+    titleInput.onfocus = () => titleInput.select();
+    titleInput.onclick = () => titleInput.select();
+
+    // Fullscreen toggle
+    document.getElementById('toggle-fullscreen').onclick = () => {
+        const modal = document.getElementById('editor-modal').querySelector('.dialog-content');
+        const isFull = modal.classList.contains('max-w-none');
+        const icon = document.getElementById('toggle-fullscreen').querySelector('i');
+
+        if (isFull) {
+            modal.classList.remove('max-w-none', 'h-screen', 'w-screen', 'fixed', 'inset-0', 'z-[60]', 'rounded-none');
+            modal.classList.add('max-w-2xl', 'h-[80vh]');
+            safeCreateIcons(); // Reset icon
+        } else {
+            modal.classList.remove('max-w-2xl', 'h-[80vh]');
+            modal.classList.add('max-w-none', 'h-screen', 'w-screen', 'fixed', 'inset-0', 'z-[60]', 'rounded-none');
+        }
+        safeCreateIcons();
+    };
+
+    // Mobile format menu
+    const formatTrigger = document.getElementById('mobile-format-trigger');
+    const formatMenu = document.getElementById('mobile-tools-menu');
+    if (formatTrigger) {
+        formatTrigger.onclick = (e) => {
+            e.stopPropagation();
+            formatMenu.classList.toggle('hidden');
+        };
+    }
+
+    formatMenu.querySelectorAll('button[data-command]').forEach(btn => {
+        btn.onclick = () => {
+            execCommand(btn.dataset.command);
+            formatMenu.classList.add('hidden');
+        };
+    });
+
+    document.getElementById('mobile-link-btn').onclick = () => {
+        setupLinkAction();
+        formatMenu.classList.add('hidden');
+    };
+
+    document.getElementById('mobile-text-color-btn').onclick = (e) => {
+        restoreSelection();
+        togglePopover(e, 'text-color-popover');
+        formatMenu.classList.add('hidden');
+    };
+
+    // Options menu
+    const optionsBtn = document.getElementById('note-options-btn');
+    const optionsMenu = document.getElementById('note-options-menu');
+    optionsBtn.onclick = (e) => {
+        e.stopPropagation();
+        optionsMenu.classList.toggle('hidden');
+    };
+
+    document.getElementById('opt-copy-all').onclick = () => {
+        const content = document.getElementById('edit-content').innerText;
+        navigator.clipboard.writeText(content).then(() => {
+            showToast('✅ Contenido copiado');
+            optionsMenu.classList.add('hidden');
+        });
+    };
+
+    document.getElementById('opt-download').onclick = () => {
+        const title = document.getElementById('edit-title').value || 'nota';
+        const content = document.getElementById('edit-content').innerText;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${title}.txt`;
+        a.click();
+        optionsMenu.classList.add('hidden');
+    };
+
+    document.addEventListener('click', () => {
+        if (formatMenu) formatMenu.classList.add('hidden');
+        if (optionsMenu) optionsMenu.classList.add('hidden');
+    });
+
+    const setupLinkAction = async () => {
         const url = await openPrompt('Insertar Enlace', 'Ingresa la URL:', false);
         if (url) {
             restoreSelection();
@@ -135,6 +287,24 @@ export function initEditor(onSave) {
             const links = contentEl.querySelectorAll('a');
             links.forEach(l => l.target = '_blank');
         }
+    };
+
+    document.getElementById('add-link').onclick = setupLinkAction;
+    document.getElementById('checklist-btn').onclick = () => toggleChecklist();
+
+    const toggleChecklist = () => {
+        restoreSelection();
+        document.execCommand('insertUnorderedList');
+        const selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            let node = selection.focusNode;
+            while (node && node.nodeName !== 'UL') node = node.parentNode;
+            if (node) {
+                node.classList.add('checklist');
+                node.querySelectorAll('li').forEach(li => li.dataset.checked = 'false');
+            }
+        }
+        updateToolsUI();
     };
 
     // Tab for indentation
@@ -254,7 +424,7 @@ function closeEditor() {
     if (window.refreshUI) window.refreshUI();
 }
 
-async function saveActiveNote() {
+export async function saveActiveNote() {
     let title = document.getElementById('edit-title').value.trim();
     const content = document.getElementById('edit-content').innerHTML;
     const catId = document.getElementById('edit-category').value;
@@ -299,6 +469,7 @@ async function saveActiveNote() {
     if (noteIndex >= 0) state.notes[noteIndex] = noteData;
     else state.notes.unshift(noteData);
 
+    if (window.refreshUI) window.refreshUI();
     await saveLocal();
     closeEditor();
     if (window.triggerAutoSync) window.triggerAutoSync();

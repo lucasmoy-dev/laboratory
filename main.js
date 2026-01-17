@@ -11,7 +11,7 @@ let deferredPrompt = null;
 // Components
 import { getAuthShieldTemplate, checkAuthStatus, handleMasterAuth } from './src/components/AuthShield.js';
 import { getLayoutTemplate } from './src/components/Layout.js';
-import { getEditorTemplate, initEditor, openEditor } from './src/components/Editor.js';
+import { getEditorTemplate, initEditor, openEditor, saveActiveNote } from './src/components/Editor.js';
 import { getCategoryManagerTemplate, renderCategoryManager } from './src/components/CategoryManager.js';
 import { getSettingsTemplate, initSettings, handleForceReload } from './src/components/Settings.js';
 import { getCommonUITemplate } from './src/components/CommonUI.js';
@@ -131,6 +131,15 @@ function setupGlobalEvents() {
         closeMobileSidebar();
         openSettings();
     });
+    bindClick('sidebar-toggle-btn', () => {
+        const sidebar = document.querySelector('aside');
+        sidebar.classList.toggle('collapsed');
+        const icon = document.getElementById('sidebar-toggle-btn').querySelector('i');
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        icon.setAttribute('data-lucide', isCollapsed ? 'panel-left-open' : 'panel-left-close');
+        safeCreateIcons();
+    });
+
     bindClick('mobile-force-reload-btn', handleForceReload);
 
     document.body.addEventListener('click', (e) => {
@@ -168,10 +177,47 @@ function setupGlobalEvents() {
             // UI Update for active state
             navLinks.forEach(l => l.classList.toggle('active', l.dataset.view === viewId));
             // Also deselect categories in Sidebar.js logic
-            document.querySelectorAll('#sidebar-categories .nav-link, #mobile-sidebar-categories .nav-link-mobile-drawer').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('#sidebar-categories .nav-link').forEach(l => l.classList.remove('active'));
+            // Ensure mobile category links are deselected when a general view is selected
+            document.querySelectorAll('.nav-link-mobile-drawer').forEach(l => {
+                l.classList.remove('active');
+                const icon = l.querySelector('i');
+                if (icon) icon.classList.remove('text-primary');
+                const span = l.querySelector('span');
+                if (span) span.classList.remove('text-primary');
+            });
+
 
             onViewChange(viewId, viewId === 'all' ? 'Todas las notas' : '');
             closeMobileSidebar();
+        };
+    });
+
+    // Mobile Category Links (specific handling for active state)
+    document.querySelectorAll('.nav-link-mobile-drawer').forEach(link => {
+        link.onclick = (e) => {
+            e.preventDefault();
+            const catId = link.dataset.category;
+            state.currentView = catId; // Update currentView for category
+
+            // UI Update for active state
+            // Deselect all general nav links
+            document.querySelectorAll('.nav-link[data-view], .nav-link-mobile[data-view]').forEach(l => l.classList.remove('active'));
+            // Deselect all desktop category links
+            document.querySelectorAll('#sidebar-categories .nav-link').forEach(l => l.classList.remove('active'));
+
+            // Set active for mobile category links
+            document.querySelectorAll('.nav-link-mobile-drawer').forEach(l => {
+                const isActive = l.dataset.category === catId;
+                l.classList.toggle('active', isActive);
+                const icon = l.querySelector('i');
+                if (icon) icon.classList.toggle('text-primary', isActive);
+                const span = l.querySelector('span');
+                if (span) span.classList.toggle('text-primary', isActive);
+            });
+
+            closeMobileSidebar();
+            refreshUI();
         };
     });
 
@@ -198,13 +244,26 @@ function setupGlobalEvents() {
         if (!btn) return;
         const input = document.getElementById(btn.dataset.target);
         if (!input) return;
+
         const isPass = input.type === 'password';
         input.type = isPass ? 'text' : 'password';
 
-        const icon = btn.querySelector('[data-lucide]');
-        if (icon) {
-            icon.setAttribute('data-lucide', isPass ? 'eye-off' : 'eye');
-            safeCreateIcons();
+        // Re-create icon logic
+        btn.innerHTML = `<i data-lucide="${isPass ? 'eye-off' : 'eye'}" class="w-4 h-4"></i>`;
+        safeCreateIcons();
+    });
+
+    // Add Enter key listener for master password
+    document.body.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const shield = document.getElementById('auth-shield');
+            if (shield && !shield.classList.contains('hidden')) {
+                const passInput = document.getElementById('master-password');
+                const confirmInput = document.getElementById('confirm-password');
+                if (document.activeElement === passInput || document.activeElement === confirmInput) {
+                    handleMasterAuth(refreshUI);
+                }
+            }
         }
     });
 
@@ -512,6 +571,7 @@ async function addCategory() {
     refreshUI();
     if (window.triggerAutoSync) window.triggerAutoSync();
 }
+
 
 function handleLogout() {
     localStorage.removeItem('cn_pass_plain_v3');

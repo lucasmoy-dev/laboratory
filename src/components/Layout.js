@@ -84,12 +84,10 @@ export function getLayoutTemplate() {
                         <i data-lucide="menu" class="w-5 h-5"></i>
                     </button>
                     <div class="flex items-center gap-2">
-                        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 p-1 flex items-center justify-center border border-primary/20 shadow-inner">
-                            <svg viewBox="0 0 24 24" fill="none" class="w-full h-full text-primary" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                            </svg>
+                        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-lg shadow-primary/20 shrink-0">
+                            <i data-lucide="shield-check" class="text-primary-foreground w-4 h-4"></i>
                         </div>
-                        <span class="font-bold tracking-tight text-lg">Private Notes</span>
+                        <span class="font-bold tracking-tight text-lg">Bóveda</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-1">
@@ -112,7 +110,6 @@ export function getLayoutTemplate() {
                     <div class="flex items-end justify-between">
                         <div>
                             <h1 id="view-title" class="text-3xl font-bold tracking-tight">Todas las notas</h1>
-                            <p id="view-desc" class="text-sm text-muted-foreground mt-1">Organiza tus pensamientos y protege tu privacidad.</p>
                         </div>
                     </div>
                     <div id="notes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
@@ -151,12 +148,10 @@ export function getLayoutTemplate() {
             <div id="mobile-sidebar-drawer" class="w-[80vw] h-full bg-card border-r flex flex-col animate-in slide-in-from-left duration-300">
                 <div class="p-6 flex items-center justify-between border-b">
                     <div class="flex items-center gap-2">
-                        <div class="w-6 h-6 rounded-md bg-gradient-to-br from-primary/20 to-primary/5 p-1 flex items-center justify-center border border-primary/20 shadow-inner">
-                            <svg viewBox="0 0 24 24" fill="none" class="w-full h-full text-primary" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                            </svg>
+                        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+                            <i data-lucide="shield-check" class="text-primary-foreground w-4 h-4"></i>
                         </div>
-                        <span class="font-bold tracking-tight">Private Notes</span>
+                        <span class="font-bold tracking-tight">Bóveda</span>
                     </div>
                     <button id="close-mobile-sidebar" class="p-2 hover:bg-accent rounded-md">
                         <i data-lucide="x" class="w-5 h-5"></i>

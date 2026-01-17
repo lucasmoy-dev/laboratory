@@ -14,19 +14,19 @@ export function getAuthShieldTemplate() {
                 <p class="text-sm text-muted-foreground" id="auth-desc">Ingresa tu contraseña maestra para continuar</p>
             </div>
             <div class="space-y-4">
-                <div class="relative">
-                    <input type="password" id="master-password" placeholder="Tu contraseña" class="text-center tracking-widest pr-10">
-                    <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground toggle-pass" data-target="master-password">
-                        <i data-lucide="eye" class="w-4 h-4"></i>
+                <div class="relative group">
+                    <input type="password" id="master-password" placeholder="Tu contraseña" class="h-11 w-full pl-4 pr-12 text-base">
+                    <button type="button" class="absolute right-0 top-0 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-foreground toggle-pass" data-target="master-password">
+                        <i data-lucide="eye" class="w-4 h-4 icon-show"></i>
                     </button>
                 </div>
-                <div class="relative hidden" id="confirm-password-wrapper">
-                    <input type="password" id="confirm-password" placeholder="Repite la contraseña" class="text-center tracking-widest pr-10">
-                    <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground toggle-pass" data-target="confirm-password">
-                        <i data-lucide="eye" class="w-4 h-4"></i>
+                <div class="relative group hidden" id="confirm-password-wrapper">
+                    <input type="password" id="confirm-password" placeholder="Repite la contraseña" class="h-11 w-full pl-4 pr-12 text-base">
+                    <button type="button" class="absolute right-0 top-0 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-foreground toggle-pass" data-target="confirm-password">
+                        <i data-lucide="eye" class="w-4 h-4 icon-show"></i>
                     </button>
                 </div>
-                <button id="auth-submit" class="btn-shad btn-shad-primary w-full">Desbloquear</button>
+                <button id="auth-submit" class="btn-shad btn-shad-primary w-full h-11 font-bold">Desbloquear</button>
             </div>
         </div>
     </div>`;
