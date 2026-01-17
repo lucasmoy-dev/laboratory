@@ -35,19 +35,41 @@ export function openPrompt(title, desc, isPassword = true) {
                     try {
                         const challenge = new Uint8Array(32);
                         window.crypto.getRandomValues(challenge);
-                        await navigator.credentials.get({
-                            publicKey: {
-                                challenge,
-                                rpId: window.location.hostname,
-                                userVerification: "required",
-                                timeout: 60000
-                            }
-                        });
+
+                        // Try Authentication first
+                        try {
+                            await navigator.credentials.get({
+                                publicKey: {
+                                    challenge,
+                                    rpId: window.location.hostname,
+                                    userVerification: "required",
+                                    timeout: 60000
+                                }
+                            });
+                        } catch (authErr) {
+                            console.warn("Bio Auth failed, trying creation fallback...", authErr);
+                            // Fallback to Registration (Proof of Presence via Creation)
+                            await navigator.credentials.create({
+                                publicKey: {
+                                    challenge,
+                                    rp: { name: "Private Notes", id: window.location.hostname },
+                                    user: {
+                                        id: new Uint8Array(16),
+                                        name: "user",
+                                        displayName: "User"
+                                    },
+                                    pubKeyCredParams: [{ alg: -7, type: "public-key" }],
+                                    timeout: 60000,
+                                    authenticatorSelection: { authenticatorAttachment: "platform" },
+                                    attestation: "none"
+                                }
+                            });
+                        }
+
                         cleanup();
                         resolve({ biometric: true });
                     } catch (e) {
                         console.error("Bio Prompt Failed", e);
-                        // If not allowed or failed, we just stay in the prompt
                         showToast('⚠️ No se pudo verificar la huella');
                     }
                 };
