@@ -123,7 +123,7 @@ export function getLayoutTemplate() {
             <div id="mobile-sidebar-drawer" class="w-[80vw] h-full bg-card border-r flex flex-col animate-in slide-in-from-left duration-300">
                 <div class="p-6 flex items-center justify-between border-b">
                     <div class="flex items-center gap-3">
-                        <div class="logo-animate-container w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 p-2 flex items-center justify-center border border-primary/20 shadow-inner">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 p-2 flex items-center justify-center border border-primary/20 shadow-inner shrink-0">
                             <svg viewBox="0 0 24 24" fill="none" class="w-full h-full logo-animate" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                             </svg>

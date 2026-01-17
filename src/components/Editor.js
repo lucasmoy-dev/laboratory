@@ -40,26 +40,8 @@ export function getEditorTemplate() {
             <div class="flex-1 py-4 overflow-y-auto">
                 <div class="flex items-center gap-3 w-full md:w-auto">
                     <!-- Mobile Menu Trigger -->
-                    <div class="relative md:hidden">
-                        <button id="mobile-format-trigger" class="editor-tool bg-primary/10 text-primary border border-primary/20" title="Formato">
-                            <div class="flex flex-col items-center">
-                                <i data-lucide="type" class="w-5 h-5"></i>
-                                <div class="w-4 h-[2px] bg-primary rounded-full -mt-1"></div>
-                            </div>
-                        </button>
-                        <div id="mobile-tools-menu" class="hidden absolute left-0 bottom-full mb-3 bg-popover border shadow-2xl rounded-xl p-1 z-[120] min-w-[180px] gap-1 overflow-hidden animate-in slide-in-from-bottom-2">
-                            <button data-command="bold" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors"><i data-lucide="bold" class="w-4 h-4"></i> Negrita</button>
-                            <button data-command="italic" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors"><i data-lucide="italic" class="w-4 h-4"></i> Cursiva</button>
-                            <button data-command="underline" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors"><i data-lucide="underline" class="w-4 h-4"></i> Subrayado</button>
-                            <div class="h-px bg-border my-1 mx-2"></div>
-                            <button data-command="insertUnorderedList" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors"><i data-lucide="list" class="w-4 h-4"></i> Lista</button>
-                            <button data-command="insertOrderedList" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors"><i data-lucide="list-ordered" class="w-4 h-4"></i> Numeración</button>
-                            <div class="h-px bg-border my-1 mx-2"></div>
-                            <button id="mobile-link-btn" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors"><i data-lucide="link" class="w-4 h-4"></i> Enlace</button>
-                            <button id="mobile-text-color-btn" class="flex items-center gap-3 w-full px-3 py-2 text-sm hover:bg-accent rounded-md transition-colors">
-                                <i data-lucide="palette" class="w-4 h-4"></i> Color de Texto
-                            </button>
-                        </div>
+                    <div class="relative md:hidden hidden">
+                        <!-- Removed from top -->
                     </div>
 
                     <div class="editor-toolbar-container flex-1 justify-start md:flex-initial hidden md:flex items-center gap-1 p-1 border rounded-md bg-muted/30 w-fit shrink-0">
@@ -120,6 +102,26 @@ export function getEditorTemplate() {
                         <select id="edit-category" class="hidden">
                             <option value="">Sin categoría</option>
                         </select>
+                    </div>
+                    
+                    <div class="relative md:hidden shrink-0">
+                        <button id="mobile-format-trigger" class="editor-tool border border-input bg-background/50 transition-all shrink-0" title="Formato">
+                            <i data-lucide="type" class="w-4 h-4"></i>
+                        </button>
+                        <div id="mobile-tools-menu" class="hidden absolute left-0 bottom-full mb-3 bg-popover border shadow-2xl rounded-2xl p-1.5 z-[150] flex flex-col gap-1 min-w-[200px] animate-in slide-in-from-bottom-2 duration-200 overflow-hidden">
+                            <button data-command="bold" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="bold" class="w-4 h-4"></i> Negrita</button>
+                            <button data-command="italic" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="italic" class="w-4 h-4"></i> Cursiva</button>
+                            <button data-command="underline" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="underline" class="w-4 h-4"></i> Subrayado</button>
+                            <div class="h-px bg-border my-1.5 mx-2"></div>
+                            <button data-command="insertUnorderedList" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="list" class="w-4 h-4"></i> Lista</button>
+                            <button data-command="insertOrderedList" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="list-ordered" class="w-4 h-4"></i> Numeración</button>
+                            <button id="checklist-btn-mobile" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="check-square" class="w-4 h-4"></i> Checklist</button>
+                            <div class="h-px bg-border my-1.5 mx-2"></div>
+                            <button id="mobile-link-btn" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium"><i data-lucide="link" class="w-4 h-4"></i> Enlace</button>
+                            <button id="mobile-text-color-btn" class="flex items-center gap-3 w-full px-4 py-2.5 text-sm hover:bg-accent rounded-xl transition-colors font-medium">
+                                <i data-lucide="palette" class="w-4 h-4"></i> Color de Texto
+                            </button>
+                        </div>
                     </div>
                     
                     <button id="toggle-pin" class="editor-tool border border-input bg-background/50 transition-all shrink-0">
@@ -230,6 +232,14 @@ export function initEditor(onSave) {
         };
     });
 
+    const mobileChecklistBtn = document.getElementById('checklist-btn-mobile');
+    if (mobileChecklistBtn) {
+        mobileChecklistBtn.onclick = () => {
+            toggleChecklist();
+            formatMenu.classList.add('hidden');
+        };
+    }
+
     document.getElementById('mobile-link-btn').onclick = () => {
         setupLinkAction();
         formatMenu.classList.add('hidden');
@@ -338,15 +348,7 @@ export function initEditor(onSave) {
                 e.preventDefault();
                 li.dataset.checked = li.dataset.checked === 'true' ? 'false' : 'true';
                 // Save without closing
-                const title = document.getElementById('edit-title').value.trim();
-                const content = document.getElementById('edit-content').innerHTML;
-                const noteIndex = state.notes.findIndex(n => n.id === state.editingNoteId);
-                if (noteIndex >= 0) {
-                    state.notes[noteIndex].content = content;
-                    state.notes[noteIndex].updatedAt = Date.now();
-                    saveLocal();
-                    if (window.triggerAutoSync) window.triggerAutoSync();
-                }
+                saveActiveNote(false);
                 updateToolsUI();
             }
         }
@@ -380,6 +382,13 @@ function updateToolsUI() {
 
     const lockBtn = document.getElementById('toggle-lock');
     if (lockBtn) lockBtn.classList.toggle('active', lockBtn.dataset.active === 'true');
+
+    // Also update mobile trigger if active
+    const mobileFormatTrigger = document.getElementById('mobile-format-trigger');
+    if (mobileFormatTrigger) {
+        const isMenuOpen = !document.getElementById('mobile-tools-menu').classList.contains('hidden');
+        mobileFormatTrigger.classList.toggle('active', isMenuOpen);
+    }
 }
 
 export function openEditor(note = null) {
@@ -435,7 +444,7 @@ function closeEditor() {
     if (window.refreshUI) window.refreshUI();
 }
 
-export async function saveActiveNote() {
+export async function saveActiveNote(shouldClose = true) {
     let title = document.getElementById('edit-title').value.trim();
     const content = document.getElementById('edit-content').innerHTML;
     const catId = document.getElementById('edit-category').value;
@@ -480,8 +489,11 @@ export async function saveActiveNote() {
     if (noteIndex >= 0) state.notes[noteIndex] = noteData;
     else state.notes.unshift(noteData);
 
+    // Update the ID in state if it was a new note
+    if (!state.editingNoteId) state.editingNoteId = noteData.id;
+
     await saveLocal();
-    closeEditor();
+    if (shouldClose) closeEditor();
     if (window.refreshUI) window.refreshUI();
     if (window.triggerAutoSync) window.triggerAutoSync();
 }
