@@ -1,0 +1,172 @@
+export function getLayoutTemplate() {
+    return `
+    <div id="app" class="flex h-screen overflow-hidden opacity-100 transition-opacity duration-300">
+        <!-- Sidebar Desktop -->
+        <aside class="w-64 hidden md:flex flex-col border-r bg-sidebar">
+            <div class="p-6 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 p-1 flex items-center justify-center border border-primary/20">
+                    <img src="./icons/logo.png" alt="CloudNotes" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <h1 class="text-sm font-semibold leading-none">CloudNotes</h1>
+                    <span class="text-[10px] text-muted-foreground uppercase tracking-wider">Pro Edition</span>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto px-4 space-y-8">
+                <div class="space-y-1">
+                    <button class="nav-link active w-full" data-view="all">
+                        <i data-lucide="layout-grid" class="w-4 h-4"></i> Todas las notas
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between px-4">
+                        <h3 class="sidebar-section-title text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Etiquetas</h3>
+                        <button id="sidebar-manage-cats" class="text-[10px] bg-muted hover:bg-accent px-2 py-1 rounded border transition-colors font-bold uppercase text-muted-foreground hover:text-foreground">
+                            Gestionar
+                        </button>
+                    </div>
+                    <div id="sidebar-categories" class="space-y-1"></div>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-2 mt-auto">
+                <button id="sync-btn" class="nav-link w-full text-xs opacity-60 hover:opacity-100">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Sincronizar Bóveda
+                </button>
+                <button id="settings-trigger" class="nav-link w-full text-xs opacity-60 hover:opacity-100">
+                    <i data-lucide="settings" class="w-3.5 h-3.5"></i> Configuración
+                </button>
+                <button id="sidebar-pwa-install-btn" class="hidden nav-link w-full text-xs opacity-60 hover:opacity-100">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Instalar en PC
+                </button>
+                <button id="logout-btn" class="nav-link w-full text-xs opacity-60 hover:opacity-100 text-destructive">
+                    <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Cerrar Bóveda
+                </button>
+                <div class="mt-auto pt-4 border-t border-border/20 px-4">
+                    <div id="app-version" class="text-[9px] text-muted-foreground font-mono opacity-30">v3.2.8</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col bg-background relative overflow-hidden h-full">
+            <!-- Desktop Header -->
+            <header class="hidden md:flex h-16 items-center justify-between px-8 border-b">
+                <div class="flex items-center gap-4 flex-1">
+                    <div class="relative w-full max-w-sm">
+                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                        <input type="text" id="search-input" placeholder="Buscar notas..." class="pl-12 h-9 w-full" autocomplete="off">
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="pwa-install-btn" class="hidden btn-shad btn-shad-outline h-9 px-3">
+                        <i data-lucide="download" class="w-4 h-4 mr-2"></i> Instalar
+                    </button>
+                    <button id="add-note-btn" class="btn-shad btn-shad-primary h-9">
+                        <i data-lucide="plus" class="w-4 h-4 mr-2"></i> Nueva Nota
+                    </button>
+                </div>
+            </header>
+
+            <!-- Mobile Top Bar -->
+            <div class="md:hidden h-14 border-b flex items-center justify-between px-4 bg-background/80 backdrop-blur-xl sticky top-0 z-50">
+                <div class="flex items-center gap-3">
+                    <button id="mobile-sidebar-trigger" class="p-2 -ml-2 hover:bg-accent rounded-md">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <img src="./icons/logo.png" alt="Logo" class="w-6 h-6">
+                        <span class="font-bold tracking-tight text-lg">CloudNotes</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1">
+                    <button id="mobile-search-btn" class="p-2 hover:bg-accent rounded-md">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div id="mobile-search-bar" class="absolute inset-0 bg-background flex items-center px-4 gap-2 hidden animate-in slide-in-from-top duration-200">
+                    <i data-lucide="search" class="w-4 h-4 text-muted-foreground"></i>
+                    <input type="text" id="mobile-search-input-top" placeholder="Buscar en tus notas..." class="flex-1 bg-transparent border-none outline-none text-sm h-full" autocomplete="off">
+                    <button id="close-mobile-search" class="p-2 hover:bg-accent rounded-md">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div id="notes-viewport" class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
+                <div class="max-w-7xl mx-auto space-y-8">
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <h1 id="view-title" class="text-3xl font-bold tracking-tight">Todas las notas</h1>
+                            <p id="view-desc" class="text-sm text-muted-foreground mt-1">Organiza tus pensamientos y protege tu privacidad.</p>
+                        </div>
+                    </div>
+                    <div id="notes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+                </div>
+            </div>
+
+            <!-- Mobile Bottom Nav -->
+            <nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/90 backdrop-blur-2xl border-t flex items-center justify-around z-40 pb-safe">
+                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors nav-link-mobile" data-view="all">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    <span class="text-[10px] font-medium">Inicio</span>
+                </button>
+                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-search-trigger">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                    <span class="text-[10px] font-medium">Buscar</span>
+                </button>
+                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-add-btn">
+                    <div class="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                        <i data-lucide="plus" class="w-6 h-6"></i>
+                    </div>
+                </button>
+                <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-menu-trigger">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                    <span class="text-[10px] font-medium">Menú</span>
+                </button>
+            </nav>
+        </main>
+
+        <!-- Mobile Sidebar Drawer -->
+        <div id="mobile-sidebar-overlay" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-[100] hidden">
+            <div id="mobile-sidebar-drawer" class="w-[80vw] h-full bg-card border-r flex flex-col animate-in slide-in-from-left duration-300">
+                <div class="p-6 flex items-center justify-between border-b">
+                    <div class="flex items-center gap-2">
+                        <img src="./icons/logo.png" alt="Logo" class="w-6 h-6">
+                        <span class="font-bold tracking-tight">CloudNotes</span>
+                    </div>
+                    <button id="close-mobile-sidebar" class="p-2 hover:bg-accent rounded-md">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-4 space-y-8">
+                    <div class="space-y-1">
+                        <button class="nav-link-mobile-drawer active w-full" data-view="all">
+                            <i data-lucide="layout-grid" class="w-4 h-4"></i> Todas las notas
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between px-2">
+                            <h3 class="sidebar-section-title">Etiquetas</h3>
+                            <button id="mobile-manage-cats" class="text-[10px] bg-muted hover:bg-accent px-2 py-1 rounded border transition-colors font-bold uppercase text-muted-foreground hover:text-foreground">
+                                Gestionar
+                            </button>
+                        </div>
+                        <div id="mobile-sidebar-categories" class="space-y-1 px-2"></div>
+                    </div>
+                </div>
+                <div class="p-6 border-t space-y-2">
+                    <button id="mobile-sync-btn" class="flex items-center gap-3 w-full p-3 rounded-md hover:bg-accent text-sm">
+                        <i data-lucide="refresh-cw" class="w-4 h-4"></i> Sincronizar
+                    </button>
+                    <button id="mobile-logout-btn" class="flex items-center gap-3 w-full p-3 rounded-md hover:bg-accent text-sm text-destructive">
+                        <i data-lucide="log-out" class="w-4 h-4"></i> Cerrar Bóveda
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}

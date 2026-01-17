@@ -1,10 +1,12 @@
-const CACHE_NAME = 'cloud-notes-v3.0.1';
+const CACHE_NAME = 'cloud-notes-v3.0.2';
 const ASSETS = [
     './',
     './index.html',
     './style.css',
     './main.js',
     './manifest.json',
+    './icons/icon-192.png',
+    './icons/icon-512.png',
     'https://unpkg.com/lucide@latest',
     'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
 ];

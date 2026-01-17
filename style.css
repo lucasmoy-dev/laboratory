@@ -27,24 +27,25 @@
     }
 
     .dark {
-        --background: 240 10% 3.9%;
+        --background: 240 10% 6%;
         --foreground: 0 0% 98%;
-        --card: 240 10% 3.9%;
+        --card: 240 10% 9%;
         --card-foreground: 0 0% 98%;
-        --popover: 240 10% 3.9%;
+        --sidebar: 240 10% 7%;
+        --popover: 240 10% 10%;
         --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 240 5.9% 10%;
-        --secondary: 240 3.7% 15.9%;
+        --primary: 240 5.9% 20%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 240 3.7% 18.9%;
         --secondary-foreground: 0 0% 98%;
-        --muted: 240 3.7% 15.9%;
-        --muted-foreground: 240 5% 64.9%;
-        --accent: 240 3.7% 15.9%;
+        --muted: 240 3.7% 18.9%;
+        --muted-foreground: 240 5% 70%;
+        --accent: 240 3.7% 22%;
         --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 3.7% 15.9%;
-        --input: 240 3.7% 15.9%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 240 3.7% 20%;
+        --input: 240 3.7% 20%;
         --ring: 240 4.9% 83.9%;
     }
 }
@@ -55,20 +56,26 @@
     }
 
     body {
-        @apply bg-background text-foreground font-sans antialiased;
-        font-feature-settings: "rlig" 1, "calt" 1;
+        @apply bg-background text-foreground transition-colors duration-300 antialiased font-sans;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
 }
 
 @layer components {
-
-    /* Shadcn-like Buttons */
     .btn-shad {
         @apply inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2;
     }
 
     .btn-shad-primary {
         @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    }
+
+    .btn-shad-secondary {
+        @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+    }
+
+    .btn-shad-success {
+        @apply bg-emerald-600 text-white hover:bg-emerald-700 shadow-md;
     }
 
     .btn-shad-outline {
@@ -79,41 +86,87 @@
         @apply hover:bg-accent hover:text-accent-foreground;
     }
 
-    .btn-shad-sm {
-        @apply h-9 rounded-md px-3;
+    .nav-link {
+        @apply flex items-center justify-start gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors;
+        @apply text-muted-foreground hover:bg-accent hover:text-accent-foreground;
     }
 
-    .btn-shad-icon {
-        @apply h-10 w-10;
+    .nav-link.active {
+        @apply bg-accent text-accent-foreground font-semibold;
     }
 
-    /* Cards */
     .card-shad {
-        @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+        @apply rounded-xl border bg-card text-card-foreground shadow-sm;
     }
 
-    /* Modals/Dialogs */
     .dialog-overlay {
-        @apply fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300;
+        @apply fixed inset-0 z-50 bg-black/80 backdrop-blur-sm transition-all duration-300;
     }
 
     .dialog-content {
-        @apply fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 animate-in fade-in-0 zoom-in-95 sm:rounded-lg;
+        @apply fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-2xl duration-200 animate-in fade-in-0 zoom-in-95 sm:rounded-xl;
     }
 
-    /* Note Item */
+    .popover-content {
+        @apply z-50 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in fade-in-0 zoom-in-95;
+    }
+
+    .editor-tool {
+        @apply h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground transition-colors;
+    }
+
+    /* Note Card */
     .note-card {
-        @apply card-shad p-6 relative group transition-all duration-200 hover:shadow-md cursor-pointer border-l-4;
+        @apply card-shad relative transition-all duration-200 hover:ring-1 hover:ring-ring border cursor-pointer flex flex-col;
+    }
+
+    .note-card:hover {
+        @apply shadow-md;
+    }
+
+    .note-card-content {
+        @apply p-5 flex flex-col h-full;
     }
 
     .note-card.pinned {
-        @apply ring-1 ring-primary/20;
+        @apply border-primary/50 ring-1 ring-primary/20;
     }
 }
 
-/* Custom Scrollbar */
+/* Sidebar Custom Styling */
+aside {
+    @apply bg-zinc-50 dark:bg-[hsl(var(--sidebar))] border-r transition-colors duration-300;
+}
+
+.ov-hidden {
+    overflow: hidden;
+}
+
+/* Fix input padding overlap */
+input.pl-12 {
+    padding-left: 3rem !important;
+    /* 48px */
+}
+
+.absolute.left-4 {
+    left: 1rem !important;
+    /* 16px */
+}
+
+/* Sidebar Headings */
+.sidebar-section-title {
+    @apply text-[10px] font-bold text-muted-foreground/60 uppercase tracking-[0.2em] px-4 mb-2;
+}
+
+/* Password eye toggle */
+.toggle-pass {
+    @apply transition-colors h-8 w-8 flex items-center justify-center rounded-md;
+}
+
+/* Scrollbar styling */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -121,21 +174,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30;
-}
-
-/* Tooltips & Popovers */
-.popover-content {
-    @apply z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in fade-in-0 zoom-in-95;
-}
-
-/* Editor Toolbar */
-.editor-toolbar-btn {
-    @apply h-8 w-8 inline-flex items-center justify-center rounded-md hover:bg-muted transition-colors;
+    @apply bg-muted rounded-full border-4 border-solid border-background hover:bg-muted-foreground/30;
 }
 
 /* Animations */
-@keyframes noteFadeIn {
+@keyframes note-in {
     from {
         opacity: 0;
         transform: translateY(10px);
@@ -148,5 +191,214 @@
 }
 
 .note-animate-in {
-    animation: noteFadeIn 0.3s ease-out forwards;
+    animation: note-in 0.3s ease-out forwards;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+.dark input[type="text"],
+.dark input[type="password"],
+.dark select {
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.dark input:focus {
+    border-color: hsl(var(--ring));
+    background-color: hsl(var(--accent));
+}
+
+/* Custom Dropdown */
+#cat-dropdown-menu {
+    @apply bg-popover text-popover-foreground border shadow-2xl rounded-xl p-1.5 mt-2 min-w-[200px];
+    transform-origin: top left;
+    animation: dropdown-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdown-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#cat-dropdown-menu div {
+    @apply relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm outline-none transition-all hover:bg-accent hover:text-accent-foreground gap-2 mb-0.5 last:mb-0;
+}
+
+#cat-dropdown-menu div:active {
+    @apply scale-[0.98];
+}
+
+/* Grid Layout */
+#notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+    #notes-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .dialog-content {
+        @apply w-[95%] p-4;
+    }
+}
+
+/* Status dots */
+#drive-status.active {
+    @apply bg-green-500/10 text-green-500;
+}
+
+/* Early Auth Check Hide */
+html.auth-pre-verified #auth-shield {
+    display: none !important;
+}
+
+html.auth-pre-verified #app {
+    opacity: 1 !important;
+}
+
+/* Mobile Sidebar Drawer */
+.nav-link-mobile-drawer {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all text-muted-foreground hover:bg-accent hover:text-accent-foreground;
+}
+
+.nav-link-mobile-drawer.active {
+    @apply bg-primary/10 text-primary;
+}
+
+#mobile-sidebar-drawer {
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+.animate-in {
+    animation-duration: 200ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: forwards;
+}
+
+.slide-in-from-left {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.slide-in-from-top {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Forms and Inputs */
+input,
+select,
+textarea {
+    @apply transition-all duration-200 outline-none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    @apply ring-2 ring-primary/20 border-primary shadow-sm !important;
+}
+
+/* Settings Tabs */
+.settings-tab {
+    @apply flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-md transition-all text-muted-foreground w-full;
+}
+
+.settings-tab:hover {
+    @apply bg-accent text-accent-foreground;
+}
+
+.settings-tab.active {
+    @apply bg-background text-foreground shadow-sm border border-border/50;
+}
+
+.settings-tab.active i {
+    @apply text-primary;
+}
+
+/* Toast System - Standard CSS for maximum reliability */
+#toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(1rem);
+    z-index: 500;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    width: max-content;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+#toast div {
+    background-color: #18181b;
+    /* zinc-900 */
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid #27272a;
+    /* zinc-800 */
+}
+
+.dark #toast div {
+    background-color: #f4f4f5;
+    /* zinc-100 */
+    color: #09090b;
+    /* zinc-950 */
+    border-color: #e4e4e7;
+    /* zinc-200 */
+}
+
+/* Fix for logout button visibility */
+.text-destructive {
+    @apply text-red-500 dark:text-red-400 font-medium;
+}
+
+.hover\:bg-destructive:hover {
+    @apply bg-red-600 text-white;
 }
