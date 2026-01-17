@@ -211,7 +211,7 @@ function setupGlobalEvents() {
     });
 
     // Mobile Category Links (specific handling for active state)
-    document.querySelectorAll('.nav-link-mobile-drawer').forEach(link => {
+    document.querySelectorAll('.nav-link-mobile-drawer[data-category]').forEach(link => {
         link.onclick = (e) => {
             e.preventDefault();
             const catId = link.dataset.category;

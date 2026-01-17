@@ -16,6 +16,14 @@ export function openPrompt(title, desc, isPassword = true) {
         document.getElementById('prompt-desc').innerText = desc;
         input.type = isPassword ? 'password' : 'text';
         input.value = '';
+        input.placeholder = isPassword ? 'Tu contraseña' : 'Escribe aquí...';
+
+        input.classList.toggle('tracking-widest', isPassword);
+        input.classList.toggle('text-center', isPassword);
+
+        const eyeBtn = modal.querySelector('.toggle-pass');
+        if (eyeBtn) eyeBtn.style.display = isPassword ? 'flex' : 'none';
+
         modal.classList.remove('hidden');
         safeCreateIcons();
         input.focus();
