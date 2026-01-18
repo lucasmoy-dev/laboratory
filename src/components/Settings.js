@@ -5,9 +5,9 @@ export function getSettingsTemplate() {
     return `
     <div id="settings-modal" class="fixed inset-0 z-[80] hidden">
         <div class="dialog-overlay"></div>
-        <div class="dialog-content w-full h-full md:w-auto md:max-w-2xl md:h-[500px] p-0 overflow-hidden flex flex-col md:flex-row rounded-none md:rounded-xl">
+        <div class="dialog-content w-full h-full md:w-auto md:max-w-4xl p-0 overflow-hidden flex flex-col md:flex-row rounded-none md:rounded-xl">
             <!-- Sidebar Settings -->
-            <div id="settings-sidebar" class="w-full md:w-48 bg-muted/50 border-b md:border-b-0 md:border-r p-4 flex flex-col gap-2 overflow-y-auto">
+            <div id="settings-sidebar" class="w-full md:w-64 bg-muted/50 border-b md:border-b-0 md:border-r p-4 flex flex-col gap-2 overflow-y-auto">
                 <div class="flex items-center justify-between mb-4 md:hidden">
                     <h3 class="font-bold text-2xl">${t('settings.title')}</h3>
                     <button class="close-settings p-2 hover:bg-accent rounded-full">
@@ -46,20 +46,44 @@ export function getSettingsTemplate() {
                         <section class="space-y-4">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.lang')}</h3>
                             <div class="space-y-2">
-                                <select id="language-select" class="h-12 md:h-10 w-full px-4 rounded-xl border bg-background text-lg md:text-sm">
-                                    <option value="en">🇺🇸 English</option>
-                                    <option value="es">🇪🇸 Español</option>
-                                    <option value="fr">🇫🇷 Français</option>
-                                    <option value="de">🇩🇪 Deutsch</option>
-                                    <option value="it">🇮🇹 Italiano</option>
-                                    <option value="pt">🇵🇹 Português</option>
-                                    <option value="ru">🇷🇺 Русский</option>
-                                    <option value="zh">🇨🇳 中文</option>
-                                    <option value="ja">🇯🇵 日本語</option>
-                                    <option value="ko">🇰🇷 한국어</option>
-                                    <option value="ar">🇸🇦 العربية</option>
-                                    <option value="hi">🇮🇳 हिन्दी</option>
-                                </select>
+                                <div id="language-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="en">
+                                        <span class="text-xl">🇺🇸</span> <span class="text-sm font-medium">English</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="es">
+                                        <span class="text-xl">🇪🇸</span> <span class="text-sm font-medium">Español</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="fr">
+                                        <span class="text-xl">🇫🇷</span> <span class="text-sm font-medium">Français</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="de">
+                                        <span class="text-xl">🇩🇪</span> <span class="text-sm font-medium">Deutsch</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="it">
+                                        <span class="text-xl">🇮🇹</span> <span class="text-sm font-medium">Italiano</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="pt">
+                                        <span class="text-xl">🇵🇹</span> <span class="text-sm font-medium">Português</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="ru">
+                                        <span class="text-xl">🇷🇺</span> <span class="text-sm font-medium">Русский</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="zh">
+                                        <span class="text-xl">🇨🇳</span> <span class="text-sm font-medium">中文</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="ja">
+                                        <span class="text-xl">🇯🇵</span> <span class="text-sm font-medium">日本語</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="ko">
+                                        <span class="text-xl">🇰🇷</span> <span class="text-sm font-medium">한국어</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="ar">
+                                        <span class="text-xl">🇸🇦</span> <span class="text-sm font-medium">العربية</span>
+                                    </button>
+                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="hi">
+                                        <span class="text-xl">🇮🇳</span> <span class="text-sm font-medium">हिन्दी</span>
+                                    </button>
+                                </div>
                             </div>
                         </section>
 
@@ -246,12 +270,14 @@ export function initSettings() {
     if (reloadBtn) reloadBtn.onclick = handleForceReload;
     if (reloadBtnSettings) reloadBtnSettings.onclick = handleForceReload;
 
-    // Language Switcher Logic
-    const langSelect = document.getElementById('language-select');
-    if (langSelect) {
-        langSelect.value = currentLang;
-        langSelect.onchange = (e) => setLanguage(e.target.value);
-    }
+    // Language Switcher Logic (Grid)
+    const langBtns = document.querySelectorAll('.lang-btn');
+    langBtns.forEach(btn => {
+        if (btn.dataset.value === currentLang) {
+            btn.classList.add('ring-2', 'ring-primary', 'bg-primary/5');
+        }
+        btn.onclick = () => setLanguage(btn.dataset.value);
+    });
 
     // Biometric Toggle Logic
     const toggleBioBtn = document.getElementById('toggle-biometric-btn');

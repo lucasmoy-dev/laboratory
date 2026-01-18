@@ -12,7 +12,7 @@ export function getCommonUITemplate() {
                 <div class="relative group">
                     <input type="password" id="prompt-input" placeholder="Tu contraseña"
                         class="h-12 w-full text-center tracking-widest outline-none pr-12 bg-muted/50 border border-border focus:border-indigo-500/50 transition-all rounded-xl">
-                    <button type="button"
+                    <button type="button" id="prompt-toggle-visibility"
                         class="absolute right-0 top-0 h-12 w-12 flex items-center justify-center text-muted-foreground hover:text-foreground toggle-pass"
                         data-target="prompt-input">
                         <i data-lucide="eye" class="w-4 h-4"></i>

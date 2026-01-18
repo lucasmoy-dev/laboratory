@@ -8,7 +8,7 @@ export function getCategoryManagerTemplate() {
     return `
     <div id="categories-modal" class="fixed inset-0 z-[70] hidden">
         <div class="dialog-overlay close-categories"></div>
-        <div class="dialog-content w-full h-full md:max-w-none md:h-full md:rounded-none rounded-none flex flex-col shadow-2xl p-0 overflow-hidden">
+        <div class="dialog-content w-full h-full md:max-w-3xl md:h-[650px] md:rounded-3xl rounded-none flex flex-col shadow-2xl p-0 overflow-hidden">
             <div class="p-6 md:p-10 flex justify-between items-center border-b bg-background/50 backdrop-blur-md sticky top-0 z-10">
                 <div>
                     <h2 class="text-2xl md:text-4xl font-bold text-foreground">${t('categories.title')}</h2>
@@ -164,7 +164,7 @@ async function deleteCat(id, onRefresh) {
     if (!cat) return;
 
     if (cat.passwordHash) {
-        const pass = await openPrompt('Seguridad', 'Etiqueta restringida. Ingresa contraseña para eliminar:');
+        const pass = await openPrompt('Seguridad', 'Etiqueta restringida. Ingresa contraseña para eliminar:', true);
         if (!pass) return;
         const hash = await Security.hash(pass);
         if (hash !== cat.passwordHash) return showToast('❌ Error: Contraseña incorrecta');
@@ -186,14 +186,14 @@ async function toggleLock(id, onRefresh) {
     if (!cat) return;
 
     if (cat.passwordHash) {
-        const pass = await openPrompt('Seguridad', 'Ingresa la contraseña para quitar la restricción:');
+        const pass = await openPrompt('Seguridad', 'Ingresa la contraseña para quitar la restricción:', true);
         if (!pass) return;
         const hash = await Security.hash(pass);
         if (hash !== cat.passwordHash) return showToast('❌ Error: Contraseña incorrecta');
         cat.passwordHash = null;
         showToast('🔓 Restricción quitada');
     } else {
-        const pass = await openPrompt('Seguridad', 'Define una contraseña para restringir esta etiqueta:');
+        const pass = await openPrompt('Seguridad', 'Define una contraseña para restringir esta etiqueta:', true);
         if (pass) {
             cat.passwordHash = await Security.hash(pass);
             showToast('🔒 Etiqueta restringida');

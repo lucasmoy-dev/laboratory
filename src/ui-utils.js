@@ -6,22 +6,32 @@ export function showToast(msg, duration = 3000) {
     setTimeout(() => toast.classList.remove('show'), duration);
 }
 
-export function openPrompt(message, isPassword = false) {
+export function openPrompt(message, description = '', isPassword = false) {
+    if (typeof description === 'boolean') {
+        isPassword = description;
+        description = '';
+    }
+
     return new Promise((resolve) => {
         const modal = document.getElementById('prompt-modal');
         const input = document.getElementById('prompt-input');
-        const label = document.getElementById('prompt-label');
+        const title = document.getElementById('prompt-title');
+        const descEl = document.getElementById('prompt-desc');
         const confirmBtn = document.getElementById('prompt-confirm');
         const cancelBtn = document.getElementById('prompt-cancel');
         const bioBtn = document.getElementById('prompt-biometric');
         const toggleBtn = document.getElementById('prompt-toggle-visibility');
 
-        if (!modal || !input || !label || !confirmBtn || !cancelBtn || !bioBtn || !toggleBtn) {
+        if (!modal || !input || !title || !confirmBtn || !cancelBtn || !bioBtn || !toggleBtn) {
             console.error("One or more prompt elements not found.");
             return resolve(null);
         }
 
-        label.textContent = message;
+        title.textContent = message;
+        if (descEl) {
+            descEl.textContent = description;
+            descEl.classList.toggle('hidden', !description);
+        }
         input.value = '';
         input.type = isPassword ? 'password' : 'text';
 

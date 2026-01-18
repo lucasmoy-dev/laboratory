@@ -268,6 +268,1356 @@ export const translations = {
             fail_enable: "❌ Error al activar biometría",
             incorrect_pass: "❌ Contraseña incorrecta"
         }
+    },
+    fr: {
+        app_name: "Notes Privées",
+        sidebar: {
+            all_notes: "Toutes les notes",
+            tags: "Étiquettes",
+            manage_tags: "Gérer les étiquettes",
+            settings: "Paramètres",
+            install_app: "Installer l'application",
+            system: "Système",
+            force_reload: "Forcer le nettoyage"
+        },
+        header: {
+            search_placeholder: "Rechercher...",
+            sync: "Synchroniser",
+            install: "Installer",
+            new_note: "Nouvelle note",
+            view_title_all: "Toutes les notes",
+            view_desc_all: "Organisez vos pensées et protégez votre vie privée.",
+            pinned: "Épinglé"
+        },
+        notes: {
+            no_notes: "Aucune note ici"
+        },
+        auth: {
+            title: "Coffre Protégé",
+            desc: "Entrez votre mot de passe maître",
+            unlock: "Déverrouiller",
+            setup_title: "Configurez votre coffre",
+            setup_desc: "Créez un mot de passe maître.",
+            create_vault: "Créer mon coffre",
+            confirm_pass: "Répétez le mot de passe",
+            pass_placeholder: "Votre mot de passe",
+            repeat_placeholder: "Répétez le mot de passe",
+            remember_me: "Se souvenir de moi",
+            problems: "Problèmes ? Nettoyer et recharger",
+            password_mismatch: "⚠️ Mots de passe différents !",
+            password_short: "Min. 4 caractères",
+            vault_created: "✅ Coffre créé",
+            vault_opened: "Coffre ouvert",
+            incorrect_pass: "❌ Mot de passe incorrect",
+            setup_pass_first: "⚠️ Entrez votre mot de passe d'abord",
+            bio_success: "✅ Biométrie activée",
+            bio_fail: "❌ Échec de la biométrie",
+            bio_unlock: "Déverrouiller avec biométrie",
+            bio_setup: "Activer Biométrie / FaceID",
+            use_bio: "Utiliser Biométrie / FaceID"
+        },
+        editor: {
+            title_placeholder: "Titre de la note",
+            content_placeholder: "Commencez à écrire...",
+            saving: "Enregistrement...",
+            saved: "Enregistré",
+            error_save: "Erreur d'enregistrement",
+            delete_confirm: "Supprimer cette note ?",
+            close_unsaved: "Fermer sans enregistrer ?",
+            tools: {
+                bg_color: "Couleur de fond",
+                text_format: "Format du texte"
+            }
+        },
+        settings: {
+            title: "Paramètres",
+            general: "Général",
+            sync: "Cloud Sync",
+            security: "Sécurité",
+            danger: "Actions Avancées",
+            theme: "Thème Visuel",
+            light: "Clair",
+            dark: "Sombre",
+            lang: "Langue",
+            maintenance: "Maintenance",
+            installed_version: "Version installée",
+            sync_status: {
+                connected: "Connecté",
+                disconnected: "Déconnecté"
+            },
+            connect_drive: "Se connecter à Google Drive",
+            drive_folder: "Dossier Drive",
+            drive_folder_hint: "Les notes seront cryptées dans ce dossier.",
+            notes_per_chunk: "Notes par fichier",
+            notes_per_chunk_hint: "Définit le nombre de notes par groupe.",
+            save_changes: "Enregistrer",
+            session_security: "Sécurité de session",
+            logout: "Déconnexion",
+            logout_hint: "Supprime la clé d'accès de la mémoire.",
+            encryption: "Cryptage",
+            algo: "Algorithme préféré",
+            update_algo: "Mettre à jour",
+            reset_app: "Réinitialiser",
+            reset_warning: "Ceci supprimera définitivement toutes les notes locales.",
+            reset_confirm_label: "Tapez \"confirmer\" :",
+            reset_btn: "Supprimer tout",
+            reset_keyword: "confirmer"
+        },
+        categories: {
+            title: "Gérer les catégories",
+            add_new: "Nouvelle catégorie",
+            name_placeholder: "Nom de la catégorie",
+            icon_label: "Icône",
+            color_label: "Couleur",
+            password_label: "Mot de passe (Optionnel)",
+            password_hint: "Laissez vide pour aucune protection",
+            create: "Créer",
+            edit: "Modifier",
+            delete: "Supprimer",
+            save: "Enregistrer",
+            delete_confirm: "Supprimer cette catégorie ?",
+            no_category: "Sans catégorie"
+        },
+        common: {
+            cancel: "Annuler",
+            confirm: "Confirmer",
+            search: "Rechercher",
+            search_prompt: "Rechercher :",
+            security_prompt: "Sécurité",
+            security_desc_prompt: "Entrez le mot de passe",
+            restricted_access: "Accès restreint",
+            enter_cat_pass: "Mot de passe pour",
+            write_here: "Écrivez ici..."
+        },
+        biometrics: {
+            title: "Empreinte / Face ID",
+            desc: "Utilisez la biométrie pour déverrouiller",
+            enabled: "Activé",
+            disabled: "Désactivé",
+            enable_btn: "Activer",
+            disable_btn: "Désactiver",
+            setup_prompt: "Mot de passe maître pour activer",
+            not_supported: "Biométrie non supportée",
+            success_enable: "✅ Biométrie activée",
+            success_disable: "🔓 Biométrie désactivée",
+            fail_enable: "❌ Échec de l'activation",
+            incorrect_pass: "❌ Mot de passe incorrect"
+        }
+    },
+    de: {
+        app_name: "Private Notizen",
+        sidebar: {
+            all_notes: "Alle Notizen",
+            tags: "Kategorien",
+            manage_tags: "Kategorien verwalten",
+            settings: "Einstellungen",
+            install_app: "App installieren",
+            system: "System",
+            force_reload: "Bereinigen & Neu laden"
+        },
+        header: {
+            search_placeholder: "Suche...",
+            sync: "Sync",
+            install: "Instal.",
+            new_note: "Neue Notiz",
+            view_title_all: "Alle Notizen",
+            view_desc_all: "Organisiere deine Gedanken privat.",
+            pinned: "Angeheftet"
+        },
+        notes: {
+            no_notes: "Keine Notizen"
+        },
+        auth: {
+            title: "Geschützter Tresor",
+            desc: "Master-Passwort eingeben",
+            unlock: "Entsperren",
+            setup_title: "Tresor einrichten",
+            setup_desc: "Erstelle ein Master-Passwort.",
+            create_vault: "Tresor erstellen",
+            confirm_pass: "Passwort wiederholen",
+            pass_placeholder: "Passwort",
+            repeat_placeholder: "Passwort wiederholen",
+            remember_me: "Angemeldet bleiben",
+            problems: "Probleme? Neu laden",
+            password_mismatch: "⚠️ Passwörter ungleich!",
+            password_short: "Min. 4 Zeichen",
+            vault_created: "✅ Tresor erstellt",
+            vault_opened: "Tresor geöffnet",
+            incorrect_pass: "❌ Falsches Passwort",
+            setup_pass_first: "⚠️ Passwort zuerst eingeben",
+            bio_success: "✅ Biometrie aktiv",
+            bio_fail: "❌ Biometrie fehlgeschlagen",
+            bio_unlock: "Mit Biometrie entsperren",
+            bio_setup: "Biometrie / FaceID aktiv.",
+            use_bio: "Biometrie verwenden"
+        },
+        editor: {
+            title_placeholder: "Titel",
+            content_placeholder: "Schreibe etwas...",
+            saving: "Speichern...",
+            saved: "Gespeichert",
+            error_save: "Fehler beim Speichern",
+            delete_confirm: "Notiz löschen?",
+            close_unsaved: "Ohne Speichern schließen?",
+            tools: {
+                bg_color: "Hintergrundfarbe",
+                text_format: "Textformat"
+            }
+        },
+        settings: {
+            title: "Einstellungen",
+            general: "Allgemein",
+            sync: "Cloud-Sync",
+            security: "Sicherheit",
+            danger: "Erweitert",
+            theme: "Thema",
+            light: "Hell",
+            dark: "Dunkel",
+            lang: "Sprache",
+            maintenance: "Wartung",
+            installed_version: "Version",
+            sync_status: {
+                connected: "Verbunden",
+                disconnected: "Getrennt"
+            },
+            connect_drive: "Mit Google Drive verbinden",
+            drive_folder: "Drive-Ordner",
+            drive_folder_hint: "Notizen werden verschlüsselt.",
+            notes_per_chunk: "Notizen pro Datei",
+            notes_per_chunk_hint: "Gruppierung der Notizen.",
+            save_changes: "Speichern",
+            session_security: "Sessionsicherheit",
+            logout: "Abmelden",
+            logout_hint: "Löscht den Schlüssel aus dem Speicher.",
+            encryption: "Verschlüsselung",
+            algo: "Algorithmus",
+            update_algo: "Aktualisieren",
+            reset_app: "Zurücksetzen",
+            reset_warning: "Löscht permanent alle lokalen Daten.",
+            reset_confirm_label: "Tippe \"bestätigen\":",
+            reset_btn: "Alles löschen",
+            reset_keyword: "bestätigen"
+        },
+        categories: {
+            title: "Kategorien",
+            add_new: "Neue Kategorie",
+            name_placeholder: "Kategoriename",
+            icon_label: "Icon",
+            color_label: "Farbe",
+            password_label: "Passwort (Optional)",
+            password_hint: "Leer lassen für keine Sperre",
+            create: "Erstellen",
+            edit: "Bearbeiten",
+            delete: "Löschen",
+            save: "Speichern",
+            delete_confirm: "Kategorie löschen?",
+            no_category: "Keine Kategorie"
+        },
+        common: {
+            cancel: "Abbrechen",
+            confirm: "Bestätigen",
+            search: "Suchen",
+            search_prompt: "Suchen:",
+            security_prompt: "Sicherheit",
+            security_desc_prompt: "Passwort eingeben",
+            restricted_access: "Zugriff beschränkt",
+            enter_cat_pass: "Passwort für",
+            write_here: "Schreibe hier..."
+        },
+        biometrics: {
+            title: "FINGERABDRUCK / FACE ID",
+            desc: "Zum schnellen Entsperren",
+            enabled: "Aktiviert",
+            disabled: "Deaktiviert",
+            enable_btn: "Aktivieren",
+            disable_btn: "Deaktivieren",
+            setup_prompt: "Master-Passwort zum Aktivieren",
+            not_supported: "Nicht unterstützt",
+            success_enable: "✅ Aktiviert",
+            success_disable: "🔓 Deaktiviert",
+            fail_enable: "❌ Fehler",
+            incorrect_pass: "❌ Falsches Passwort"
+        }
+    },
+    it: {
+        app_name: "Note Private",
+        sidebar: {
+            all_notes: "Tutte le note",
+            tags: "Etichette",
+            manage_tags: "Gestisci etichette",
+            settings: "Impostazioni",
+            install_app: "Installa App",
+            system: "Sistema",
+            force_reload: "Forza ricarica"
+        },
+        header: {
+            search_placeholder: "Cerca...",
+            sync: "Sincronizza",
+            install: "Installa",
+            new_note: "Nuova nota",
+            view_title_all: "Tutte le note",
+            view_desc_all: "Organizza i tuoi pensieri privatamente.",
+            pinned: "In evidenza"
+        },
+        notes: {
+            no_notes: "Nessuna nota"
+        },
+        auth: {
+            title: "Cassaforte Protetta",
+            desc: "Inserisci la master password",
+            unlock: "Sblocca",
+            setup_title: "Configura cassaforte",
+            setup_desc: "Crea una master password.",
+            create_vault: "Crea cassaforte",
+            confirm_pass: "Ripeti password",
+            pass_placeholder: "Password",
+            repeat_placeholder: "Ripeti password",
+            remember_me: "Ricordami",
+            problems: "Problemi? Ricarica",
+            password_mismatch: "⚠️ Password non corrispondono!",
+            password_short: "Min. 4 caratteri",
+            vault_created: "✅ Cassaforte creata",
+            vault_opened: "Cassaforte aperta",
+            incorrect_pass: "❌ Password errata",
+            setup_pass_first: "⚠️ Inserisci prima la password",
+            bio_success: "✅ Biometria attivata",
+            bio_fail: "❌ Errore biometria",
+            bio_unlock: "Sblocca con biometria",
+            bio_setup: "Attiva Biometria / FaceID",
+            use_bio: "Usa biometria"
+        },
+        editor: {
+            title_placeholder: "Titolo",
+            content_placeholder: "Scrivi qualcosa...",
+            saving: "Salvataggio...",
+            saved: "Salvato",
+            error_save: "Errore salvataggio",
+            delete_confirm: "Elimina nota?",
+            close_unsaved: "Chiudi senza salvare?",
+            tools: {
+                bg_color: "Colore sfondo",
+                text_format: "Formato testo"
+            }
+        },
+        settings: {
+            title: "Impostazioni",
+            general: "Generale",
+            sync: "Cloud Sync",
+            security: "Sicurezza",
+            danger: "Avanzate",
+            theme: "Tema",
+            light: "Chiaro",
+            dark: "Scuro",
+            lang: "Lingua",
+            maintenance: "Manutenzione",
+            installed_version: "Versione",
+            sync_status: {
+                connected: "Connesso",
+                disconnected: "Disconnesso"
+            },
+            connect_drive: "Connetti Google Drive",
+            drive_folder: "Cartella Drive",
+            drive_folder_hint: "Note criptate in questa cartella.",
+            notes_per_chunk: "Note per file",
+            notes_per_chunk_hint: "Note raggruppate per file.",
+            save_changes: "Salva",
+            session_security: "Sicurezza sessione",
+            logout: "Esci",
+            logout_hint: "Rimuove la chiave dalla memoria.",
+            encryption: "Crittografia",
+            algo: "Algoritmo",
+            update_algo: "Aggiorna",
+            reset_app: "Ripristina",
+            reset_warning: "Elimina permanentemente tutti i dati.",
+            reset_confirm_label: "Scrivi \"conferma\":",
+            reset_btn: "Elimina tutto",
+            reset_keyword: "conferma"
+        },
+        categories: {
+            title: "Categorie",
+            add_new: "Nuova categoria",
+            name_placeholder: "Nome categoria",
+            icon_label: "Icona",
+            color_label: "Colore",
+            password_label: "Password (Opzionale)",
+            password_hint: "Lascia vuoto per nessuna protezione",
+            create: "Crea",
+            edit: "Modifica",
+            delete: "Elimina",
+            save: "Salva",
+            delete_confirm: "Elimina categoria?",
+            no_category: "Senza categoria"
+        },
+        common: {
+            cancel: "Annulla",
+            confirm: "Conferma",
+            search: "Cerca",
+            search_prompt: "Cerca:",
+            security_prompt: "Sicurezza",
+            security_desc_prompt: "Password richiesta",
+            restricted_access: "Accesso limitato",
+            enter_cat_pass: "Password per",
+            write_here: "Scrivi qui..."
+        },
+        biometrics: {
+            title: "IMPRONTA / FACE ID",
+            desc: "Usa biometria per sbloccare rapidamente",
+            enabled: "Attivato",
+            disabled: "Disattivato",
+            enable_btn: "Attiva",
+            disable_btn: "Disattiva",
+            setup_prompt: "Master password per attivare",
+            not_supported: "Non supportato",
+            success_enable: "✅ Attivato",
+            success_disable: "🔓 Disattivato",
+            fail_enable: "❌ Errore",
+            incorrect_pass: "❌ Password errata"
+        }
+    },
+    pt: {
+        app_name: "Notas Privadas",
+        sidebar: {
+            all_notes: "Todas as notas",
+            tags: "Etiquetas",
+            manage_tags: "Gerir etiquetas",
+            settings: "Configurações",
+            install_app: "Instalar App",
+            system: "Sistema",
+            force_reload: "Forçar limpeza"
+        },
+        header: {
+            search_placeholder: "Pesquisar...",
+            sync: "Sincronizar",
+            install: "Instalar",
+            new_note: "Nova nota",
+            view_title_all: "Todas as notas",
+            view_desc_all: "Organize seus pensamentos com privacidade.",
+            pinned: "Fixadas"
+        },
+        notes: {
+            no_notes: "Nenhuma nota aqui"
+        },
+        auth: {
+            title: "Cofre Protegido",
+            desc: "Digite sua senha mestra",
+            unlock: "Desbloquear",
+            setup_title: "Configure seu cofre",
+            setup_desc: "Crie uma senha mestra.",
+            create_vault: "Criar cofre",
+            confirm_pass: "Repetir senha",
+            pass_placeholder: "Sua senha",
+            repeat_placeholder: "Repetir senha",
+            remember_me: "Lembrar-me",
+            problems: "Problemas? Recarregar",
+            password_mismatch: "⚠️ Senhas não coincidem!",
+            password_short: "Mín. 4 caracteres",
+            vault_created: "✅ Cofre criado",
+            vault_opened: "Cofre aberto",
+            incorrect_pass: "❌ Senha incorreta",
+            setup_pass_first: "⚠️ Digite sua senha primeiro",
+            bio_success: "✅ Biometria ativada",
+            bio_fail: "❌ Erro na biometria",
+            bio_unlock: "Desbloquear com biometria",
+            bio_setup: "Ativar Biometria / FaceID",
+            use_bio: "Usar biometria"
+        },
+        editor: {
+            title_placeholder: "Título",
+            content_placeholder: "Comece a escrever...",
+            saving: "A guardar...",
+            saved: "Guardado",
+            error_save: "Erro ao guardar",
+            delete_confirm: "Eliminar esta nota?",
+            close_unsaved: "Fechar sem guardar?",
+            tools: {
+                bg_color: "Cor de fundo",
+                text_format: "Formato de texto"
+            }
+        },
+        settings: {
+            title: "Configurações",
+            general: "Geral",
+            sync: "Cloud Sync",
+            security: "Segurança",
+            danger: "Avançado",
+            theme: "Tema",
+            light: "Claro",
+            dark: "Escuro",
+            lang: "Idioma",
+            maintenance: "Manutenção",
+            installed_version: "Versão",
+            sync_status: {
+                connected: "Ligado",
+                disconnected: "Desligado"
+            },
+            connect_drive: "Ligar ao Google Drive",
+            drive_folder: "Pasta do Drive",
+            drive_folder_hint: "Notas encriptadas nesta pasta.",
+            notes_per_chunk: "Notas por ficheiro",
+            notes_per_chunk_hint: "Notas agrupadas por ficheiro.",
+            save_changes: "Guardar",
+            session_security: "Segurança de sessão",
+            logout: "Sair",
+            logout_hint: "Remove a chave da memória.",
+            encryption: "Encriptação",
+            algo: "Algoritmo",
+            update_algo: "Atualizar",
+            reset_app: "Repor",
+            reset_warning: "Elimina permanentemente todos os dados.",
+            reset_confirm_label: "Escreva \"confirmar\":",
+            reset_btn: "Eliminar tudo",
+            reset_keyword: "confirmar"
+        },
+        categories: {
+            title: "Categorias",
+            add_new: "Nova categoria",
+            name_placeholder: "Nome da categoria",
+            icon_label: "Ícone",
+            color_label: "Cor",
+            password_label: "Senha (Opcional)",
+            password_hint: "Deixe vazio para sem proteção",
+            create: "Criar",
+            edit: "Editar",
+            delete: "Eliminar",
+            save: "Guardar",
+            delete_confirm: "Eliminar categoria?",
+            no_category: "Sem categoria"
+        },
+        common: {
+            cancel: "Cancelar",
+            confirm: "Confirmar",
+            search: "Pesquisar",
+            search_prompt: "Pesquisar:",
+            security_prompt: "Segurança",
+            security_desc_prompt: "Digite a senha",
+            restricted_access: "Acesso restrito",
+            enter_cat_pass: "Senha para",
+            write_here: "Escreva aqui..."
+        },
+        biometrics: {
+            title: "IMPRESSÃO DIGITAL / FACE ID",
+            desc: "Use biometria para desbloqueio rápido",
+            enabled: "Ativado",
+            disabled: "Desativado",
+            enable_btn: "Ativar",
+            disable_btn: "Desativar",
+            setup_prompt: "Senha mestra para ativar",
+            not_supported: "Não suportado",
+            success_enable: "✅ Ativado",
+            success_disable: "🔓 Desativado",
+            fail_enable: "❌ Erro",
+            incorrect_pass: "❌ Senha incorreta"
+        }
+    },
+    ru: {
+        app_name: "Личные заметки",
+        sidebar: {
+            all_notes: "Все заметки",
+            tags: "Категории",
+            manage_tags: "Управление категориями",
+            settings: "Настройки",
+            install_app: "Установить приложение",
+            system: "Система",
+            force_reload: "Очистка и перезагрузка"
+        },
+        header: {
+            search_placeholder: "Поиск заметок...",
+            sync: "Синхронизировать",
+            install: "Установить",
+            new_note: "Новая заметка",
+            view_title_all: "Все заметки",
+            view_desc_all: "Организуйте мысли и защитите конфиденциальность.",
+            pinned: "Закрепленные"
+        },
+        notes: {
+            no_notes: "Заметок пока нет"
+        },
+        auth: {
+            title: "Защищенное хранилище",
+            desc: "Введите мастер-пароль",
+            unlock: "Разблокировать",
+            setup_title: "Настройка хранилища",
+            setup_desc: "Создайте мастер-пароль.",
+            create_vault: "Создать хранилище",
+            confirm_pass: "Повторите пароль",
+            pass_placeholder: "Ваш пароль",
+            repeat_placeholder: "Повторите пароль",
+            remember_me: "Запомнить меня",
+            problems: "Проблемы? Очистка",
+            password_mismatch: "⚠️ Пароли не совпадают!",
+            password_short: "Мин. 4 символа",
+            vault_created: "✅ Хранилище создано",
+            vault_opened: "Хранилище открыто",
+            incorrect_pass: "❌ Неверный пароль",
+            setup_pass_first: "⚠️ Сначала введите пароль",
+            bio_success: "✅ Биометрия активна",
+            bio_fail: "❌ Ошибка биометрии",
+            bio_unlock: "Разблокировать биометрией",
+            bio_setup: "Включить Биометрию / FaceID",
+            use_bio: "Использовать биометрию"
+        },
+        editor: {
+            title_placeholder: "Заголовок",
+            content_placeholder: "Начните писать...",
+            saving: "Сохранение...",
+            saved: "Сохранено",
+            error_save: "Ошибка сохранения",
+            delete_confirm: "Удалить эту заметку?",
+            close_unsaved: "Закрыть без сохранения?",
+            tools: {
+                bg_color: "Цвет фона",
+                text_format: "Формат текста"
+            }
+        },
+        settings: {
+            title: "Настройки",
+            general: "Общие",
+            sync: "Облачная синхронизация",
+            security: "Безопасность",
+            danger: "Опасная зона",
+            theme: "Тема",
+            light: "Светлая",
+            dark: "Темная",
+            lang: "Язык",
+            maintenance: "Обслуживание",
+            installed_version: "Версия",
+            sync_status: {
+                connected: "Подключено",
+                disconnected: "Отключено"
+            },
+            connect_drive: "Подключить Google Drive",
+            drive_folder: "Папка на Диске",
+            drive_folder_hint: "Заметки будут зашифрованы в этой папке.",
+            notes_per_chunk: "Заметок в файле",
+            notes_per_chunk_hint: "Количество заметок в одной группе.",
+            save_changes: "Сохранить",
+            session_security: "Безопасность сессии",
+            logout: "Выйти",
+            logout_hint: "Удаляет ключ доступа из памяти.",
+            encryption: "Шифрование",
+            algo: "Алгоритм",
+            update_algo: "Обновить",
+            reset_app: "Сброс",
+            reset_warning: "Удаляет все локальные данные навсегда.",
+            reset_confirm_label: "Введите \"confirm\":",
+            reset_btn: "Удалить всё",
+            reset_keyword: "confirm"
+        },
+        categories: {
+            title: "Категории",
+            add_new: "Новая категория",
+            name_placeholder: "Имя категории",
+            icon_label: "Иконка",
+            color_label: "Цвет",
+            password_label: "Пароль (опция)",
+            password_hint: "Оставьте пустым для доступа без пароля",
+            create: "Создать",
+            edit: "Изменить",
+            delete: "Удалить",
+            save: "Сохранить",
+            delete_confirm: "Удалить категорию?",
+            no_category: "Без категории"
+        },
+        common: {
+            cancel: "Отмена",
+            confirm: "ОК",
+            search: "Поиск",
+            search_prompt: "Искать:",
+            security_prompt: "Безопасность",
+            security_desc_prompt: "Введите пароль",
+            restricted_access: "Ограниченный доступ",
+            enter_cat_pass: "Пароль для",
+            write_here: "Пишите здесь..."
+        },
+        biometrics: {
+            title: "ОТПЕЧАТОК / FACE ID",
+            desc: "Используйте биометрию для быстрого входа",
+            enabled: "Включена",
+            disabled: "Выключена",
+            enable_btn: "Включить",
+            disable_btn: "Выключить",
+            setup_prompt: "Мастер-пароль для активации",
+            not_supported: "Не поддерживается",
+            success_enable: "✅ Включено",
+            success_disable: "🔓 Выключено",
+            fail_enable: "❌ Ошибка",
+            incorrect_pass: "❌ Неверный пароль"
+        }
+    },
+    zh: {
+        app_name: "私密笔记",
+        sidebar: {
+            all_notes: "所有笔记",
+            tags: "分类",
+            manage_tags: "管理分类",
+            settings: "设置",
+            install_app: "安装应用",
+            system: "系统",
+            force_reload: "清除并重新加载"
+        },
+        header: {
+            search_placeholder: "搜索笔记...",
+            sync: "同步",
+            install: "安装",
+            new_note: "新建笔记",
+            view_title_all: "所有笔记",
+            view_desc_all: "整理思绪，保护隐私。",
+            pinned: "已固定"
+        },
+        notes: {
+            no_notes: "暂无笔记"
+        },
+        auth: {
+            title: "加密保险库",
+            desc: "请输入主密码",
+            unlock: "解锁",
+            setup_title: "设置保险库",
+            setup_desc: "创建一个主密码。",
+            create_vault: "创建保险库",
+            confirm_pass: "确认密码",
+            pass_placeholder: "您的密码",
+            repeat_placeholder: "确认密码",
+            remember_me: "记住密码",
+            problems: "有问题？强制重载",
+            password_mismatch: "⚠️ 密码不匹配！",
+            password_short: "密码至少 4 位",
+            vault_created: "✅ 保险库创建成功",
+            vault_opened: "保险库已开启",
+            incorrect_pass: "❌ 密码错误",
+            setup_pass_first: "⚠️ 请先输入密码以设置",
+            bio_success: "✅ 生物识别已开启",
+            bio_fail: "❌ 生物识别失败",
+            bio_unlock: "生物识别解锁",
+            bio_setup: "启用生物识别 / FaceID",
+            use_bio: "使用生物识别"
+        },
+        editor: {
+            title_placeholder: "笔记标题",
+            content_placeholder: "开始通过这里记录...",
+            saving: "保存中...",
+            saved: "已保存",
+            error_save: "保存失败",
+            delete_confirm: "删除此笔记？",
+            close_unsaved: "未保存，确认关闭？",
+            tools: {
+                bg_color: "背景颜色",
+                text_format: "文本格式"
+            }
+        },
+        settings: {
+            title: "设置",
+            general: "常规",
+            sync: "云端同步",
+            security: "安全",
+            danger: "危险区域",
+            theme: "主题",
+            light: "浅色",
+            dark: "深色",
+            lang: "语言",
+            maintenance: "维护",
+            installed_version: "安装版本",
+            sync_status: {
+                connected: "已连接",
+                disconnected: "未连接"
+            },
+            connect_drive: "连接 Google Drive",
+            drive_folder: "Drive 文件夹名",
+            drive_folder_hint: "笔记将在此文件夹内加密。",
+            notes_per_chunk: "每文件笔记数",
+            notes_per_chunk_hint: "每个组包含的笔记数量。",
+            save_changes: "保存更改",
+            session_security: "会话安全",
+            logout: "退出登录",
+            logout_hint: "退出将从内存中清除访问密钥。",
+            encryption: "加密",
+            algo: "首选算法",
+            update_algo: "更新算法",
+            reset_app: "重置应用",
+            reset_warning: "这将永久删除所有本地笔记和分类。",
+            reset_confirm_label: "确认请在下方输入 \"confirm\":",
+            reset_btn: "删除所有本地数据",
+            reset_keyword: "confirm"
+        },
+        categories: {
+            title: "管理分类",
+            add_new: "新分类",
+            name_placeholder: "分类名称",
+            icon_label: "图标",
+            color_label: "颜色",
+            password_label: "密码 (可选)",
+            password_hint: "留空表示不保护",
+            create: "创建分类",
+            edit: "编辑分类",
+            delete: "删除",
+            save: "保存分类",
+            delete_confirm: "删除此分类？笔记将保留但取消分类。",
+            no_category: "未分类"
+        },
+        common: {
+            cancel: "取消",
+            confirm: "确定",
+            search: "搜索",
+            search_prompt: "输入搜索内容:",
+            security_prompt: "安全",
+            security_desc_prompt: "请输入密码以继续",
+            restricted_access: "受限访问",
+            enter_cat_pass: "请输入密码：",
+            write_here: "在此输入..."
+        },
+        biometrics: {
+            title: "指纹 / Face ID",
+            desc: "使用生物识别快速解锁",
+            enabled: "已启用",
+            disabled: "已禁用",
+            enable_btn: "启用",
+            disable_btn: "禁用",
+            setup_prompt: "输入主密码以启用",
+            not_supported: "您的设备不支持生物识别",
+            success_enable: "✅ 已启用生物识别",
+            success_disable: "🔓 已禁用生物识别",
+            fail_enable: "❌ 启用失败",
+            incorrect_pass: "❌ 密码错误"
+        }
+    },
+    ja: {
+        app_name: "プライベートノート",
+        sidebar: {
+            all_notes: "すべてのノート",
+            tags: "カテゴリ",
+            manage_tags: "カテゴリ管理",
+            settings: "設定",
+            install_app: "アプリをインストール",
+            system: "システム",
+            force_reload: "クリーンアップとリロード"
+        },
+        header: {
+            search_placeholder: "ノートを検索...",
+            sync: "同期",
+            install: "インストール",
+            new_note: "新規ノート",
+            view_title_all: "すべてのノート",
+            view_desc_all: "考えを整理し、プライバシーを守ります。",
+            pinned: "ピン留め"
+        },
+        notes: {
+            no_notes: "ノートはありません"
+        },
+        auth: {
+            title: "保護された保管庫",
+            desc: "マスターパスワードを入力してください",
+            unlock: "ロック解除",
+            setup_title: "保管庫の設定",
+            setup_desc: "マスターパスワードを作成してください。",
+            create_vault: "保管庫を作成",
+            confirm_pass: "パスワードの確認",
+            pass_placeholder: "パスワード",
+            repeat_placeholder: "パスワードの確認",
+            remember_me: "パスワードを保存する",
+            problems: "問題が発生しましたか？強制リロード",
+            password_mismatch: "⚠️ パスワードが一致しません！",
+            password_short: "パスワードは4文字以上である必要があります",
+            vault_created: "✅ 保管庫が正常に作成されました",
+            vault_opened: "保管庫が開きました",
+            incorrect_pass: "❌ パスワードが違います",
+            setup_pass_first: "⚠️ 最初にパスワードを入力して設定してください",
+            bio_success: "✅ 生体認証が有効になりました",
+            bio_fail: "❌ 生体認証に失敗しました",
+            bio_unlock: "生体認証で解除",
+            bio_setup: "生体認証 / FaceIDを有効にする",
+            use_bio: "生体認証を使用する"
+        },
+        editor: {
+            title_placeholder: "タイトル",
+            content_placeholder: "ここから書き込み...",
+            saving: "保存中...",
+            saved: "保存済み",
+            error_save: "保存エラー",
+            delete_confirm: "このノートを削除しますか？",
+            close_unsaved: "保存せずに閉じますか？",
+            tools: {
+                bg_color: "背景色",
+                text_format: "テキスト形式"
+            }
+        },
+        settings: {
+            title: "設定",
+            general: "全般",
+            sync: "クラウド同期",
+            security: "セキュリティ",
+            danger: "詳細設定",
+            theme: "テーマ",
+            light: "ライト",
+            dark: "ダーク",
+            lang: "言語",
+            maintenance: "メンテナンス",
+            installed_version: "インストール済みのバージョン",
+            sync_status: {
+                connected: "接続済み",
+                disconnected: "切断済み"
+            },
+            connect_drive: "Google ドライブに接続",
+            drive_folder: "ドライブのフォルダ名",
+            drive_folder_hint: "ノートはこのフォルダ内に暗号化されて保存されます。",
+            notes_per_chunk: "ファイルあたりのノート数",
+            notes_per_chunk_hint: "1つのファイルにグループ化されるノートの数。",
+            save_changes: "変更を保存",
+            session_security: "セッションセキュリティ",
+            logout: "ログアウト",
+            logout_hint: "ログアウトするとメモリからアクセスキーが削除されます。",
+            encryption: "暗号化",
+            algo: "推奨アルゴリズム",
+            update_algo: "アルゴリズムを更新",
+            reset_app: "アプリをリセット",
+            reset_warning: "すべてのローカルノートとカテゴリが完全に削除されます。",
+            reset_confirm_label: "確認のため、下に \"confirm\" と入力してください:",
+            reset_btn: "すべてのローカルデータを削除",
+            reset_keyword: "confirm"
+        },
+        categories: {
+            title: "カテゴリを管理",
+            add_new: "新しいカテゴリ",
+            name_placeholder: "カテゴリ名",
+            icon_label: "アイコン",
+            color_label: "カラー",
+            password_label: "パスワード（任意）",
+            password_hint: "保護しない場合は空欄にしてください",
+            create: "カテゴリを作成",
+            edit: "カテゴリを編集",
+            delete: "削除",
+            save: "カテゴリを保存",
+            delete_confirm: "このカテゴリを削除しますか？ノートは残りますが、タグが外れます。",
+            no_category: "未分類"
+        },
+        common: {
+            cancel: "キャンセル",
+            confirm: "OK",
+            search: "検索",
+            search_prompt: "検索キーワードを入力:",
+            security_prompt: "セキュリティ",
+            security_desc_prompt: "続行するにはパスワードを入力してください",
+            restricted_access: "制限付きアクセス",
+            enter_cat_pass: "パスワードを入力してください：",
+            write_here: "ここに入力..."
+        },
+        biometrics: {
+            title: "指紋 / Face ID",
+            desc: "生体認証を使用して素早くロック解除",
+            enabled: "有効",
+            disabled: "無効",
+            enable_btn: "有効にする",
+            disable_btn: "無効にする",
+            setup_prompt: "有効にするためにマスターパスワードを入力してください",
+            not_supported: "お使いのデバイスは生体認証をサポートしていません",
+            success_enable: "✅ 生体認証が有効になりました",
+            success_disable: "🔓 生体認証が無効になりました",
+            fail_enable: "❌ 有効化に失敗しました",
+            incorrect_pass: "❌ パスワードが違います"
+        }
+    },
+    ko: {
+        app_name: "비공개 노트",
+        sidebar: {
+            all_notes: "모든 노트",
+            tags: "카테고리",
+            manage_tags: "카테고리 관리",
+            settings: "설정",
+            install_app: "앱 설치",
+            system: "시스템",
+            force_reload: "정리 및 새로고침"
+        },
+        header: {
+            search_placeholder: "노트 검색...",
+            sync: "동기화",
+            install: "설치",
+            new_note: "새 노트",
+            view_title_all: "모든 노트",
+            view_desc_all: "생각을 정리하고 프라이버시를 보호하세요.",
+            pinned: "고정됨"
+        },
+        notes: {
+            no_notes: "노트가 없습니다"
+        },
+        auth: {
+            title: "보호된 보관함",
+            desc: "마스터 비밀번호를 입력하세요",
+            unlock: "잠금 해제",
+            setup_title: "보관함 설정",
+            setup_desc: "마스터 비밀번호를 생성하세요.",
+            create_vault: "보관함 생성",
+            confirm_pass: "비밀번호 확인",
+            pass_placeholder: "비밀번호",
+            repeat_placeholder: "비밀번호 확인",
+            remember_me: "비밀번호 저장",
+            problems: "문제가 있나요? 강제 새로고침",
+            password_mismatch: "⚠️ 비밀번호가 일치하지 않습니다!",
+            password_short: "비밀번호는 4자 이상이어야 합니다",
+            vault_created: "✅ 보관함 생성 완료",
+            vault_opened: "보관함 열림",
+            incorrect_pass: "❌ 비밀번호가 틀렸습니다",
+            setup_pass_first: "⚠️ 먼저 비밀번호를 입력하세요",
+            bio_success: "✅ 생체 인증 활성화",
+            bio_fail: "❌ 생체 인증 실패",
+            bio_unlock: "생체 인증으로 잠금 해제",
+            bio_setup: "생체 인증 / FaceID 활성화",
+            use_bio: "생체 인증 사용"
+        },
+        editor: {
+            title_placeholder: "노트 제목",
+            content_placeholder: "글쓰기 시작...",
+            saving: "저장 중...",
+            saved: "저장됨",
+            error_save: "저장 오류",
+            delete_confirm: "이 노트를 삭제하시겠습니까?",
+            close_unsaved: "저장하지 않고 닫으시겠습니까?",
+            tools: {
+                bg_color: "배경색",
+                text_format: "텍스트 형식"
+            }
+        },
+        settings: {
+            title: "설정",
+            general: "일반",
+            sync: "클라우드 동기화",
+            security: "보안",
+            danger: "고급 작업",
+            theme: "테마",
+            light: "라이트",
+            dark: "다크",
+            lang: "언어",
+            maintenance: "유지 관리",
+            installed_version: "설치된 버전",
+            sync_status: {
+                connected: "연결됨",
+                disconnected: "연결 끊김"
+            },
+            connect_drive: "Google 드라이브 연결",
+            drive_folder: "드라이브 폴더 이름",
+            drive_folder_hint: "노트는 이 폴더 안에 암호화되어 저장됩니다.",
+            notes_per_chunk: "파일당 노트 수",
+            notes_per_chunk_hint: "한 파일에 그룹화할 노트 수입니다.",
+            save_changes: "변경 사항 저장",
+            session_security: "세션 보안",
+            logout: "로그아웃",
+            logout_hint: "메모리에서 액세스 키를 삭제합니다.",
+            encryption: "암호화",
+            algo: "권장 알고리즘",
+            update_algo: "알고리즘 업데이트",
+            reset_app: "앱 초기화",
+            reset_warning: "모든 노트와 카테고리가 영구적으로 삭제됩니다.",
+            reset_confirm_label: "확인을 위해 아래에 \"확인\"을 입력하세요:",
+            reset_btn: "모든 데이터 삭제",
+            reset_keyword: "확인"
+        },
+        categories: {
+            title: "카테고리 관리",
+            add_new: "새 카테고리",
+            name_placeholder: "카테고리 이름",
+            icon_label: "아이콘",
+            color_label: "색상",
+            password_label: "비밀번호 (선택 사항)",
+            password_hint: "보호가 필요 없으면 비워 두세요",
+            create: "카테고리 생성",
+            edit: "카테고리 편집",
+            delete: "삭제",
+            save: "카테고리 저장",
+            delete_confirm: "이 카테고리를 삭제하시겠습니까? 노트는 유지되지만 분류가 해제됩니다.",
+            no_category: "미분류"
+        },
+        common: {
+            cancel: "취소",
+            confirm: "확인",
+            search: "검색",
+            search_prompt: "검색어 입력:",
+            security_prompt: "보안",
+            security_desc_prompt: "계속하려면 비밀번호를 입력하세요",
+            restricted_access: "액세스 제한",
+            enter_cat_pass: "비밀번호 입력:",
+            write_here: "여기에 작성..."
+        },
+        biometrics: {
+            title: "지문 / Face ID",
+            desc: "생체 인증을 사용하여 빠르게 잠금 해제",
+            enabled: "활성화됨",
+            disabled: "비활성화됨",
+            enable_btn: "활성화",
+            disable_btn: "비활성화",
+            setup_prompt: "활성화를 위해 마스터 비밀번호를 입력하세요",
+            not_supported: "장치에서 생체 인증을 지원하지 않습니다",
+            success_enable: "✅ 생체 인증 활성화됨",
+            success_disable: "🔓 생체 인증 비활성화됨",
+            fail_enable: "❌ 활성화 실패",
+            incorrect_pass: "❌ 비밀번호가 틀렸습니다"
+        }
+    },
+    ar: {
+        app_name: "ملاحظات خاصة",
+        sidebar: {
+            all_notes: "كل الملاحظات",
+            tags: "التصنيفات",
+            manage_tags: "إدارة التصنيفات",
+            settings: "الإعدادات",
+            install_app: "تثبيت التطبيق",
+            system: "النظام",
+            force_reload: "تنظيف وإعادة تحميل"
+        },
+        header: {
+            search_placeholder: "بحث عن ملاحظات...",
+            sync: "مزامنة",
+            install: "تثبيت",
+            new_note: "ملاحظة جديدة",
+            view_title_all: "كل الملاحظات",
+            view_desc_all: "نظم أفكارك وحافظ على خصوصيتك.",
+            pinned: "مثبتة"
+        },
+        notes: {
+            no_notes: "لا توجد ملاحظات"
+        },
+        auth: {
+            title: "خزنة محمية",
+            desc: "أدخل كملة المرور الرئيسية",
+            unlock: "فتح القفل",
+            setup_title: "إعداد الخزنة",
+            setup_desc: "أنشئ كلمة مرور رئيسية.",
+            create_vault: "إنشاء الخزنة",
+            confirm_pass: "تأكيد كلمة المرور",
+            pass_placeholder: "كلمة المرور",
+            repeat_placeholder: "تأكيد كلمة المرور",
+            remember_me: "تذكر هويتي في هذا المتصفح",
+            problems: "هل تواجه مشاكل؟ إعادة تحميل قسرية",
+            password_mismatch: "⚠️ كلمات المرور غير متطابقة!",
+            password_short: "كلمة المرور يجب أن تكون 4 رموز على الأقل",
+            vault_created: "✅ تم إنشاء الخزنة بنجاح",
+            vault_opened: "تم فتح الخزنة",
+            incorrect_pass: "❌ كلمة مرور خاطئة",
+            setup_pass_first: "⚠️ أدخل كلمة المرور أولاً للتهيئة",
+            bio_success: "✅ تم تفعيل البصمة",
+            bio_fail: "❌ فشلت المصادقة البيومترية",
+            bio_unlock: "فتح القفل بالبصمة",
+            bio_setup: "تفعيل البصمة / FaceID",
+            use_bio: "استخدام البصمة"
+        },
+        editor: {
+            title_placeholder: "عنوان الملاحظة",
+            content_placeholder: "بدء الكتابة...",
+            saving: "جاري الحفظ...",
+            saved: "تم الحفظ",
+            error_save: "خطأ في الحفظ",
+            delete_confirm: "حذف هذه الملاحظة؟",
+            close_unsaved: "إغلاق بدون حفظ؟",
+            tools: {
+                bg_color: "لون الخلفية",
+                text_format: "تنسيق النص"
+            }
+        },
+        settings: {
+            title: "الإعدادات",
+            general: "عام",
+            sync: "مزامنة سحابية",
+            security: "الأمان",
+            danger: "إجراءات متقدمة",
+            theme: "المظهر",
+            light: "فاتح",
+            dark: "داكن",
+            lang: "اللغة",
+            maintenance: "الصيانة",
+            installed_version: "الإصدار المثبت",
+            sync_status: {
+                connected: "متصل",
+                disconnected: "غير متصل"
+            },
+            connect_drive: "الاتصال بجوجل درايف",
+            drive_folder: "اسم مجلد الدرايف",
+            drive_folder_hint: "الملاحظات ستكون مشفرة داخل هذا المجلد.",
+            notes_per_chunk: "الملاحظات لكل ملف",
+            notes_per_chunk_hint: "يحدد عدد الملاحظات المجمعة في كل ملف.",
+            save_changes: "حفظ التغييرات",
+            session_security: "أمان الجلسة",
+            logout: "تسجيل الخروج",
+            logout_hint: "تسجيل الخروج يمسح مفتاح الوصول من الذاكرة.",
+            encryption: "التشفير",
+            algo: "الخوارزمية المفضلة",
+            update_algo: "تحديث الخوارزمية",
+            reset_app: "إعادة ضبط التطبيق",
+            reset_warning: "سيؤدي هذا إلى حذف جميع الملاحظات والتصنيفات المحلية نهائياً.",
+            reset_confirm_label: "للتأكيد، اكتب \"تأكيد\" أدناه:",
+            reset_btn: "حذف جميع البيانات المحلية",
+            reset_keyword: "تأكيد"
+        },
+        categories: {
+            title: "إدارة التصنيفات",
+            add_new: "تصنيف جديد",
+            name_placeholder: "اسم التصنيف",
+            icon_label: "أيقونة",
+            color_label: "لون",
+            password_label: "كلمة المرور (اختياري)",
+            password_hint: "اتركه فارغاً لعدم حماية",
+            create: "إنشاء تصنيف",
+            edit: "تعديل التصنيف",
+            delete: "حذف",
+            save: "حفظ التصنيف",
+            delete_confirm: "حذف هذا التصنيف؟ ستبقى الملاحظات ولكن بدون وسم.",
+            no_category: "غير مصنف"
+        },
+        common: {
+            cancel: "إلغاء",
+            confirm: "تأكيد",
+            search: "بحث",
+            search_prompt: "أدخل مصطلح البحث:",
+            security_prompt: "الأمان",
+            security_desc_prompt: "أدخل كلمة المرور للمتابعة",
+            restricted_access: "وصول مقيد",
+            enter_cat_pass: "أدخل كلمة المرور لـ",
+            write_here: "اكتب هنا..."
+        },
+        biometrics: {
+            title: "البصمة / Face ID",
+            desc: "استخدم البصمة لفتح الخزنة بسرعة",
+            enabled: "مفعل",
+            disabled: "معطل",
+            enable_btn: "تفعيل",
+            disable_btn: "تعطيل",
+            setup_prompt: "أدخل كلمة المرور الرئيسية لتفعيل البصمة",
+            not_supported: "جهازك لا يدعم البصمة",
+            success_enable: "✅ تم تفعيل البصمة",
+            success_disable: "🔓 تم تعطيل البصمة",
+            fail_enable: "❌ فشل تفعيل البصمة",
+            incorrect_pass: "❌ كلمة مرور خاطئة"
+        }
+    },
+    hi: {
+        app_name: "निजी नोट्स",
+        sidebar: {
+            all_notes: "सभी नोट्स",
+            tags: "श्रेणियाँ",
+            manage_tags: "श्रेणियाँ प्रबंधित करें",
+            settings: "सेटिंग्स",
+            install_app: "ऐप इंस्टॉल करें",
+            system: "सिस्टम",
+            force_reload: "क्लीनअप और रीलोड करें"
+        },
+        header: {
+            search_placeholder: "नोट्स खोजें...",
+            sync: "सिंक करें",
+            install: "इंस्टॉल",
+            new_note: "नया नोट",
+            view_title_all: "सभी नोट्स",
+            view_desc_all: "अपने विचारों को व्यवस्थित करें और गोपनीयता बनाए रखें।",
+            pinned: "पिन किए गए"
+        },
+        notes: {
+            no_notes: "यहाँ कोई नोट्स नहीं हैं"
+        },
+        auth: {
+            title: "सुरक्षित वॉल्ट",
+            desc: "अपना मास्टर पासवर्ड दर्ज करें",
+            unlock: "अनलॉक करें",
+            setup_title: "अपना वॉल्ट सेटअप करें",
+            setup_desc: "एक मास्टर पासवर्ड बनाएँ।",
+            create_vault: "वॉल्ट बनाएँ",
+            confirm_pass: "पासवर्ड दोहराएँ",
+            pass_placeholder: "आपका पासवर्ड",
+            repeat_placeholder: "पासवर्ड दोहराएँ",
+            remember_me: "मेरा पासवर्ड याद रखें",
+            problems: "समस्या? क्लीनअप और रीलोड करें",
+            password_mismatch: "⚠️ पासवर्ड मेल नहीं खाते!",
+            password_short: "पासवर्ड कम से कम 4 वर्णों का होना चाहिए",
+            vault_created: "✅ वॉल्ट सफलतापूर्वक बनाया गया",
+            vault_opened: "वॉल्ट खोला गया",
+            incorrect_pass: "❌ गलत पासवर्ड",
+            setup_pass_first: "⚠️ सेटअप करने के लिए पहले पासवर्ड दर्ज करें",
+            bio_success: "✅ बायोमेट्रिक्स सक्रिय",
+            bio_fail: "❌ बायोमेट्रिक प्रमाणीकरण विफल",
+            bio_unlock: "बायोमेट्रिक्स से अनलॉक करें",
+            bio_setup: "बायोमेट्रिक्स / FaceID सक्षम करें",
+            use_bio: "बायोमेट्रिक्स का उपयोग करें"
+        },
+        editor: {
+            title_placeholder: "नोट का शीर्षक",
+            content_placeholder: "लिखना शुरू करें...",
+            saving: "सहेज रहा है...",
+            saved: "सहेजा गया",
+            error_save: "सहेजने में त्रुटि",
+            delete_confirm: "इस नोट को हटाएँ?",
+            close_unsaved: "बिना सहेजे बंद करें?",
+            tools: {
+                bg_color: "पृष्ठभूमि का रंग",
+                text_format: "टेक्स्ट फॉर्मेट"
+            }
+        },
+        settings: {
+            title: "सेटिंग्स",
+            general: "सामान्य",
+            sync: "क्लाउड सिंक",
+            security: "सुरक्षा",
+            danger: "उन्नत कार्रवाइयाँ",
+            theme: "विज़ुअल थीम",
+            light: "लाइट",
+            dark: "डार्क",
+            lang: "भाषा",
+            maintenance: "रखरखाव",
+            installed_version: "इंस्टॉल किया गया वर्ज़न",
+            sync_status: {
+                connected: "जुड़ा हुआ",
+                disconnected: "डिस्कनेक्ट किया गया"
+            },
+            connect_drive: "गूगल ड्राइव से जुड़ें",
+            drive_folder: "ड्राइव फ़ोल्डर का नाम",
+            drive_folder_hint: "नोट्स इस फ़ोल्डर के अंदर एन्क्रिप्ट किए जाएंगे।",
+            notes_per_chunk: "प्रति फ़ाइल नोट्स",
+            notes_per_chunk_hint: "प्रति फ़ाइल कितने नोट्स समूहबद्ध किए जाते हैं।",
+            save_changes: "बदलाव सहेजें",
+            session_security: "सत्र सुरक्षा",
+            logout: "लॉगआउट",
+            logout_hint: "लॉगआउट करने से मेमोरी से एक्सेस की हट जाती है।",
+            encryption: "एन्क्रिप्शन",
+            algo: "पसंदीदा एल्गोरिदम",
+            update_algo: "एल्गोरिदम अपडेट करें",
+            reset_app: "ऐप रीसेट करें",
+            reset_warning: "यह सभी स्थानीय नोट्स और श्रेणियों को स्थायी रूप से हटा देगा।",
+            reset_confirm_label: "पुष्टि के लिए, नीचे \"confirm\" टाइप करें:",
+            reset_btn: "सभी स्थानीय डेटा हटाएँ",
+            reset_keyword: "confirm"
+        },
+        categories: {
+            title: "श्रेणियाँ प्रबंधित करें",
+            add_new: "नई श्रेणी",
+            name_placeholder: "श्रेणी का नाम",
+            icon_label: "आइकन",
+            color_label: "रंग",
+            password_label: "पासवर्ड (वैकल्पिक)",
+            password_hint: "बिना सुरक्षा के लिए खाली छोड़ें",
+            create: "श्रेणी बनाएँ",
+            edit: "श्रेणी संपादित करें",
+            delete: "हटाएँ",
+            save: "श्रेणी सहेजें",
+            delete_confirm: "इस श्रेणी को हटाएँ? नोट्स रहेंगे पर अनटैग हो जाएंगे।",
+            no_category: "बिना श्रेणी के"
+        },
+        common: {
+            cancel: "रद्द करें",
+            confirm: "पुष्टि करें",
+            search: "खोजें",
+            search_prompt: "खोज शब्द दर्ज करें:",
+            security_prompt: "सुरक्षा",
+            security_desc_prompt: "जारी रखने के लिए पासवर्ड दर्ज करें",
+            restricted_access: "प्रतिबंधित पहुँच",
+            enter_cat_pass: "पासवर्ड दर्ज करें:",
+            write_here: "यहाँ लिखें..."
+        },
+        biometrics: {
+            title: "फिंगरप्रिंट / Face ID",
+            desc: "वॉल्ट को जल्दी अनलॉक करने के लिए बायोमेट्रिक्स का उपयोग करें",
+            enabled: "सक्षम",
+            disabled: "अक्षम",
+            enable_btn: "सक्षम करें",
+            disable_btn: "अक्षम करें",
+            setup_prompt: "बायोमेट्रिक्स सक्षम करने के लिए मास्टर पासवर्ड दर्ज करें",
+            not_supported: "आपका डिवाइस बायोमेट्रिक्स का समर्थन नहीं करता है",
+            success_enable: "✅ बायोमेट्रिक्स सक्षम",
+            success_disable: "🔓 बायोमेट्रिक्स अक्षम",
+            fail_enable: "❌ बायोमेट्रिक्स सक्षम करने में विफल",
+            incorrect_pass: "❌ गलत पासवर्ड"
+        }
     }
 };
 
@@ -276,26 +1626,36 @@ export let currentLang = 'en';
 export function initI18n() {
     const saved = localStorage.getItem('cn_lang');
     const browser = navigator.language.split('-')[0];
-    // Default to EN if not ES
-    currentLang = saved || (browser === 'es' ? 'es' : 'en');
+    const supported = Object.keys(translations);
+    currentLang = saved || (supported.includes(browser) ? browser : 'en');
     document.documentElement.lang = currentLang;
 }
 
 export function setLanguage(lang) {
-    if (translations[lang]) {
-        currentLang = lang;
-        localStorage.setItem('cn_lang', lang);
-        document.documentElement.lang = lang;
-        location.reload(); // Simple reload to apply all changes
-    }
+    currentLang = lang;
+    localStorage.setItem('cn_lang', lang);
+    document.documentElement.lang = lang;
+    location.reload(); // Simple reload to apply all changes
 }
 
 export function t(key) {
     const keys = key.split('.');
     let val = translations[currentLang];
+
+    // First try current language
     for (const k of keys) {
         val = val?.[k];
         if (!val) break;
     }
-    return val || key;
+
+    if (val) return val;
+
+    // Fallback to English
+    let fallbackVal = translations['en'];
+    for (const k of keys) {
+        fallbackVal = fallbackVal?.[k];
+        if (!fallbackVal) break;
+    }
+
+    return fallbackVal || key;
 }

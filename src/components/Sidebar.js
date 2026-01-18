@@ -68,7 +68,7 @@ export function renderCategories(onViewChange, categories = null) {
 
             btn.onclick = async () => {
                 if (cat.passwordHash) {
-                    const result = await openPrompt(t('common.restricted_access'), `${t('common.enter_cat_pass')} "${cat.name}":`);
+                    const result = await openPrompt(t('common.restricted_access'), `${t('common.enter_cat_pass')} "${cat.name}":`, true);
                     if (!result) return;
 
                     // Biometric Bypass
