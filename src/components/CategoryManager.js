@@ -10,35 +10,35 @@ export function getCategoryManagerTemplate() {
     return `
     <div id="categories-modal" class="fixed inset-0 z-[70] hidden">
         <div class="dialog-overlay close-categories"></div>
-        <div class="dialog-content w-full h-full md:max-w-2xl md:h-[600px] md:rounded-3xl rounded-none flex flex-col shadow-2xl p-0 overflow-hidden">
-            <div class="p-6 md:p-10 flex justify-between items-center border-b bg-background/50 backdrop-blur-md sticky top-0 z-10">
+        <div class="dialog-content w-full h-full md:max-w-xl md:h-[550px] md:rounded-3xl rounded-none flex flex-col shadow-2xl p-0 overflow-hidden">
+            <div class="p-5 md:p-6 flex justify-between items-center border-b bg-background/50 backdrop-blur-md sticky top-0 z-10">
                 <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-foreground">${t('categories.title')}</h2>
+                    <h2 class="text-xl md:text-2xl font-bold text-foreground">${t('categories.title')}</h2>
                 </div>
-                <button class="close-categories p-3 hover:bg-accent rounded-full transition-colors"><i data-lucide="x" class="w-8 h-8"></i></button>
+                <button class="close-categories p-2 hover:bg-accent rounded-full transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
             </div>
 
-            <div class="p-4 md:p-6 bg-muted/20 border-b">
-                <div class="flex items-center gap-3 max-w-2xl mx-auto w-full">
-                    <button id="new-cat-icon-trigger" class="w-12 h-12 md:w-14 md:h-14 bg-background border flex items-center justify-center rounded-2xl hover:bg-accent transition-all shrink-0">
-                        <i data-lucide="tag" id="new-cat-icon-preview" class="w-5 h-5 md:w-6 md:h-6 text-foreground/50"></i>
+            <div class="p-4 md:p-5 bg-muted/20 border-b">
+                <div class="flex items-center gap-3 max-w-xl mx-auto w-full">
+                    <button id="new-cat-icon-trigger" class="w-10 h-10 md:w-11 md:h-11 bg-background border flex items-center justify-center rounded-xl hover:bg-accent transition-all shrink-0">
+                        <i data-lucide="tag" id="new-cat-icon-preview" class="w-4 h-4 md:w-5 md:h-5 text-foreground/50"></i>
                     </button>
                     <div class="relative flex-1">
                         <input type="text" id="new-cat-name" placeholder="${t('categories.add_new')}..." 
-                               class="h-12 md:h-14 w-full px-5 bg-background border-none ring-1 ring-border focus:ring-2 focus:ring-violet-500 rounded-2xl transition-all text-base md:text-lg" autocomplete="off">
+                               class="h-10 md:h-11 w-full px-4 bg-background border-none ring-1 ring-border focus:ring-2 focus:ring-violet-500 rounded-xl transition-all text-sm md:text-base" autocomplete="off">
                     </div>
-                    <button id="add-cat-btn" class="px-6 h-12 md:h-14 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-2xl flex items-center justify-center shadow-lg shadow-violet-500/20 active:scale-95 transition-all">
+                    <button id="add-cat-btn" class="px-5 h-10 md:h-11 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/20 active:scale-95 transition-all text-sm">
                         <span>${t('common.confirm')}</span>
                     </button>
                 </div>
             </div>
 
-            <div class="flex-1 overflow-y-auto p-4 md:p-10 space-y-4 max-w-3xl mx-auto w-full" id="cat-manager-list">
+            <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-2.5 max-w-xl mx-auto w-full" id="cat-manager-list">
                 <!-- Items injected here -->
             </div>
             
-            <div class="p-6 border-t bg-background/50 backdrop-blur-md sticky bottom-0">
-                <button class="close-categories w-full md:max-w-xs mx-auto block h-14 bg-secondary text-secondary-foreground font-bold rounded-2xl hover:bg-secondary/80 transition-all text-lg underline">Cerrar</button>
+            <div class="p-4 border-t bg-background/50 backdrop-blur-md sticky bottom-0">
+                <button class="close-categories w-full md:max-w-[200px] mx-auto block h-11 bg-secondary text-secondary-foreground font-bold rounded-xl hover:bg-secondary/80 transition-all text-sm underline">Cerrar</button>
             </div>
         </div>
         <div id="cat-icon-picker" class="fixed z-[80] hidden popover-content p-4 w-72 max-h-80 overflow-y-auto bg-popover border shadow-2xl rounded-3xl backdrop-blur-3xl">

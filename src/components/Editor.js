@@ -10,21 +10,21 @@ export function getEditorTemplate() {
     return `
     <div id="editor-modal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-background/80 backdrop-blur-sm dialog-overlay"></div>
-        <div class="dialog-content max-w-2xl h-[80vh] flex flex-col p-0">
-            <div class="flex items-center gap-2 border-b pb-3 px-4 pt-4">
-                <button id="close-editor" class="text-muted-foreground hover:text-foreground p-2 -ml-2" title="Volver">
-                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+        <div class="dialog-content max-w-2xl h-[85vh] flex flex-col p-0 rounded-2xl">
+            <div class="flex items-center gap-2 border-b pb-2 px-3 pt-3">
+                <button id="close-editor" class="text-muted-foreground hover:text-foreground p-1.5 -ml-1" title="Volver">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
                 </button>
-                <input type="text" id="edit-title" placeholder="Título de la nota"
-                    class="bg-transparent text-xl font-bold outline-none border-none placeholder:text-muted-foreground w-full">
+                <input type="text" id="edit-title" placeholder="Título"
+                    class="bg-transparent text-lg font-bold outline-none border-none placeholder:text-muted-foreground w-full">
                 
                 <div class="flex items-center gap-1">
                     <button id="note-expand-btn" class="editor-tool hidden md:inline-flex" title="Expandir">
-                        <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                        <i data-lucide="maximize-2" class="w-4 h-4"></i>
                     </button>
                     <div class="relative">
                         <button id="note-options-btn" class="editor-tool" title="Más opciones">
-                            <i data-lucide="more-vertical" class="w-5 h-5"></i>
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
                         </button>
                         <div id="note-options-menu" class="hidden absolute right-0 top-full mt-1 bg-popover border shadow-2xl rounded-xl p-1 z-[120] min-w-[170px]">
                             <button id="opt-copy-all" class="flex items-center gap-3 w-full px-3 py-2.5 text-sm hover:bg-accent rounded-md transition-colors">
@@ -48,22 +48,22 @@ export function getEditorTemplate() {
             </div>
 
             <!-- Toolbar (Unified top) -->
-            <div class="px-4 border-b py-2 flex items-center bg-muted/20">
-                <div class="flex items-center gap-1.5 flex-1 min-w-0 overflow-x-auto no-scrollbar py-0.5">
-                    <button data-cmd="bold" class="editor-tool border bg-background shrink-0"><i data-lucide="bold" class="w-4 h-4"></i></button>
-                    <button data-cmd="italic" class="editor-tool border bg-background shrink-0"><i data-lucide="italic" class="w-4 h-4"></i></button>
-                    <button data-cmd="underline" class="editor-tool border bg-background shrink-0"><i data-lucide="underline" class="w-4 h-4"></i></button>
-                    <div class="w-px h-6 bg-border mx-0.5 shrink-0"></div>
-                    <button id="checklist-btn" class="editor-tool border bg-background shrink-0"><i data-lucide="check-square" class="w-4 h-4"></i></button>
-                    <button id="mobile-checklist-btn" class="hidden editor-tool border bg-background shrink-0"><i data-lucide="check-square" class="w-4 h-4"></i></button>
-                    <button data-cmd="insertUnorderedList" class="editor-tool border bg-background shrink-0"><i data-lucide="list" class="w-4 h-4"></i></button>
-                    <button data-cmd="insertOrderedList" class="editor-tool border bg-background shrink-0"><i data-lucide="list-ordered" class="w-4 h-4"></i></button>
-                    <div class="w-px h-6 bg-border mx-0.5 shrink-0"></div>
-                    <button id="add-link" class="editor-tool border bg-background shrink-0"><i data-lucide="link" class="w-4 h-4"></i></button>
-                    <button id="mobile-link-btn" class="hidden editor-tool border bg-background shrink-0"><i data-lucide="link" class="w-4 h-4"></i></button>
-                    <button id="open-text-colors" class="editor-tool border bg-background shrink-0 relative"><i data-lucide="type" class="w-4 h-4"></i><div class="w-3 h-[2px] bg-red-500 rounded-full absolute bottom-1 right-2"></div></button>
-                    <button id="mobile-text-color-btn" class="hidden editor-tool border bg-background shrink-0"><i data-lucide="type" class="w-4 h-4"></i></button>
-                    <button id="open-emojis" class="editor-tool hidden md:inline-flex border bg-background shrink-0"><i data-lucide="smile" class="w-4 h-4"></i></button>
+            <div class="px-3 border-b py-1.5 flex items-center bg-muted/20">
+                <div class="flex items-center gap-1 flex-1 min-w-0 overflow-x-auto no-scrollbar py-0.5">
+                    <button data-cmd="bold" class="editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="bold" class="w-3.5 h-3.5"></i></button>
+                    <button data-cmd="italic" class="editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="italic" class="w-3.5 h-3.5"></i></button>
+                    <button data-cmd="underline" class="editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="underline" class="w-3.5 h-3.5"></i></button>
+                    <div class="w-px h-5 bg-border mx-0.5 shrink-0"></div>
+                    <button id="checklist-btn" class="editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="check-square" class="w-3.5 h-3.5"></i></button>
+                    <button id="mobile-checklist-btn" class="hidden editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="check-square" class="w-3.5 h-3.5"></i></button>
+                    <button data-cmd="insertUnorderedList" class="editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="list" class="w-3.5 h-3.5"></i></button>
+                    <button data-cmd="insertOrderedList" class="editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="list-ordered" class="w-3.5 h-3.5"></i></button>
+                    <div class="w-px h-5 bg-border mx-0.5 shrink-0"></div>
+                    <button id="add-link" class="editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="link" class="w-3.5 h-3.5"></i></button>
+                    <button id="mobile-link-btn" class="hidden editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="link" class="w-3.5 h-3.5"></i></button>
+                    <button id="open-text-colors" class="editor-tool border bg-background shrink-0 relative w-8 h-8"><i data-lucide="type" class="w-3.5 h-3.5"></i><div class="w-2.5 h-[1.5px] bg-red-500 rounded-full absolute bottom-1.5 right-2"></div></button>
+                    <button id="mobile-text-color-btn" class="hidden editor-tool border bg-background shrink-0 w-8 h-8"><i data-lucide="type" class="w-3.5 h-3.5"></i></button>
+                    <button id="open-emojis" class="editor-tool hidden md:inline-flex border bg-background shrink-0 w-8 h-8"><i data-lucide="smile" class="w-3.5 h-3.5"></i></button>
                 </div>
             </div>
 
@@ -73,22 +73,22 @@ export function getEditorTemplate() {
                     placeholder="Empieza a escribir..."></div>
             </div>
 
-            <div class="border-t py-2 px-4 flex items-center justify-between gap-3 editor-bottom-bar shrink-0">
-                <div class="flex items-center gap-2 flex-1 min-w-0">
-                    <button id="open-colors" class="editor-tool border border-input bg-background/50 transition-all shrink-0" title="Color de nota">
-                        <i data-lucide="palette" class="w-4 h-4"></i>
+            <div class="border-t py-1.5 px-3 flex items-center justify-between gap-2 editor-bottom-bar shrink-0">
+                <div class="flex items-center gap-1.5 flex-1 min-w-0">
+                    <button id="open-colors" class="editor-tool border border-input bg-background/50 transition-all shrink-0 w-8 h-8" title="Color de nota">
+                        <i data-lucide="palette" class="w-3.5 h-3.5"></i>
                     </button>
-                    <button id="open-colors-mobile" class="hidden editor-tool border border-input bg-background/50 shrink-0"><i data-lucide="palette" class="w-4 h-4"></i></button>
+                    <button id="open-colors-mobile" class="hidden editor-tool border border-input bg-background/50 shrink-0 w-8 h-8"><i data-lucide="palette" class="w-3.5 h-3.5"></i></button>
 
                     <div class="relative flex-1 min-w-0" id="cat-select-wrapper">
                         <button id="cat-dropdown-trigger"
-                            class="h-9 w-full px-2 rounded-md border border-input bg-background/50 text-xs flex items-center justify-between gap-1 hover:bg-accent transition-all">
-                            <i data-lucide="tag" id="selected-cat-icon" class="w-3.5 h-3.5 text-muted-foreground/60"></i>
+                            class="h-8 w-full px-2 rounded-md border border-input bg-background/50 text-[11px] flex items-center justify-between gap-1 hover:bg-accent transition-all">
+                            <i data-lucide="tag" id="selected-cat-icon" class="w-3 h-3 text-muted-foreground/60"></i>
                             <span id="selected-cat-label" class="truncate flex-1 text-left">Sin categoría</span>
-                            <i data-lucide="chevron-down" class="w-3 h-3 text-muted-foreground shrink-0"></i>
+                            <i data-lucide="chevron-down" class="w-2.5 h-2.5 text-muted-foreground shrink-0"></i>
                         </button>
                         <div id="cat-dropdown-menu"
-                            class="absolute bottom-full mb-2 left-0 w-48 bg-popover border rounded-md shadow-xl hidden z-50 py-1 overflow-hidden">
+                            class="absolute bottom-full mb-2 left-0 w-44 bg-popover border rounded-md shadow-xl hidden z-50 py-1 overflow-hidden">
                         </div>
                         <select id="edit-category" class="hidden">
                             <option value="">Sin categoría</option>
@@ -96,8 +96,8 @@ export function getEditorTemplate() {
                     </div>
                 </div>
 
-                <button id="save-note" class="hidden md:flex btn-shad btn-shad-primary h-9 px-6 font-bold">Hecho</button>
-                <button id="save-note-mobile" class="md:hidden btn-shad btn-shad-primary h-9 px-4 font-bold">OK</button>
+                <button id="save-note" class="hidden md:flex btn-shad btn-shad-primary h-8 px-4 font-bold text-xs">Hecho</button>
+                <button id="save-note-mobile" class="md:hidden btn-shad btn-shad-primary h-8 px-3 font-bold text-xs">OK</button>
             </div>
             
          </div>

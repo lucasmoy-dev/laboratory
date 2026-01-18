@@ -4,48 +4,46 @@ export function getLayoutTemplate() {
     return `
     <div id="app" class="flex h-screen overflow-hidden opacity-100 transition-opacity duration-300">
         <!-- Sidebar Desktop -->
-        <aside class="w-64 hidden md:flex flex-col border-r bg-sidebar">
-            <div class="p-6 flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3 overflow-hidden" id="sidebar-logo-container">
-                    <div class="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center shrink-0">
+        <aside class="w-60 hidden md:flex flex-col border-r bg-sidebar">
+            <div class="p-5 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5 overflow-hidden" id="sidebar-logo-container">
+                    <div class="w-8 h-8 rounded-lg bg-transparent flex items-center justify-center shrink-0">
                         <img src="./favicon.png" alt="Logo" class="w-full h-full object-contain">
                     </div>
                     <div class="sidebar-title-text transition-opacity duration-300">
-                        <h1 class="text-sm font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent truncate">${t('app_name')}</h1>
+                        <h1 class="text-xs font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent truncate">${t('app_name')}</h1>
                     </div>
                 </div>
-                <button id="sidebar-collapse-btn" class="p-2 hover:bg-accent rounded-md text-muted-foreground transition-all shrink-0" title="Contraer menú">
-                    <i data-lucide="chevrons-left" class="w-4 h-4" id="sidebar-collapse-icon"></i>
+                <button id="sidebar-collapse-btn" class="p-1.5 hover:bg-accent rounded-md text-muted-foreground transition-all shrink-0" title="Contraer menú">
+                    <i data-lucide="chevrons-left" class="w-3.5 h-3.5" id="sidebar-collapse-icon"></i>
                 </button>
             </div>
             
-            <div class="flex-1 overflow-y-auto px-4 space-y-8">
-                <div class="space-y-1">
+            <div class="flex-1 overflow-y-auto px-3 space-y-6">
+                <div class="space-y-0.5">
                     <button class="nav-link w-full" data-view="all">
-                        <i data-lucide="layout-grid" class="w-4 h-4"></i> <span class="sidebar-label text-foreground/90 font-bold">${t('sidebar.all_notes')}</span>
+                        <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> <span class="sidebar-label text-foreground/90 font-bold">${t('sidebar.all_notes')}</span>
                     </button>
                 </div>
 
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between px-4" id="sidebar-categories-header">
-                        <h3 class="sidebar-section-title text-[11px] font-bold text-muted-foreground uppercase tracking-wider">${t('sidebar.tags')}</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between px-3" id="sidebar-categories-header">
+                        <h3 class="sidebar-section-title text-[10px] font-bold text-muted-foreground uppercase tracking-widest">${t('sidebar.tags')}</h3>
                     </div>
-                    <div id="sidebar-categories" class="space-y-1"></div>
+                    <div id="sidebar-categories" class="space-y-0.5"></div>
                 </div>
             </div>
 
-            <div class="p-6 space-y-2 mt-auto">
-                <button id="sidebar-manage-cats" class="nav-link w-full text-xs opacity-60 hover:opacity-100">
-                    <i data-lucide="tag" class="w-3.5 h-3.5"></i> <span class="sidebar-label">${t('sidebar.manage_tags')}</span>
+            <div class="p-4 space-y-1.5 mt-auto">
+                <button id="sidebar-manage-cats" class="nav-link w-full text-[11px] opacity-70 hover:opacity-100">
+                    <i data-lucide="tag" class="w-3 h-3"></i> <span class="sidebar-label">${t('sidebar.manage_tags')}</span>
                 </button>
-                <button id="settings-trigger" class="nav-link w-full text-xs opacity-60 hover:opacity-100">
-                    <i data-lucide="settings" class="w-3.5 h-3.5"></i> <span class="sidebar-label">${t('sidebar.settings')}</span>
+                <button id="settings-trigger" class="nav-link w-full text-[11px] opacity-70 hover:opacity-100">
+                    <i data-lucide="settings" class="w-3 h-3"></i> <span class="sidebar-label">${t('sidebar.settings')}</span>
                 </button>
-                <button id="sidebar-pwa-install-btn" class="hidden flex items-center gap-3 w-full px-4 py-3 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all">
-                    <i data-lucide="download" class="w-4 h-4"></i> <span class="sidebar-label">${t('sidebar.install_app')}</span>
-                </button>
-                <div class="mt-auto pt-4 border-t border-border/20 px-4">
-                    <div id="app-version" class="text-[9px] text-muted-foreground font-mono opacity-50">v3.6.0</div>
+                <!-- Version -->
+                <div class="pt-3 border-t border-border/10 px-3">
+                    <div id="app-version" class="text-[8px] text-muted-foreground font-mono opacity-40">v3.6.0</div>
                 </div>
             </div>
         </aside>
@@ -53,107 +51,96 @@ export function getLayoutTemplate() {
         <!-- Main Content -->
         <main class="flex-1 flex flex-col bg-background relative overflow-hidden h-full">
             <!-- Desktop Header -->
-            <header class="hidden md:flex h-16 items-center justify-between px-8 border-b shrink-0">
+            <header class="hidden md:flex h-14 items-center justify-between px-6 border-b shrink-0">
                 <div class="flex items-center gap-4 flex-1">
-                    <div class="relative w-full max-w-sm">
-                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
-                        <input type="text" id="search-input" placeholder="${t('header.search_placeholder')}" class="pl-12 h-9 w-full" autocomplete="off">
+                    <div class="relative w-full max-w-xs">
+                        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
+                        <input type="text" id="search-input" placeholder="${t('header.search_placeholder')}" class="pl-10 h-8 w-full text-sm" autocomplete="off">
                     </div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button id="sync-btn" class="p-2 hover:bg-accent rounded-md text-muted-foreground transition-colors" title="${t('header.sync')}">
-                        <i data-lucide="refresh-cw" class="w-5 h-5" id="sync-icon"></i>
+                <div class="flex items-center gap-2">
+                    <button id="sync-btn" class="p-1.5 hover:bg-accent rounded-md text-muted-foreground transition-colors" title="${t('header.sync')}">
+                        <i data-lucide="refresh-cw" class="w-4 h-4" id="sync-icon"></i>
                     </button>
-                    <button id="pwa-install-btn" class="hidden btn-shad btn-shad-outline h-9 px-3">
-                        <i data-lucide="download" class="w-4 h-4 mr-2"></i> ${t('header.install')}
-                    </button>
-                    <button id="add-note-btn" class="btn-shad btn-shad-primary h-9">
-                        <i data-lucide="plus" class="w-4 h-4 mr-2"></i> ${t('header.new_note')}
+                    <button id="add-note-btn" class="btn-shad btn-shad-primary h-8 px-4 text-xs font-bold">
+                        <i data-lucide="plus" class="w-3.5 h-3.5 mr-2"></i> ${t('header.new_note')}
                     </button>
                 </div>
             </header>
 
-            <!-- Mobile Top Bar Removed -->
-
             <!-- Grid -->
-            <div id="notes-viewport" class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
-                <div class="max-w-7xl mx-auto space-y-8">
+            <div id="notes-viewport" class="flex-1 overflow-y-auto p-4 md:p-6 pb-24 md:pb-6">
+                <div class="max-w-6xl mx-auto space-y-6">
                     <div class="flex items-end justify-between">
                         <div>
-                            <h1 id="view-title" class="text-3xl font-bold tracking-tight">${t('header.view_title_all')}</h1>
+                            <h1 id="view-title" class="text-2xl font-bold tracking-tight">${t('header.view_title_all')}</h1>
                         </div>
                     </div>
-                    <div id="notes-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+                    <div id="notes-grid" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"></div>
                 </div>
             </div>
 
             <!-- Mobile Bottom Nav -->
-            <nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/95 backdrop-blur-2xl border-t flex items-center justify-around z-40 pb-safe">
+            <nav class="md:hidden fixed bottom-0 left-0 right-0 h-14 bg-background/95 backdrop-blur-2xl border-t flex items-center justify-around z-40 pb-safe">
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-sidebar-trigger-bottom">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+                    <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors nav-link-mobile" data-view="all">
-                    <i data-lucide="home" class="w-6 h-6"></i>
+                    <i data-lucide="home" class="w-5 h-5"></i>
                 </button>
                 <button class="flex items-center justify-center relative w-full h-full" id="mobile-add-btn">
-                    <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full shadow-xl shadow-indigo-500/40 flex items-center justify-center transform -translate-y-5 hover:scale-105 active:scale-90 transition-all">
-                        <i data-lucide="plus" class="w-8 h-8"></i>
+                    <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full shadow-lg shadow-indigo-500/30 flex items-center justify-center transform -translate-y-4 hover:scale-105 active:scale-90 transition-all">
+                        <i data-lucide="plus" class="w-7 h-7"></i>
                     </div>
                 </button>
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-sync-btn-bottom">
-                    <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                    <i data-lucide="refresh-cw" class="w-5 h-5"></i>
                 </button>
                 <button class="flex flex-col items-center justify-center gap-1 w-full h-full text-muted-foreground active:text-primary transition-colors" id="mobile-search-trigger">
-                    <i data-lucide="search" class="w-6 h-6"></i>
+                    <i data-lucide="search" class="w-5 h-5"></i>
                 </button>
             </nav>
         </main>
 
         <!-- Mobile Sidebar Drawer -->
-        <div id="mobile-sidebar-overlay" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-[100] hidden">
-            <div id="mobile-sidebar-drawer" class="w-[80vw] h-full bg-card border-r flex flex-col animate-in slide-in-from-left duration-300">
-                <div class="p-6 flex items-center justify-between border-b">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center shrink-0">
+        <div id="mobile-sidebar-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-[2px] z-[100] hidden">
+            <div id="mobile-sidebar-drawer" class="w-[75vw] max-w-[300px] h-full bg-card border-r flex flex-col animate-in slide-in-from-left duration-300">
+                <div class="p-4 flex items-center justify-between border-b">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-lg bg-transparent flex items-center justify-center shrink-0">
                             <img src="./favicon.png" alt="Logo" class="w-full h-full object-contain">
                         </div>
-                        <h1 class="text-sm font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent truncate">${t('app_name')}</h1>
+                        <h1 class="text-xs font-bold tracking-tight">${t('app_name')}</h1>
                     </div>
                     <button id="close-mobile-sidebar" class="p-2 hover:bg-accent rounded-md">
-                        <i data-lucide="x" class="w-5 h-5"></i>
+                        <i data-lucide="x" class="w-4 h-4"></i>
                     </button>
                 </div>
-                <div class="flex-1 overflow-y-auto p-4 space-y-8">
-                    <div class="space-y-1">
+                <div class="flex-1 overflow-y-auto p-3 space-y-6">
+                    <div class="space-y-0.5">
                         <button class="nav-link-mobile-drawer w-full" data-view="all">
-                            <i data-lucide="layout-grid" class="w-4 h-4"></i> ${t('sidebar.all_notes')}
+                            <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> ${t('sidebar.all_notes')}
                         </button>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-3">
                         <div class="flex items-center justify-between px-2" id="mobile-sidebar-categories-header">
-                            <h3 class="sidebar-section-title">${t('sidebar.tags')}</h3>
+                            <h3 class="sidebar-section-title text-[10px]">${t('sidebar.tags')}</h3>
                         </div>
-                        <div id="mobile-sidebar-categories" class="space-y-1 px-2"></div>
+                        <div id="mobile-sidebar-categories" class="space-y-0.5"></div>
                     </div>
                 </div>
-                <div class="p-6 border-t space-y-2">
-                    <button id="mobile-pwa-install-btn" class="hidden flex items-center gap-3 w-full p-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-sm font-bold shadow-lg shadow-indigo-500/30">
-                        <i data-lucide="download" class="w-5 h-5"></i> ${t('sidebar.install_app')}
+                <div class="p-4 border-t space-y-1.5">
+                    <button id="mobile-manage-cats" class="flex items-center gap-3 w-full p-2.5 rounded-md hover:bg-accent text-xs">
+                        <i data-lucide="tag" class="w-3.5 h-3.5"></i> ${t('sidebar.manage_tags')}
                     </button>
-                    <button id="mobile-manage-cats" class="flex items-center gap-3 w-full p-3 rounded-md hover:bg-accent text-sm">
-                        <i data-lucide="tag" class="w-4 h-4"></i> ${t('sidebar.manage_tags')}
+                    <button id="mobile-settings-btn" class="flex items-center gap-3 w-full p-2.5 rounded-md hover:bg-accent text-xs">
+                        <i data-lucide="settings" class="w-3.5 h-3.5"></i> ${t('sidebar.settings')}
                     </button>
-                    <button id="mobile-settings-btn" class="flex items-center gap-3 w-full p-3 rounded-md hover:bg-accent text-sm">
-                        <i data-lucide="settings" class="w-4 h-4"></i> ${t('sidebar.settings')}
-                    </button>
-                    <div class="pt-4 border-t space-y-3">
-                        <div class="flex items-center justify-between px-3">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/50">${t('sidebar.system')}</span>
-                            <span id="mobile-app-version" class="text-[10px] font-bold font-mono px-2 py-0.5 rounded bg-primary/10 text-primary">v3.6.0</span>
+                    <div class="pt-3 border-t space-y-2">
+                        <div class="flex items-center justify-between px-2">
+                            <span class="text-[8px] font-bold uppercase tracking-widest text-muted-foreground/40">${t('sidebar.system')}</span>
+                            <span id="mobile-app-version" class="text-[8px] font-bold font-mono px-1.5 py-0.5 rounded bg-primary/10 text-primary">v3.6.0</span>
                         </div>
-                        <button id="mobile-force-reload-btn" class="flex items-center gap-3 w-full p-3 rounded-md bg-destructive/5 text-destructive text-sm font-medium border border-destructive/10">
-                            <i data-lucide="refresh-cw" class="w-4 h-4"></i> ${t('sidebar.force_reload')}
-                        </button>
                     </div>
                 </div>
             </div>

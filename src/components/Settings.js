@@ -8,35 +8,35 @@ export function getSettingsTemplate() {
         <div class="dialog-content w-full h-full md:w-auto md:max-w-4xl p-0 overflow-hidden flex flex-col md:flex-row rounded-none md:rounded-xl">
             <!-- Sidebar Settings -->
             <div id="settings-sidebar" class="w-full md:w-64 bg-muted/50 border-b md:border-b-0 md:border-r p-4 flex flex-col gap-2 overflow-y-auto">
-                <div class="flex items-center justify-between mb-4 md:hidden">
-                    <h3 class="font-bold text-2xl">${t('settings.title')}</h3>
+                <div class="flex items-center justify-between mb-2 md:hidden">
+                    <h3 class="font-bold text-xl">${t('settings.title')}</h3>
                     <button class="close-settings p-2 hover:bg-accent rounded-full">
-                        <i data-lucide="x" class="w-6 h-6"></i>
+                        <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
                 </div>
-                <button class="settings-tab py-4 md:py-3 px-4 text-lg md:text-base flex items-center gap-4 md:gap-2 active-highlight" data-tab="appearance">
-                    <i data-lucide="palette" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.general')}
+                <button class="settings-tab py-3 md:py-2.5 px-4 text-base md:text-sm flex items-center gap-3 md:gap-2 active-highlight" data-tab="appearance">
+                    <i data-lucide="palette" class="w-5 h-5"></i> ${t('settings.general')}
                 </button>
-                <button class="settings-tab py-4 md:py-3 px-4 text-lg md:text-base flex items-center gap-4 md:gap-2" data-tab="sync">
-                    <i data-lucide="refresh-cw" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.sync')}
+                <button class="settings-tab py-3 md:py-2.5 px-4 text-base md:text-sm flex items-center gap-3 md:gap-2" data-tab="sync">
+                    <i data-lucide="refresh-cw" class="w-5 h-5"></i> ${t('settings.sync')}
                 </button>
-                <button class="settings-tab py-4 md:py-3 px-4 text-lg md:text-base flex items-center gap-4 md:gap-2" data-tab="security">
-                    <i data-lucide="shield" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.security')}
+                <button class="settings-tab py-3 md:py-2.5 px-4 text-base md:text-sm flex items-center gap-3 md:gap-2" data-tab="security">
+                    <i data-lucide="shield" class="w-5 h-5"></i> ${t('settings.security')}
                 </button>
-                <button class="settings-tab text-destructive mt-auto py-4 md:py-3 px-4 text-lg md:text-base flex items-center gap-4 md:gap-2" data-tab="danger">
-                    <i data-lucide="alert-triangle" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.danger')}
+                <button class="settings-tab text-destructive mt-auto py-3 md:py-2.5 px-4 text-base md:text-sm flex items-center gap-3 md:gap-2" data-tab="danger">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i> ${t('settings.danger')}
                 </button>
             </div>
 
             <!-- Content Area -->
             <div class="flex-1 flex flex-col min-w-0" id="settings-content-area">
-                <div class="p-6 md:p-4 border-b flex items-center gap-3">
-                    <button class="md:hidden p-3 hover:bg-accent rounded-xl group" id="settings-back-btn">
-                        <i data-lucide="arrow-left" class="w-6 h-6 text-muted-foreground group-hover:text-foreground"></i>
+                <div class="p-4 md:p-3 border-b flex items-center gap-2">
+                    <button class="md:hidden p-2 hover:bg-accent rounded-xl group" id="settings-back-btn">
+                        <i data-lucide="arrow-left" class="w-5 h-5 text-muted-foreground group-hover:text-foreground"></i>
                     </button>
-                    <h2 id="settings-tab-title" class="font-bold text-xl md:text-base flex-1">${t('settings.title')}</h2>
-                    <button class="close-settings p-3 md:p-2 hover:bg-accent rounded-xl group">
-                        <i data-lucide="x" class="w-6 h-6 md:w-5 md:h-5 text-muted-foreground group-hover:text-foreground"></i>
+                    <h2 id="settings-tab-title" class="font-bold text-lg md:text-sm flex-1">${t('settings.title')}</h2>
+                    <button class="close-settings p-2 hover:bg-accent rounded-xl group">
+                        <i data-lucide="x" class="w-5 h-5 text-muted-foreground group-hover:text-foreground"></i>
                     </button>
                 </div>
 
@@ -46,42 +46,42 @@ export function getSettingsTemplate() {
                         <section class="space-y-4">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.lang')}</h3>
                             <div class="space-y-2">
-                                <div id="language-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="en">
-                                        <span class="text-xl">🇺🇸</span> <span class="text-sm font-medium">English</span>
+                                <div id="language-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="en">
+                                        <span class="text-lg">🇺🇸</span> <span class="text-xs font-medium">English</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="es">
-                                        <span class="text-xl">🇪🇸</span> <span class="text-sm font-medium">Español</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="es">
+                                        <span class="text-lg">🇪🇸</span> <span class="text-xs font-medium">Español</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="fr">
-                                        <span class="text-xl">🇫🇷</span> <span class="text-sm font-medium">Français</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="fr">
+                                        <span class="text-lg">🇫🇷</span> <span class="text-xs font-medium">Français</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="de">
-                                        <span class="text-xl">🇩🇪</span> <span class="text-sm font-medium">Deutsch</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="de">
+                                        <span class="text-lg">🇩🇪</span> <span class="text-xs font-medium">Deutsch</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="it">
-                                        <span class="text-xl">🇮🇹</span> <span class="text-sm font-medium">Italiano</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="it">
+                                        <span class="text-lg">🇮🇹</span> <span class="text-xs font-medium">Italiano</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="pt">
-                                        <span class="text-xl">🇵🇹</span> <span class="text-sm font-medium">Português</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="pt">
+                                        <span class="text-lg">🇵🇹</span> <span class="text-xs font-medium">Português</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="ru">
-                                        <span class="text-xl">🇷🇺</span> <span class="text-sm font-medium">Русский</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="ru">
+                                        <span class="text-lg">🇷🇺</span> <span class="text-xs font-medium">Русский</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="zh">
-                                        <span class="text-xl">🇨🇳</span> <span class="text-sm font-medium">中文</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="zh">
+                                        <span class="text-lg">🇨🇳</span> <span class="text-xs font-medium">中文</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="ja">
-                                        <span class="text-xl">🇯🇵</span> <span class="text-sm font-medium">日本語</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="ja">
+                                        <span class="text-lg">🇯🇵</span> <span class="text-xs font-medium">日本語</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="ko">
-                                        <span class="text-xl">🇰🇷</span> <span class="text-sm font-medium">한국어</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="ko">
+                                        <span class="text-lg">🇰🇷</span> <span class="text-xs font-medium">한국어</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="ar">
-                                        <span class="text-xl">🇸🇦</span> <span class="text-sm font-medium">العربية</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="ar">
+                                        <span class="text-lg">🇸🇦</span> <span class="text-xs font-medium">العربية</span>
                                     </button>
-                                    <button class="lang-btn p-3 rounded-xl border bg-card flex items-center gap-3 hover:bg-accent transition-all" data-value="hi">
-                                        <span class="text-xl">🇮🇳</span> <span class="text-sm font-medium">हिन्दी</span>
+                                    <button class="lang-btn p-2 rounded-lg border bg-card flex items-center gap-2 hover:bg-accent transition-all" data-value="hi">
+                                        <span class="text-lg">🇮🇳</span> <span class="text-xs font-medium">हिन्दी</span>
                                     </button>
                                 </div>
                             </div>
@@ -90,30 +90,30 @@ export function getSettingsTemplate() {
                         <section class="space-y-4 pt-4 border-t">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.theme')}</h3>
                             <div class="grid grid-cols-2 gap-4">
-                                <button id="theme-light" class="flex flex-col items-center gap-3 p-6 rounded-2xl border bg-card hover:bg-accent transition-all group">
-                                    <div class="w-full aspect-video bg-zinc-100 rounded-xl border flex items-center justify-center">
-                                         <div class="w-1/2 h-2 bg-zinc-300 rounded"></div>
+                                <button id="theme-light" class="flex flex-col items-center gap-2 p-4 rounded-xl border bg-card hover:bg-accent transition-all group">
+                                    <div class="w-full aspect-video bg-zinc-100 rounded-lg border flex items-center justify-center">
+                                         <div class="w-1/2 h-1.5 bg-zinc-300 rounded"></div>
                                     </div>
-                                    <span class="text-sm font-medium">${t('settings.light')}</span>
+                                    <span class="text-xs font-medium">${t('settings.light')}</span>
                                 </button>
-                                <button id="theme-dark" class="flex flex-col items-center gap-3 p-6 rounded-2xl border bg-zinc-950 hover:bg-zinc-900 transition-all group ring-primary">
-                                    <div class="w-full aspect-video bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center">
-                                         <div class="w-1/2 h-2 bg-zinc-600 rounded"></div>
+                                <button id="theme-dark" class="flex flex-col items-center gap-2 p-4 rounded-xl border bg-zinc-950 hover:bg-zinc-900 transition-all group ring-primary">
+                                    <div class="w-full aspect-video bg-zinc-800 rounded-lg border border-zinc-700 flex items-center justify-center">
+                                         <div class="w-1/2 h-1.5 bg-zinc-600 rounded"></div>
                                     </div>
-                                    <span class="text-sm font-medium text-white">${t('settings.dark')}</span>
+                                    <span class="text-xs font-medium text-white">${t('settings.dark')}</span>
                                 </button>
                             </div>
                         </section>
 
                         <section class="space-y-4 pt-4 border-t">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.maintenance')}</h3>
-                            <div class="p-6 rounded-2xl border bg-primary/5 space-y-4">
+                            <div class="p-4 rounded-xl border bg-primary/5 space-y-3">
                                 <div class="flex items-center justify-between">
-                                    <span class="text-sm font-medium">${t('settings.installed_version')}</span>
-                                    <span class="text-sm font-bold font-mono text-primary" id="settings-version-display">v3.6.0</span>
+                                    <span class="text-xs font-medium">${t('settings.installed_version')}</span>
+                                    <span class="text-xs font-bold font-mono text-primary" id="settings-version-display">v3.6.0</span>
                                 </div>
-                                <button id="force-reload-btn-settings" class="btn-shad btn-shad-outline w-full h-12 flex items-center justify-center gap-2 group text-base rounded-xl">
-                                    <i data-lucide="refresh-cw" class="w-5 h-5 group-hover:rotate-180 transition-transform duration-500"></i>
+                                <button id="force-reload-btn-settings" class="btn-shad btn-shad-outline w-full h-10 flex items-center justify-center gap-2 group text-sm rounded-lg">
+                                    <i data-lucide="refresh-cw" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500"></i>
                                     ${t('sidebar.force_reload')}
                                 </button>
                             </div>

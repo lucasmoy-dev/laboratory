@@ -8,37 +8,37 @@ export function getAuthShieldTemplate() {
     const isAuthed = !!(sessionStorage.getItem('cn_vault_key_v3') || localStorage.getItem('cn_vault_key_v3'));
     return `
     <div id="auth-shield" class="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-sm transition-opacity duration-300 ${isAuthed ? 'opacity-0 pointer-events-none' : ''}" style="${isAuthed ? 'display: none' : ''}">
-        <div class="w-full max-w-sm p-8 space-y-6 bg-card border rounded-lg shadow-lg">
-            <div class="text-center space-y-2">
-                <div class="mx-auto w-10 h-10 bg-primary rounded-md flex items-center justify-center text-primary-foreground">
-                    <i data-lucide="lock" class="w-5 h-5"></i>
+        <div class="w-full max-w-[320px] p-6 space-y-4 bg-card border rounded-2xl shadow-2xl">
+            <div class="text-center space-y-1.5">
+                <div class="mx-auto w-9 h-9 bg-primary rounded-xl flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/20">
+                    <i data-lucide="lock" class="w-4 h-4"></i>
                 </div>
-                <h1 class="text-2xl font-semibold tracking-tight" id="auth-title">${t('auth.title')}</h1>
-                <p class="text-sm text-muted-foreground" id="auth-desc">${t('auth.desc')}</p>
+                <h1 class="text-xl font-bold tracking-tight" id="auth-title">${t('auth.title')}</h1>
+                <p class="text-xs text-muted-foreground" id="auth-desc">${t('auth.desc')}</p>
             </div>
-            <div class="space-y-4">
+            <div class="space-y-3">
                 <div class="relative group">
-                    <input type="password" id="master-password" placeholder="${t('auth.pass_placeholder')}" class="h-11 w-full pl-4 pr-12 text-base">
-                    <button type="button" class="absolute right-0 top-0 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-foreground toggle-pass" data-target="master-password">
-                        <i data-lucide="eye" class="w-4 h-4 icon-show"></i>
+                    <input type="password" id="master-password" placeholder="${t('auth.pass_placeholder')}" class="h-10 w-full pl-4 pr-11 text-sm bg-muted/30 border-none ring-1 ring-border focus:ring-2 focus:ring-primary rounded-xl transition-all">
+                    <button type="button" class="absolute right-0 top-0 h-10 w-10 flex items-center justify-center text-muted-foreground hover:text-foreground toggle-pass" data-target="master-password">
+                        <i data-lucide="eye" class="w-3.5 h-3.5 icon-show"></i>
                     </button>
                 </div>
                 <div class="relative group hidden" id="confirm-password-wrapper">
-                    <input type="password" id="confirm-password" placeholder="${t('auth.repeat_placeholder')}" class="h-11 w-full pl-4 pr-12 text-base">
-                    <button type="button" class="absolute right-0 top-0 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-foreground toggle-pass" data-target="confirm-password">
-                        <i data-lucide="eye" class="w-4 h-4 icon-show"></i>
+                    <input type="password" id="confirm-password" placeholder="${t('auth.repeat_placeholder')}" class="h-10 w-full pl-4 pr-11 text-sm bg-muted/30 border-none ring-1 ring-border focus:ring-2 focus:ring-primary rounded-xl transition-all">
+                    <button type="button" class="absolute right-0 top-0 h-10 w-10 flex items-center justify-center text-muted-foreground hover:text-foreground toggle-pass" data-target="confirm-password">
+                        <i data-lucide="eye" class="w-3.5 h-3.5 icon-show"></i>
                     </button>
                 </div>
                 
-                <div class="flex items-center gap-2 py-1">
-                    <input type="checkbox" id="auth-remember" class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary">
-                    <label for="auth-remember" class="text-xs text-muted-foreground cursor-pointer select-none">${t('auth.remember_me')}</label>
+                <div class="flex items-center gap-2 py-0.5">
+                    <input type="checkbox" id="auth-remember" class="w-3.5 h-3.5 rounded border-border text-primary focus:ring-primary">
+                    <label for="auth-remember" class="text-[10px] uppercase font-bold tracking-wider text-muted-foreground/70 cursor-pointer select-none">${t('auth.remember_me')}</label>
                 </div>
 
-                <button id="auth-submit" class="btn-shad btn-shad-primary w-full h-11 font-bold">${t('auth.unlock')}</button>
+                <button id="auth-submit" class="btn-shad btn-shad-primary w-full h-11 font-bold rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">${t('auth.unlock')}</button>
                 
-                <button id="auth-biometric" class="hidden btn-shad btn-shad-secondary w-full h-11 font-bold flex items-center justify-center gap-2">
-                     <i data-lucide="fingerprint" class="w-5 h-5"></i> <span id="bio-text">${t('auth.use_bio')}</span>
+                <button id="auth-biometric" class="hidden btn-shad btn-shad-secondary w-full h-10 font-bold flex items-center justify-center gap-2 rounded-xl text-sm border-none bg-muted hover:bg-muted/80">
+                     <i data-lucide="fingerprint" class="w-4 h-4"></i> <span id="bio-text" class="text-xs uppercase tracking-wide">${t('auth.use_bio')}</span>
                 </button>
 
                 <div id="auth-extra-actions" class="hidden pt-4 border-t border-border/50">
