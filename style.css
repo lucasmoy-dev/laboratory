@@ -420,19 +420,19 @@ textarea {
 
     /* Settings Mobile Tweaks */
     #settings-modal .dialog-content {
-        @apply h-[90vh] md:h-[500px];
+        @apply h-full md:h-[500px];
     }
 
     #settings-modal .md\:w-48 {
-        @apply flex-wrap p-2 !important;
+        @apply p-4 !important;
     }
 
     .settings-tab {
-        @apply py-2 px-3 text-xs !important;
+        @apply py-5 px-6 text-lg !important;
     }
 
     #categories-modal .dialog-content {
-        @apply h-[85vh] md:h-[550px] rounded-t-3xl bottom-0 top-auto translate-y-0 translate-x-[-50%] p-2 !important;
+        @apply h-full md:h-[550px] rounded-none md:rounded-3xl !important;
     }
 
     #cat-manager-list>div {

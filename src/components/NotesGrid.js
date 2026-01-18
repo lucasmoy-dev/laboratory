@@ -2,6 +2,7 @@ import { state, saveLocal } from '../state.js';
 import { NOTE_THEMES } from '../constants.js';
 import { safeCreateIcons, isColorDark, openPrompt, showToast } from '../ui-utils.js';
 import { SecurityService as Security } from '../security.js';
+import { t } from '../i18n.js';
 import Sortable from 'sortablejs';
 
 export function renderNotes(onEdit) {
@@ -45,7 +46,7 @@ export function renderNotes(onEdit) {
                     </div>
                 </div>
                 <div class="text-[13px] opacity-70 line-clamp-6 leading-relaxed mb-4 flex-1">
-                    ${(note.passwordHash && !isUnlocked) ? '<div class="flex items-center gap-3 py-8 italic opacity-50"><i data-lucide="shield-alert" class="w-6 h-6"></i> Contenido restringido</div>' : note.content}
+                    ${(note.passwordHash && !isUnlocked) ? `<div class="flex items-center gap-3 py-8 italic opacity-50"><i data-lucide="shield-alert" class="w-6 h-6"></i> ${t('common.restricted_access')}</div>` : note.content}
                 </div>
                 ${(cat && state.currentView === 'all') ? `
                 <div class="mt-auto">
@@ -63,11 +64,11 @@ export function renderNotes(onEdit) {
             // If note is locked and not yet unlocked in this session
             if (note.passwordHash && !state.unlockedNotes.has(note.id)) {
                 try {
-                    const pass = await openPrompt('Nota Protegida', 'Ingresa la contraseña para ver esta nota:');
+                    const pass = await openPrompt(t('common.security_prompt'), t('common.security_desc_prompt'));
                     if (!pass) return;
                     const hash = await Security.hash(pass);
                     if (hash !== note.passwordHash) {
-                        showToast('❌ Contraseña incorrecta');
+                        showToast(t('auth.incorrect_pass'));
                         return;
                     }
                     state.unlockedNotes.add(note.id);
@@ -90,7 +91,7 @@ export function renderNotes(onEdit) {
     if (pinnedNotes.length > 0) {
         const pinHeader = document.createElement('h3');
         pinHeader.className = "text-xs font-bold text-muted-foreground uppercase tracking-wider col-span-full mb-2 mt-2 flex items-center gap-2";
-        pinHeader.innerHTML = '<i data-lucide="pin" class="w-3 h-3"></i> Destacadas';
+        pinHeader.innerHTML = '<i data-lucide="pin" class="w-3 h-3"></i> ' + t('header.pinned');
         grid.appendChild(pinHeader);
         pinnedNotes.forEach(note => grid.appendChild(createCard(note)));
 
@@ -105,7 +106,7 @@ export function renderNotes(onEdit) {
         if (pinnedNotes.length > 0) {
             const otherHeader = document.createElement('h3');
             otherHeader.className = "text-xs font-bold text-muted-foreground uppercase tracking-wider col-span-full mb-2 mt-2";
-            otherHeader.innerText = "Notas";
+            otherHeader.innerText = t('sidebar.all_notes');
             grid.appendChild(otherHeader);
         }
         otherNotes.forEach(note => grid.appendChild(createCard(note)));
@@ -114,7 +115,7 @@ export function renderNotes(onEdit) {
     if (filtered.length === 0) {
         grid.innerHTML = `<div class="col-span-full text-center py-20 text-muted-foreground opacity-50">
             <i data-lucide="ghost" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>
-            <p>No hay notas aquí</p>
+            <p>${t('notes.no_notes')}</p>
         </div>`;
     }
 

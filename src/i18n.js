@@ -16,7 +16,11 @@ export const translations = {
             install: "Install",
             new_note: "New Note",
             view_title_all: "All Notes",
-            view_desc_all: "Organize your thoughts and protect your privacy."
+            view_desc_all: "Organize your thoughts and protect your privacy.",
+            pinned: "Pinned"
+        },
+        notes: {
+            no_notes: "No notes here"
         },
         auth: {
             title: "Protected Vault",
@@ -60,7 +64,7 @@ export const translations = {
             general: "General",
             sync: "Cloud Sync",
             security: "Security",
-            danger: "Danger Zone",
+            danger: "Advanced Actions",
             theme: "Visual Theme",
             light: "Light",
             dark: "Dark",
@@ -114,6 +118,20 @@ export const translations = {
             restricted_access: "Restricted Access",
             enter_cat_pass: "Enter password for category",
             write_here: "Write here..."
+        },
+        biometrics: {
+            title: "Fingerprint / Face ID",
+            desc: "Use biometrics to unlock your vault quickly",
+            enabled: "Enabled",
+            disabled: "Disabled",
+            enable_btn: "Enable",
+            disable_btn: "Disable",
+            setup_prompt: "Enter your master password to enable biometrics",
+            not_supported: "Your device does not support biometrics",
+            success_enable: "✅ Biometrics enabled",
+            success_disable: "🔓 Biometrics disabled",
+            fail_enable: "❌ Failed to enable biometrics",
+            incorrect_pass: "❌ Incorrect password"
         }
     },
     es: {
@@ -133,7 +151,11 @@ export const translations = {
             install: "Instalar",
             new_note: "Nueva Nota",
             view_title_all: "Todas las notas",
-            view_desc_all: "Organiza tus pensamientos y protege tu privacidad."
+            view_desc_all: "Organiza tus pensamientos y protege tu privacidad.",
+            pinned: "Destacadas"
+        },
+        notes: {
+            no_notes: "No hay notas aquí"
         },
         auth: {
             title: "Bóveda Protegida",
@@ -177,7 +199,7 @@ export const translations = {
             general: "General",
             sync: "Sincronización Cloud",
             security: "Seguridad y Sesión",
-            danger: "Zona Peligrosa",
+            danger: "Acciones Avanzadas",
             theme: "Tema Visual",
             light: "Claro",
             dark: "Oscuro",
@@ -231,6 +253,20 @@ export const translations = {
             restricted_access: "Acceso Restringido",
             enter_cat_pass: "Ingresa la contraseña para",
             write_here: "Escribe aquí..."
+        },
+        biometrics: {
+            title: "Huella / Face ID",
+            desc: "Usa biometría para desbloquear tu bóveda rápidamente",
+            enabled: "Activado",
+            disabled: "Desactivado",
+            enable_btn: "Activar",
+            disable_btn: "Desactivar",
+            setup_prompt: "Ingresa tu contraseña maestra para activar la biometría",
+            not_supported: "Tu dispositivo no soporta biometría",
+            success_enable: "✅ Biometría activada",
+            success_disable: "🔓 Biometría desactivada",
+            fail_enable: "❌ Error al activar biometría",
+            incorrect_pass: "❌ Contraseña incorrecta"
         }
     }
 };

@@ -14,8 +14,8 @@ export function renderCategories(onViewChange, categories = null) {
 
     if (sidebar) sidebar.innerHTML = '';
     if (mobileSidebar) mobileSidebar.innerHTML = '';
-    if (select) select.innerHTML = '<option value="">Sin categoría</option>';
-    if (dropdown) dropdown.innerHTML = '<div class="px-3 py-1.5 text-xs hover:bg-accent cursor-pointer border-b" data-id="">Sin categoría</div>';
+    if (select) select.innerHTML = `<option value="">${t('categories.no_category')}</option>`;
+    if (dropdown) dropdown.innerHTML = `<div class="px-3 py-1.5 text-xs hover:bg-accent cursor-pointer border-b" data-id="">${t('categories.no_category')}</div>`;
 
     // Toggle Section Headers
     const hasCats = state.categories.length > 0;
@@ -45,7 +45,7 @@ export function renderCategories(onViewChange, categories = null) {
     const updateCategoryUI = () => {
         const catId = document.getElementById('edit-category').value;
         const cat = state.categories.find(c => c.id === catId);
-        document.getElementById('selected-cat-label').innerText = cat ? cat.name : 'Sin categoría';
+        document.getElementById('selected-cat-label').innerText = cat ? cat.name : t('categories.no_category');
     };
 
     if (dropdown) {
@@ -68,7 +68,7 @@ export function renderCategories(onViewChange, categories = null) {
 
             btn.onclick = async () => {
                 if (cat.passwordHash) {
-                    const result = await openPrompt('Acceso Restringido', `Ingresa la contraseña para "${cat.name}":`);
+                    const result = await openPrompt(t('common.restricted_access'), `${t('common.enter_cat_pass')} "${cat.name}":`);
                     if (!result) return;
 
                     // Biometric Bypass
@@ -77,7 +77,7 @@ export function renderCategories(onViewChange, categories = null) {
                     } else {
                         const hash = await Security.hash(result);
                         if (hash !== cat.passwordHash) {
-                            showToast('Contraseña incorrecta');
+                            showToast(t('auth.incorrect_pass'));
                             return;
                         }
                     }

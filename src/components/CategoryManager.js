@@ -2,43 +2,44 @@ import { state, saveLocal } from '../state.js';
 import { CAT_ICONS } from '../constants.js';
 import { safeCreateIcons, showToast, openPrompt } from '../ui-utils.js';
 import { SecurityService as Security } from '../security.js';
+import { t } from '../i18n.js';
 
 export function getCategoryManagerTemplate() {
     return `
     <div id="categories-modal" class="fixed inset-0 z-[70] hidden">
         <div class="dialog-overlay close-categories"></div>
-        <div class="dialog-content w-full h-full md:w-auto md:max-w-lg md:h-auto md:rounded-xl rounded-none flex flex-col shadow-2xl p-0 overflow-hidden">
-            <div class="p-6 flex justify-between items-center border-b bg-background/50 backdrop-blur-md sticky top-0 z-10">
+        <div class="dialog-content w-full h-full md:max-w-none md:h-full md:rounded-none rounded-none flex flex-col shadow-2xl p-0 overflow-hidden">
+            <div class="p-6 md:p-10 flex justify-between items-center border-b bg-background/50 backdrop-blur-md sticky top-0 z-10">
                 <div>
-                    <h2 class="text-xl font-bold text-foreground">Etiquetas</h2>
-                    <p class="text-xs text-muted-foreground">Organiza tus pensamientos por categorías</p>
+                    <h2 class="text-2xl md:text-4xl font-bold text-foreground">${t('categories.title')}</h2>
+                    <p class="text-xs md:text-base text-muted-foreground">${t('categories.name_placeholder')}</p>
                 </div>
-                <button class="close-categories p-2 hover:bg-accent rounded-full transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+                <button class="close-categories p-3 hover:bg-accent rounded-full transition-colors"><i data-lucide="x" class="w-8 h-8"></i></button>
             </div>
 
-            <div class="p-4 bg-muted/20 border-b">
-                <div class="flex items-center gap-3">
+            <div class="p-4 md:p-10 bg-muted/20 border-b">
+                <div class="flex items-center gap-4 max-w-3xl mx-auto w-full">
                     <div class="relative flex-1">
-                        <i data-lucide="tag" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/50"></i>
-                        <input type="text" id="new-cat-name" placeholder="Nueva etiqueta..." 
-                               class="pl-12 h-12 w-full bg-background border-none ring-1 ring-border focus:ring-2 focus:ring-violet-500 rounded-2xl transition-all" autocomplete="off">
+                        <i data-lucide="tag" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground/50"></i>
+                        <input type="text" id="new-cat-name" placeholder="${t('categories.add_new')}..." 
+                               class="pl-14 h-14 md:h-16 w-full bg-background border-none ring-1 ring-border focus:ring-2 focus:ring-violet-500 rounded-2xl transition-all text-lg" autocomplete="off">
                     </div>
-                    <button id="add-cat-btn" class="w-12 h-12 bg-violet-600 hover:bg-violet-700 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-violet-500/20 active:scale-95 transition-all">
-                        <i data-lucide="plus" class="w-6 h-6"></i>
+                    <button id="add-cat-btn" class="w-14 h-14 md:w-16 md:h-16 bg-violet-600 hover:bg-violet-700 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-violet-500/20 active:scale-95 transition-all">
+                        <i data-lucide="plus" class="w-8 h-8"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="flex-1 overflow-y-auto p-4 space-y-3" id="cat-manager-list">
+            <div class="flex-1 overflow-y-auto p-4 md:p-10 space-y-4 max-w-3xl mx-auto w-full" id="cat-manager-list">
                 <!-- Items injected here -->
             </div>
             
-            <div class="p-4 border-t bg-background/50 backdrop-blur-md md:hidden">
-                <button class="close-categories w-full h-12 bg-secondary text-secondary-foreground font-bold rounded-2xl hover:bg-secondary/80 transition-all">Hecho</button>
+            <div class="p-6 border-t bg-background/50 backdrop-blur-md sticky bottom-0">
+                <button class="close-categories w-full md:max-w-xs mx-auto block h-14 bg-secondary text-secondary-foreground font-bold rounded-2xl hover:bg-secondary/80 transition-all text-lg underline">Cerrar</button>
             </div>
         </div>
-        <div id="cat-icon-picker" class="fixed z-[80] hidden popover-content p-2 w-64 max-h-64 overflow-y-auto bg-popover border shadow-2xl rounded-2xl backdrop-blur-xl">
-            <div class="grid grid-cols-6 gap-2 p-1" id="cat-icons-grid"></div>
+        <div id="cat-icon-picker" class="fixed z-[80] hidden popover-content p-4 w-72 max-h-80 overflow-y-auto bg-popover border shadow-2xl rounded-3xl backdrop-blur-3xl">
+            <div class="grid grid-cols-5 gap-3 p-1" id="cat-icons-grid"></div>
         </div>
     </div>`;
 }

@@ -123,7 +123,7 @@ function updateViewHeader(title = null) {
     if (!titleEl) return;
 
     const currentCat = state.categories.find(c => c.id === state.currentView);
-    const resolvedTitle = title || (currentCat ? currentCat.name : 'Todas las notas');
+    const resolvedTitle = title || (currentCat ? currentCat.name : t('header.view_title_all'));
 
     titleEl.innerText = resolvedTitle;
 
@@ -207,7 +207,7 @@ function setupGlobalEvents() {
         btn.onclick = () => {
             const viewId = btn.dataset.view;
             const currentCat = state.categories.find(c => c.id === viewId);
-            const title = currentCat ? currentCat.name : (viewId === 'all' ? 'Todas las notas' : '');
+            const title = currentCat ? currentCat.name : (viewId === 'all' ? t('header.view_title_all') : '');
 
             onViewChange(viewId, title);
             closeMobileSidebar();
@@ -302,12 +302,13 @@ function setupGlobalEvents() {
     const resetBtn = document.getElementById('factory-reset');
 
     if (resetConfirmInput && resetBtn) {
+        const keyword = t('settings.reset_keyword').toLowerCase();
         resetConfirmInput.oninput = () => {
-            resetBtn.disabled = resetConfirmInput.value.toLowerCase() !== 'confirmar';
+            resetBtn.disabled = resetConfirmInput.value.toLowerCase() !== keyword;
         };
 
         resetBtn.onclick = () => {
-            if (resetConfirmInput.value.toLowerCase() === 'confirmar') {
+            if (resetConfirmInput.value.toLowerCase() === keyword) {
                 localStorage.clear();
                 sessionStorage.clear();
                 location.reload();

@@ -14,29 +14,29 @@ export function getSettingsTemplate() {
                         <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
                 </div>
-                <button class="settings-tab py-3 px-4 text-base" data-tab="appearance">
-                    <i data-lucide="palette" class="w-5 h-5"></i> ${t('settings.general')}
+                <button class="settings-tab py-4 md:py-3 px-4 text-lg md:text-base flex items-center gap-4 md:gap-2 active-highlight" data-tab="appearance">
+                    <i data-lucide="palette" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.general')}
                 </button>
-                <button class="settings-tab py-3 px-4 text-base" data-tab="sync">
-                    <i data-lucide="refresh-cw" class="w-5 h-5"></i> ${t('settings.sync')}
+                <button class="settings-tab py-4 md:py-3 px-4 text-lg md:text-base flex items-center gap-4 md:gap-2" data-tab="sync">
+                    <i data-lucide="refresh-cw" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.sync')}
                 </button>
-                <button class="settings-tab py-3 px-4 text-base" data-tab="security">
-                    <i data-lucide="shield" class="w-5 h-5"></i> ${t('settings.security')}
+                <button class="settings-tab py-4 md:py-3 px-4 text-lg md:text-base flex items-center gap-4 md:gap-2" data-tab="security">
+                    <i data-lucide="shield" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.security')}
                 </button>
-                <button class="settings-tab text-destructive mt-auto py-3 px-4 text-base" data-tab="danger">
-                    <i data-lucide="alert-triangle" class="w-5 h-5"></i> ${t('settings.danger')}
+                <button class="settings-tab text-destructive mt-auto py-4 md:py-3 px-4 text-lg md:text-base flex items-center gap-4 md:gap-2" data-tab="danger">
+                    <i data-lucide="alert-triangle" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.danger')}
                 </button>
             </div>
 
             <!-- Content Area -->
             <div class="flex-1 flex flex-col min-w-0" id="settings-content-area">
-                <div class="p-4 border-b flex items-center gap-3">
-                    <button class="md:hidden p-2 hover:bg-accent rounded-md group" id="settings-back-btn">
-                        <i data-lucide="arrow-left" class="w-5 h-5 text-muted-foreground group-hover:text-foreground"></i>
+                <div class="p-6 md:p-4 border-b flex items-center gap-3">
+                    <button class="md:hidden p-3 hover:bg-accent rounded-xl group" id="settings-back-btn">
+                        <i data-lucide="arrow-left" class="w-6 h-6 text-muted-foreground group-hover:text-foreground"></i>
                     </button>
-                    <h2 id="settings-tab-title" class="font-bold flex-1">${t('settings.title')}</h2>
-                    <button class="close-settings p-2 hover:bg-accent rounded-md group">
-                        <i data-lucide="x" class="w-5 h-5 text-muted-foreground group-hover:text-foreground"></i>
+                    <h2 id="settings-tab-title" class="font-bold text-xl md:text-base flex-1">${t('settings.title')}</h2>
+                    <button class="close-settings p-3 md:p-2 hover:bg-accent rounded-xl group">
+                        <i data-lucide="x" class="w-6 h-6 md:w-5 md:h-5 text-muted-foreground group-hover:text-foreground"></i>
                     </button>
                 </div>
 
@@ -46,7 +46,7 @@ export function getSettingsTemplate() {
                         <section class="space-y-4">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.lang')}</h3>
                             <div class="space-y-2">
-                                <select id="language-select" class="h-10 w-full px-3 rounded-md border bg-background">
+                                <select id="language-select" class="h-12 md:h-10 w-full px-4 rounded-xl border bg-background text-lg md:text-sm">
                                     <option value="en">🇺🇸 English</option>
                                     <option value="es">🇪🇸 Español</option>
                                     <option value="fr">🇫🇷 Français</option>
@@ -60,45 +60,42 @@ export function getSettingsTemplate() {
                                     <option value="ar">🇸🇦 العربية</option>
                                     <option value="hi">🇮🇳 हिन्दी</option>
                                 </select>
-                                <p class="text-xs text-muted-foreground">Select your preferred language</p>
                             </div>
                         </section>
 
                         <section class="space-y-4 pt-4 border-t">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.theme')}</h3>
-                            <div class="grid grid-cols-2 gap-3">
-                                <button id="theme-light" class="flex flex-col items-center gap-2 p-4 rounded-lg border bg-card hover:bg-accent transition-all group">
-                                    <div class="w-full aspect-video bg-zinc-100 rounded border flex items-center justify-center">
+                            <div class="grid grid-cols-2 gap-4">
+                                <button id="theme-light" class="flex flex-col items-center gap-3 p-6 rounded-2xl border bg-card hover:bg-accent transition-all group">
+                                    <div class="w-full aspect-video bg-zinc-100 rounded-xl border flex items-center justify-center">
                                          <div class="w-1/2 h-2 bg-zinc-300 rounded"></div>
                                     </div>
-                                    <span class="text-xs font-medium">${t('settings.light')}</span>
+                                    <span class="text-sm font-medium">${t('settings.light')}</span>
                                 </button>
-                                <button id="theme-dark" class="flex flex-col items-center gap-2 p-4 rounded-lg border bg-zinc-950 hover:bg-zinc-900 transition-all group ring-primary">
-                                    <div class="w-full aspect-video bg-zinc-800 rounded border border-zinc-700 flex items-center justify-center">
+                                <button id="theme-dark" class="flex flex-col items-center gap-3 p-6 rounded-2xl border bg-zinc-950 hover:bg-zinc-900 transition-all group ring-primary">
+                                    <div class="w-full aspect-video bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center">
                                          <div class="w-1/2 h-2 bg-zinc-600 rounded"></div>
                                     </div>
-                                    <span class="text-xs font-medium text-white">${t('settings.dark')}</span>
+                                    <span class="text-sm font-medium text-white">${t('settings.dark')}</span>
                                 </button>
                             </div>
                         </section>
 
                         <section class="space-y-4 pt-4 border-t">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.maintenance')}</h3>
-                            <div class="p-4 rounded-lg border bg-primary/5 space-y-3">
+                            <div class="p-6 rounded-2xl border bg-primary/5 space-y-4">
                                 <div class="flex items-center justify-between">
-                                    <span class="text-xs font-medium">${t('settings.installed_version')}</span>
-                                    <span class="text-xs font-bold font-mono text-primary" id="settings-version-display">v3.6.0</span>
+                                    <span class="text-sm font-medium">${t('settings.installed_version')}</span>
+                                    <span class="text-sm font-bold font-mono text-primary" id="settings-version-display">v3.6.0</span>
                                 </div>
-                                <p class="text-[10px] text-muted-foreground">Force update if issues occur.</p>
-                                <button id="force-reload-btn" class="btn-shad btn-shad-outline w-full h-10 flex items-center justify-center gap-2 group">
-                                    <i data-lucide="refresh-cw" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500"></i>
+                                <button id="force-reload-btn-settings" class="btn-shad btn-shad-outline w-full h-12 flex items-center justify-center gap-2 group text-base rounded-xl">
+                                    <i data-lucide="refresh-cw" class="w-5 h-5 group-hover:rotate-180 transition-transform duration-500"></i>
                                     ${t('sidebar.force_reload')}
                                 </button>
                             </div>
                         </section>
                     </div>
 
-                    <!-- Panel: Sincronización -->
                     <!-- Panel: Sincronización -->
                     <div id="panel-sync" class="settings-panel hidden space-y-6">
                         <section class="space-y-4">
@@ -107,45 +104,44 @@ export function getSettingsTemplate() {
                                 <div id="drive-status" class="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-bold uppercase">${t('settings.sync_status.disconnected')}</div>
                             </div>
                             
-                            <button id="connect-drive-btn" class="btn-shad btn-shad-outline w-full h-10 flex items-center justify-center gap-2">
-                                <i data-lucide="link" class="w-4 h-4"></i> ${t('settings.connect_drive')}
+                            <button id="connect-drive-btn" class="btn-shad btn-shad-outline w-full h-12 flex items-center justify-center gap-2 text-base rounded-xl">
+                                <i data-lucide="link" class="w-5 h-5"></i> ${t('settings.connect_drive')}
                             </button>
 
-                            <div class="space-y-2 pt-4 border-t border-dashed">
-                                <label class="text-xs font-medium">${t('settings.drive_folder')}</label>
-                                <input type="text" id="config-drive-path" class="h-10 px-4 w-full" placeholder="p.ej. CloudNotesV3" autocomplete="off">
-                                <p class="text-[10px] text-muted-foreground">${t('settings.drive_folder_hint')}</p>
+                            <div class="space-y-3 pt-4 border-t border-dashed">
+                                <label class="text-sm font-medium">${t('settings.drive_folder')}</label>
+                                <input type="text" id="config-drive-path" class="h-12 px-5 w-full rounded-xl" placeholder="p.ej. CloudNotesV3" autocomplete="off">
+                                <p class="text-xs text-muted-foreground">${t('settings.drive_folder_hint')}</p>
                             </div>
-                            <div class="space-y-2">
-                                <label class="text-xs font-medium">${t('settings.notes_per_chunk')}</label>
+                            <div class="space-y-3">
+                                <label class="text-sm font-medium">${t('settings.notes_per_chunk')}</label>
                                 <div class="flex items-center gap-3">
-                                    <input type="number" id="config-notes-per-chunk" class="h-10 px-4 w-full" placeholder="50" min="10" max="500">
-                                    <span class="text-xs text-muted-foreground shrink-0 font-bold">NOTES</span>
+                                    <input type="number" id="config-notes-per-chunk" class="h-12 px-5 w-full rounded-xl" placeholder="50" min="10" max="500">
+                                    <span class="text-xs text-muted-foreground shrink-0 font-bold uppercase">Notas</span>
                                 </div>
-                                <p class="text-[10px] text-muted-foreground">${t('settings.notes_per_chunk_hint')}</p>
                             </div>
-                            <button id="save-sync-config" class="btn-shad btn-shad-primary w-full h-10">${t('settings.save_changes')}</button>
+                            <button id="save-sync-config" class="btn-shad btn-shad-primary w-full h-14 text-lg font-bold rounded-2xl shadow-lg shadow-primary/20 transition-all active:scale-95">${t('settings.save_changes')}</button>
                         </section>
                     </div>
 
                     <!-- Panel: Seguridad -->
                     <div id="panel-security" class="settings-panel hidden space-y-6">
                         <section class="space-y-4">
-                            <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Biometric Authentication</h3>
-                            <div class="p-4 rounded-lg border space-y-3" id="bio-settings-container">
-                                <div class="flex items-start justify-between gap-3">
+                            <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('biometrics.title')}</h3>
+                            <div class="p-6 rounded-2xl border space-y-4" id="bio-settings-container">
+                                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                                     <div class="flex-1">
-                                        <p class="text-sm font-medium">Fingerprint / Face ID</p>
-                                        <p class="text-xs text-muted-foreground mt-1">Use biometrics to unlock your vault quickly</p>
-                                        <div class="mt-2 flex items-center gap-2">
-                                            <div id="bio-status-badge" class="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground font-medium">
-                                                Disabled
+                                        <p class="text-lg font-bold md:text-base">${t('biometrics.title')}</p>
+                                        <p class="text-sm text-muted-foreground mt-1">${t('biometrics.desc')}</p>
+                                        <div class="mt-3 flex items-center gap-2">
+                                            <div id="bio-status-badge" class="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground font-bold uppercase tracking-wider">
+                                                ${t('biometrics.disabled')}
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="toggle-biometric-btn" class="btn-shad btn-shad-primary h-9 px-4 flex items-center gap-2 shrink-0">
-                                        <i data-lucide="fingerprint" class="w-4 h-4"></i>
-                                        <span id="bio-toggle-text">Enable</span>
+                                    <button id="toggle-biometric-btn" class="btn-shad btn-shad-primary w-full md:w-auto h-14 md:h-11 px-8 flex items-center justify-center gap-3 shrink-0 rounded-2xl md:rounded-xl text-lg md:text-sm font-bold shadow-lg shadow-primary/20 active:scale-95">
+                                        <i data-lucide="fingerprint" class="w-6 h-6 md:w-5 md:h-5"></i>
+                                        <span id="bio-toggle-text">${t('biometrics.enable_btn')}</span>
                                     </button>
                                 </div>
                             </div>
@@ -153,24 +149,24 @@ export function getSettingsTemplate() {
                         
                         <section class="space-y-4 pt-4 border-t">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.session_security')}</h3>
-                            <div class="p-4 rounded-lg border bg-muted/20 space-y-3">
-                                <p class="text-xs text-muted-foreground">${t('settings.logout_hint')}</p>
-                                <button id="logout-btn" class="btn-shad bg-destructive/10 text-destructive hover:bg-destructive hover:text-white w-full h-10 flex items-center justify-center gap-2 transition-all">
-                                    <i data-lucide="log-out" class="w-4 h-4"></i> ${t('settings.logout')}
+                            <div class="p-6 rounded-2xl border bg-muted/20 space-y-4">
+                                <p class="text-sm text-muted-foreground">${t('settings.logout_hint')}</p>
+                                <button id="logout-btn" class="btn-shad bg-destructive/10 text-destructive hover:bg-destructive hover:text-white w-full h-14 md:h-12 flex items-center justify-center gap-3 transition-all rounded-2xl text-lg font-bold">
+                                    <i data-lucide="log-out" class="w-6 h-6 md:w-5 md:h-5"></i> ${t('settings.logout')}
                                 </button>
                             </div>
                         </section>
                         
                         <section class="space-y-4 pt-4 border-t">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">${t('settings.encryption')}</h3>
-                            <div class="space-y-2">
-                                <label class="text-xs font-medium">${t('settings.algo')}</label>
-                                <select id="config-algo" class="h-10 w-full px-3">
+                            <div class="space-y-3">
+                                <label class="text-sm font-medium">${t('settings.algo')}</label>
+                                <select id="config-algo" class="h-12 md:h-10 w-full px-4 rounded-xl">
                                     <option value="aes-256-gcm">AES-256-GCM (Recommended)</option>
                                     <option value="kyber">CRYSTALS-Kyber (Experimental)</option>
                                 </select>
                             </div>
-                             <button id="save-security-config" class="btn-shad btn-shad-primary w-full h-10">${t('settings.update_algo')}</button>
+                             <button id="save-security-config" class="btn-shad btn-shad-primary w-full h-14 font-bold rounded-2xl text-lg shadow-lg shadow-primary/20 transition-all active:scale-95">${t('settings.update_algo')}</button>
                         </section>
                     </div>
 
@@ -245,20 +241,16 @@ export function initSettings() {
     }
 
     // Force Reload Logic
-    const reloadBtn = document.getElementById('force-reload-btn');
-    if (reloadBtn) {
-        reloadBtn.onclick = handleForceReload;
-    }
+    const reloadBtn = document.getElementById('force-reload-btn'); // Global one
+    const reloadBtnSettings = document.getElementById('force-reload-btn-settings');
+    if (reloadBtn) reloadBtn.onclick = handleForceReload;
+    if (reloadBtnSettings) reloadBtnSettings.onclick = handleForceReload;
 
     // Language Switcher Logic
     const langSelect = document.getElementById('language-select');
     if (langSelect) {
-        // Set current language
         langSelect.value = currentLang;
-
-        langSelect.onchange = (e) => {
-            setLanguage(e.target.value);
-        };
+        langSelect.onchange = (e) => setLanguage(e.target.value);
     }
 
     // Biometric Toggle Logic
@@ -268,22 +260,21 @@ export function initSettings() {
     const bioContainer = document.getElementById('bio-settings-container');
 
     if (toggleBioBtn) {
-        // Update UI based on current state
         const updateBioUI = () => {
             const isEnabled = localStorage.getItem('cn_bio_enabled') === 'true';
             if (isEnabled) {
-                bioStatusBadge.textContent = 'Enabled';
+                bioStatusBadge.textContent = t('biometrics.enabled');
                 bioStatusBadge.classList.remove('bg-muted', 'text-muted-foreground');
                 bioStatusBadge.classList.add('bg-primary/20', 'text-primary');
-                bioToggleText.textContent = 'Disable';
+                bioToggleText.textContent = t('biometrics.disable_btn');
                 toggleBioBtn.classList.remove('btn-shad-primary');
                 toggleBioBtn.classList.add('btn-shad-outline');
                 bioContainer.classList.add('bg-primary/5');
             } else {
-                bioStatusBadge.textContent = 'Disabled';
+                bioStatusBadge.textContent = t('biometrics.disabled');
                 bioStatusBadge.classList.remove('bg-primary/20', 'text-primary');
                 bioStatusBadge.classList.add('bg-muted', 'text-muted-foreground');
-                bioToggleText.textContent = 'Enable';
+                bioToggleText.textContent = t('biometrics.enable_btn');
                 toggleBioBtn.classList.remove('btn-shad-outline');
                 toggleBioBtn.classList.add('btn-shad-primary');
                 bioContainer.classList.remove('bg-primary/5');
@@ -297,22 +288,23 @@ export function initSettings() {
             const isEnabled = localStorage.getItem('cn_bio_enabled') === 'true';
 
             if (isEnabled) {
-                // Disable biometrics
                 localStorage.setItem('cn_bio_enabled', 'false');
+                // IMPORTANT: When disabling bio, we should also remove the saved key from localStorage 
+                // IF we want to strictly require password.
+                // localStorage.removeItem('cn_vault_key_v3'); 
+
                 updateBioUI();
                 const { showToast } = await import('../ui-utils.js');
-                showToast('🔓 Biometrics disabled');
+                showToast(t('biometrics.success_disable'));
             } else {
-                // Enable biometrics - need to verify with password
-                const { handleBiometricAuth } = await import('./AuthShield.js');
                 const { showToast, openPrompt } = await import('../ui-utils.js');
 
                 if (!window.PublicKeyCredential) {
-                    return showToast('❌ Your device does not support biometrics');
+                    return showToast(t('biometrics.not_supported'));
                 }
 
                 try {
-                    const pass = await openPrompt('Enter your master password to enable biometrics', true);
+                    const pass = await openPrompt(t('biometrics.setup_prompt'), true);
                     if (!pass || pass.biometric) return;
 
                     const { SecurityService } = await import('../security.js');
@@ -320,7 +312,7 @@ export function initSettings() {
                     const existingHash = localStorage.getItem('cn_master_hash_v3');
 
                     if (authHash !== existingHash) {
-                        return showToast('❌ Incorrect password');
+                        return showToast(t('biometrics.incorrect_pass'));
                     }
 
                     // Create credential
@@ -330,7 +322,7 @@ export function initSettings() {
                     await navigator.credentials.create({
                         publicKey: {
                             challenge,
-                            rp: { name: "Private Notes", id: window.location.hostname },
+                            rp: { name: t('app_name'), id: window.location.hostname },
                             user: {
                                 id: new Uint8Array(16),
                                 name: "user",
@@ -343,17 +335,15 @@ export function initSettings() {
                         }
                     });
 
-                    // Save vault key for biometric access
                     const vaultKey = await SecurityService.deriveVaultKey(pass);
                     localStorage.setItem('cn_vault_key_v3', vaultKey);
                     localStorage.setItem('cn_bio_enabled', 'true');
 
                     updateBioUI();
-                    showToast('✅ Biometrics enabled');
+                    showToast(t('biometrics.success_enable'));
                 } catch (e) {
                     console.error(e);
-                    const { showToast } = await import('../ui-utils.js');
-                    showToast('❌ Failed to enable biometrics: ' + e.message);
+                    showToast(t('biometrics.fail_enable') + ': ' + e.message);
                 }
             }
         };

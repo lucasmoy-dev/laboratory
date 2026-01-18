@@ -54,8 +54,10 @@ export function getAuthShieldTemplate() {
 export async function checkAuthStatus(onSuccess) {
     const shield = document.getElementById('auth-shield');
     const isSetup = !localStorage.getItem('cn_master_hash_v3');
-    const savedKey = sessionStorage.getItem('cn_vault_key_v3') || localStorage.getItem('cn_vault_key_v3');
+    const savedKeySession = sessionStorage.getItem('cn_vault_key_v3');
+    const savedKeyLocal = localStorage.getItem('cn_vault_key_v3');
     const isBioEnabled = localStorage.getItem('cn_bio_enabled') === 'true';
+    const isRemembered = localStorage.getItem('cn_remember_me_v3') === 'true';
 
     // Show bio button if supported and set up
     const bioBtn = document.getElementById('auth-biometric');
@@ -73,30 +75,23 @@ export async function checkAuthStatus(onSuccess) {
 
     if (isSetup) {
         showSetupPage();
-    } else if (savedKey) {
+    } else if (savedKeySession) {
+        // Auto-login from active session
+        finishLogin(savedKeySession, onSuccess);
+    } else if (savedKeyLocal) {
         if (isBioEnabled) {
-            // If Bio is enabled, auto-trigger biometric check
+            // Bio is enabled, show button and auto-trigger
             setTimeout(() => {
                 handleBiometricAuth(onSuccess).catch(() => {
-                    // If bio fails, just show login page
-                    console.log('Auto-bio failed, showing login');
+                    console.log('Auto-bio failed/cancelled');
                 });
-            }, 300);
+            }, 500);
+        } else if (isRemembered) {
+            // "Remember Me" was checked, auto-login without password
+            finishLogin(savedKeyLocal, onSuccess);
         } else {
-            // Auto-login (Legacy/Standard behavior)
-            shield.classList.add('opacity-0', 'pointer-events-none');
-            setTimeout(() => shield.style.display = 'none', 300);
-            const appEl = document.getElementById('app');
-            if (appEl) appEl.classList.remove('opacity-0');
-
-            try {
-                await loadLocalEncrypted(savedKey);
-                onSuccess();
-            } catch (e) {
-                console.error("Auto-auth failed, clearing keys.");
-                clearAuth();
-                showLoginPage();
-            }
+            // Key exists but no Bio and no Remember Me (maybe left over from previous bio session)
+            showLoginPage();
         }
     } else {
         showLoginPage();
@@ -223,24 +218,27 @@ export async function handleMasterAuth(onSuccess) {
 
     const remember = document.getElementById('auth-remember').checked;
 
-    // MIGRATION
-    localStorage.removeItem('cn_pass_plain_v3');
-    sessionStorage.removeItem('cn_pass_plain_v3');
+    // ... cleanup ...
 
     if (!existingHash) {
         localStorage.setItem('cn_master_hash_v3', authHash);
-        // If remembering, save key
-        if (remember) localStorage.setItem('cn_vault_key_v3', vaultKey);
+        if (remember) {
+            localStorage.setItem('cn_vault_key_v3', vaultKey);
+            localStorage.setItem('cn_remember_me_v3', 'true');
+        }
         finishLogin(vaultKey, onSuccess);
-        showToast('✅ Bóveda creada con éxito');
+        showToast(t('auth.vault_created'));
     } else if (existingHash === authHash) {
-        if (remember) localStorage.setItem('cn_vault_key_v3', vaultKey);
-        // If Login with password, and bio is enabled, we keep bio enabled.
+        if (remember) {
+            localStorage.setItem('cn_vault_key_v3', vaultKey);
+            localStorage.setItem('cn_remember_me_v3', 'true');
+        } else if (!localStorage.getItem('cn_bio_enabled') === 'true') {
+            // If not remembering and not using bio, clean up local key
+            localStorage.removeItem('cn_vault_key_v3');
+            localStorage.removeItem('cn_remember_me_v3');
+        }
         finishLogin(vaultKey, onSuccess);
         showToast(t('auth.vault_opened'));
-
-        // After password login, if bio is NOT enabled but supported, maybe prompt? 
-        // User said "toco ahi Me pide la contraseña". So better explicit button click.
     } else {
         return showToast(t('auth.incorrect_pass'));
     }
